@@ -1,0 +1,50 @@
+{
+  "settings": {
+    "migrated": 6,
+    "iconPacksPath": ".obsidian/icons",
+    "fontSize": 16,
+    "emojiStyle": "native",
+    "iconColor": null,
+    "recentlyUsedIcons": [
+      "LiBeer",
+      "LiShoppingBag",
+      "LiKeyRound",
+      "LiTreePine",
+      "LiFilm"
+    ],
+    "recentlyUsedIconsSize": 5,
+    "rules": [],
+    "extraMargin": {
+      "top": 0,
+      "right": 4,
+      "bottom": 0,
+      "left": 0
+    },
+    "iconInTabsEnabled": true,
+    "iconInTitleEnabled": true,
+    "iconInTitlePosition": "above",
+    "iconInFrontmatterEnabled": true,
+    "iconInFrontmatterFieldName": "icon",
+    "iconColorInFrontmatterFieldName": "iconColor",
+    "iconsBackgroundCheckEnabled": true,
+    "iconsInNotesEnabled": true,
+    "iconsInLinksEnabled": true,
+    "iconIdentifier": ":",
+    "lucideIconPackType": "native",
+    "debugMode": false
+  },
+  "Food/Shopping List.md": "LiShoppingBasket",
+  "Food/Next few meals.md": "LiSandwich",
+  "Holiday/Before HOLIBOBS.md": "LiPlaneTakeoff",
+  "Purchases/House things.md": "LiHome",
+  "Life stuff/Projects.md": "LiListTodo",
+  "Life stuff/Family/Boys/Freddie.md": "LiCat",
+  "Life stuff/Family/Boys/Ollie.md": "LiCat",
+  "Life stuff/Family/Boys/Microchip Numbers.md": "LiCircuitBoard",
+  "Life stuff/Family/Name ideas.md": "LiBaby",
+  "Life stuff/Films.md": "LiFilm",
+  "Life stuff/our ideal Christmas dinner.md": "LiTreePine",
+  "Holiday/Key safe for Maisie.md": "LiKeyRound",
+  "Holiday/Before HOLIBOBS shopping list.md": "LiShoppingBag",
+  "Food/Beers.md": "LiBeer"
+}

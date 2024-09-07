@@ -1,0 +1,8 @@
+/* Apply styles only on large screens and above (min-width: 1024px) */
+@media (min-width: 1024px) {
+    .markdown-source-view {
+        max-width: 60%;
+        margin: 0 auto;
+    }
+}
+

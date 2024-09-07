@@ -1,0 +1,10 @@
+{
+  "cssTheme": "Catppuccin",
+  "interfaceFontFamily": "MesloLGL Nerd Font Mono,Gill Sans",
+  "textFontFamily": "Inter,MesloLGL Nerd Font Mono,Gill Sans",
+  "monospaceFontFamily": "MesloLGL Nerd Font Mono,Gill Sans",
+  "accentColor": "",
+  "enabledCssSnippets": [
+    "snippets"
+  ]
+}
