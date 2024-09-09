@@ -1,12 +1,5 @@
 {
-  "obsidian-editor-shortcuts:copyLineDown": [
-    {
-      "modifiers": [
-        "Mod"
-      ],
-      "key": "D"
-    }
-  ],
+  "obsidian-editor-shortcuts:copyLineDown": [],
   "obsidian-editor-shortcuts:copyLineUp": [],
   "obsidian-editor-shortcuts:insertCursorAbove": [
     {
@@ -43,6 +36,26 @@
         "Alt"
       ],
       "key": "ArrowUp"
+    }
+  ],
+  "obsidian-editor-shortcuts:duplicateLine": [
+    {
+      "modifiers": [
+        "Mod"
+      ],
+      "key": "D"
+    }
+  ],
+  "editor:delete-paragraph": [],
+  "obsidian-excalidraw-plugin:insert-link-to-element": [],
+  "obsidian-excalidraw-plugin:insert-link": [],
+  "obsidian-excalidraw-plugin:save": [
+    {
+      "modifiers": [
+        "Mod",
+        "Shift"
+      ],
+      "key": "S"
     }
   ]
 }
