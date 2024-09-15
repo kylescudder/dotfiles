@@ -14,7 +14,7 @@ set $mod Ctrl
 exec_always --no-startup-id picom
 exec_always --no-startup-id killall polybar
 exec_always --no-startup-id ~/.config/polybar/launch_polybar.sh
-exec_always feh --bg-scale ~/.config/backgrounds/catpuccin-background.png
+exec_always feh --bg-scale ~/.config/backgrounds/catppuccin-background.png
 exec_always --no-startup-id setxkbmap -layout gb
 bindsym $mod+space exec rofi -show combi
 exec_always --no-startup-id xset -dpms
