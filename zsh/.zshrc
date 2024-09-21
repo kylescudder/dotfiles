@@ -35,3 +35,5 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 
 # Initialize Bun
 [ -s "$BUN_INSTALL/bun.sh" ] && source "$BUN_INSTALL/bun.sh"
+
+source ~/.config/shmux/shmux.sh
