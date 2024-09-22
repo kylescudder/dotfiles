@@ -12,19 +12,19 @@ return {
         },
       },
     })
-    -- Show package versions in package.json
-    vim.keymap.set("n", "<leader>ns", require("package-info").show, { desc = "Show package versions" })
-    -- Hide package versions
-    vim.keymap.set("n", "<leader>nc", require("package-info").hide, { desc = "Hide package versions" })
-    -- Update a package on the current line
-    vim.keymap.set("n", "<leader>nu", require("package-info").update, { desc = "Update package" })
-    -- Delete a package
-    vim.keymap.set("n", "<leader>nd", require("package-info").delete, { desc = "Delete package" })
-    -- Install a new package
-    vim.keymap.set("n", "<leader>ni", require("package-info").install, { desc = "Install new package" })
-    -- Reinstall all packages
-    vim.keymap.set("n", "<leader>nr", require("package-info").reinstall, { desc = "Reinstall all packages" })
-    -- Update all packages
-    vim.keymap.set("n", "<leader>na", require("package-info").update_all, { desc = "Update all packages" })
+
+    vim.keymap.set({ "n" }, "<LEADER>ns", require("package-info").show, { silent = true, noremap = true })
+    -- Hide dependency versions
+    vim.keymap.set({ "n" }, "<LEADER>nc", require("package-info").hide, { silent = true, noremap = true })
+    -- Toggle dependency versions
+    vim.keymap.set({ "n" }, "<LEADER>nt", require("package-info").toggle, { silent = true, noremap = true })
+    -- Update dependency on the line
+    vim.keymap.set({ "n" }, "<LEADER>nu", require("package-info").update, { silent = true, noremap = true })
+    -- Delete dependency on the line
+    vim.keymap.set({ "n" }, "<LEADER>nd", require("package-info").delete, { silent = true, noremap = true })
+    -- Install a new dependency
+    vim.keymap.set({ "n" }, "<LEADER>ni", require("package-info").install, { silent = true, noremap = true })
+    -- Install a different dependency version
+    vim.keymap.set({ "n" }, "<LEADER>np", require("package-info").change_version, { silent = true, noremap = true })
   end
 }
