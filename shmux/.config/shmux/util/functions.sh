@@ -53,6 +53,10 @@ rename_window() {
   tmux rename-window -t "$SESSION_NAME:zsh" $1
 }
 
+rename_pane() {
+  tmux rename-pane -T $1
+}
+
 attach_to_session() {
   tmux attach-session -t "$SESSION_NAME"
 }
