@@ -7,7 +7,7 @@ return {
     local null_ls = require("null-ls")
     null_ls.setup({
       sources = {
-        require("none-ls.diagnostics.eslint_d"),
+        --require("none-ls.diagnostics.eslint_d"),
         null_ls.builtins.formatting.stylua.with({
           MiniExtra = { "--config-path", vim.fn.stdpath("config") .. "/stylua.toml" },
         }),
