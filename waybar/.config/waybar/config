@@ -5,8 +5,8 @@
     // "width": 1280, // Waybar width
     //"spacing": 4, // Gaps between modules (4px)
     // Choose the order of the modules
-    "modules-left": ["hyprland/window"],
-    "modules-center": ["wlr/workspaces"],
+    "modules-left": ["hyprland/workspaces", "hyprland/window"],
+    "modules-center": ["wlr/workspaces", "custom/song"],
     "modules-right": ["pulseaudio", "network", "cpu", "memory", "temperature", "keyboard-state", "clock"],
     // Modules configuration
     "wlr/workspaces": {
@@ -19,21 +19,17 @@
            "3":"3"
 	}	
      },
-    // "sway/workspaces": {
-    //     "disable-scroll": true,
-    //     "all-outputs": true,
-    //     "format": "{name}: {icon}",
-    //     "format-icons": {
-    //         "1": "",
-    //         "2": "",
-    //         "3": "",
-    //         "4": "",
-    //         "5": "",
-    //         "urgent": "",
-    //         "focused": "",
-    //         "default": ""
-    //     }
-    // },
+    "hyprland/workspaces": {
+        // "disable-scroll": true,
+        // "all-outputs": true,
+        "format": "{icon}",
+        "format-icons": {
+            "9": "",
+            // "urgent": "",
+            // "active": "",
+            // "default": ""
+        }
+    },
     "keyboard-state": {
         "numlock": true,
         "capslock": true,
@@ -167,5 +163,15 @@
         "escape": true,
         "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
         // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
+    },
+    "custom/song": {
+        "exec": "$HOME/Documents/Repos/scripts/songdetail.sh",  // Adjust the path if necessary
+        "interval": 1,  // How often to refresh (in seconds)
+        "format": "{}",
+        "return-type": "stdout",
+        "on-click": "playerctl play-pause",  // Optional: Command to run when clicked
+        "on-scroll-up": "playerctl next",    // Optional: Command to run on scroll up
+        "on-scroll-down": "playerctl previous"  // Optional: Command to run on scroll down
     }
+
 }

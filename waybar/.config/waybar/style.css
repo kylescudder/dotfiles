@@ -46,13 +46,14 @@ button {
 
 #workspaces button {
     padding: 0 5px; 
-    border-radius: 5em / 5em;
-    background-color: @surface0;
     color: @peach;
     margin: 2px;
     font-weight: bold;
 }
 
+#workspaces button.active {
+  border-bottom: 3px solid @peach;
+}
 
 #clock,
 #battery,
@@ -67,6 +68,11 @@ button {
     color: @peach;
     background-color: @surface0; 
     font-weight: bold;
+}
+
+#custom-song {
+  font-weight: bold;
+  padding: 0 10px;
 }
 
 #memory {
@@ -142,11 +148,14 @@ label:focus {
     color: @mauve;
 }
 
-
 #keyboard-state > label {
     padding: 0 5px;
 }
 
 #keyboard-state > label.locked {
     background: rgba(0, 0, 0, 0.2);
+}
+
+#custom-song {
+  color: @pink;
 }
