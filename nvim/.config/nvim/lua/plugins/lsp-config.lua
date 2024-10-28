@@ -21,6 +21,7 @@ return {
           "lua_ls",
           "ts_ls",
           "tailwindcss",
+          "astro",
         },
       })
     end,
@@ -40,6 +41,9 @@ return {
         capabilities = capabilities,
       })
       lspconfig.html.setup({
+        capabilities = capabilities,
+      })
+      lspconfig.astro.setup({
         capabilities = capabilities,
       })
       vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
