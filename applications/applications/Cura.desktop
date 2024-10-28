@@ -1,0 +1,12 @@
+[Desktop Entry]
+Version=5.7.2
+Type=Application
+Exec=/home/kyle/.local/share/AppImage/Cura.AppImage
+Icon=/home/kyle/.local/share/icons/Cura.png
+Name=Cura
+Comment=Cura for 3d Slicing
+Terminal=false
+MimeType=text/html;text/xml;application/xhtml+xml;x-scheme-handler/http;x-scheme-handler/https;application/x-xpinstall;application/pdf;application/json;
+StartupNotify=true
+Terminal=false
+X-MultipleArgs=false
