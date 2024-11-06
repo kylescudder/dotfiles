@@ -46,6 +46,12 @@ return {
       lspconfig.astro.setup({
         capabilities = capabilities,
       })
+
+      -- Set up a keybinding for `vim.diagnostic.open_float` in LazyVim
+      vim.keymap.set("n", "<leader>e", function()
+        vim.diagnostic.open_float()
+      end, { noremap = true, silent = true, desc = "Show diagnostics in a floating window" })
+
       vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
       vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})
       vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, {})
