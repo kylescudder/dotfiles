@@ -22,6 +22,8 @@ return {
           "ts_ls",
           "tailwindcss",
           "astro",
+          "csharp_ls",      -- C# Language Server
+          "omnisharp",      -- Another popular C# Language Server
         },
       })
     end,
@@ -45,6 +47,18 @@ return {
       })
       lspconfig.astro.setup({
         capabilities = capabilities,
+      })
+
+      -- C# Language Server configurations
+      lspconfig.csharp_ls.setup({
+        capabilities = capabilities,
+      })
+      lspconfig.omnisharp.setup({
+        capabilities = capabilities,
+        cmd = { "omnisharp", "--languageserver" },
+        enable_roslyn_analyzers = true,
+        organize_imports_on_format = true,
+        enable_import_completion = true,
       })
 
       -- Set up a keybinding for `vim.diagnostic.open_float` in LazyVim
