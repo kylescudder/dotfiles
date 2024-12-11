@@ -18,6 +18,7 @@ run_command "bun dev"
 split_horizontal 66%
 
 rename_pane "general"
+run_command "git pull"
 split_horizontal 50%
 
 rename_pane "prettier"
