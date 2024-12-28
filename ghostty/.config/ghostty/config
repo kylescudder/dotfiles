@@ -1,0 +1,11 @@
+theme = catppuccin-mocha
+
+# Comments start with a `#` and are only valid on their own line.
+# Blank lines are ignored!
+
+keybind = ctrl+q=close_surface
+keybind = ctrl+d=new_split:right
+
+# Empty values reset the configuration to the default value
+font-family = MesloLGS Nerd Font Mono
+
