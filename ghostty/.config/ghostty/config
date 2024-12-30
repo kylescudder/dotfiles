@@ -9,3 +9,4 @@ keybind = ctrl+d=new_split:right
 # Empty values reset the configuration to the default value
 font-family = MesloLGS Nerd Font Mono
 
+window-decoration = false
