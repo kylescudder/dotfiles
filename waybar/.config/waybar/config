@@ -165,7 +165,7 @@
         // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
     },
     "custom/song": {
-        "exec": "$HOME/Documents/Repos/scripts/songdetail.sh",  // Adjust the path if necessary
+        "exec": "$HOME/Documents/Repos/scripts/songdetail",  // Adjust the path if necessary
         "interval": 1,  // How often to refresh (in seconds)
         "format": "{}",
         "return-type": "stdout",
