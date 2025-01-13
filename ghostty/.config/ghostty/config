@@ -7,6 +7,6 @@ keybind = ctrl+q=close_surface
 keybind = ctrl+d=new_split:right
 
 # Empty values reset the configuration to the default value
-font-family = MesloLGS Nerd Font Mono
+font-family = Meslo LGS Nerd Font Mono
 
 window-decoration = false
