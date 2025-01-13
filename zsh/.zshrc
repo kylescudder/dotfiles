@@ -38,3 +38,5 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 [ -s "$BUN_INSTALL/bun.sh" ] && source "$BUN_INSTALL/bun.sh"
 
 source ~/.config/shmux/shmux.sh
+
+export PATH=$PATH:/home/kyle/.spicetify
