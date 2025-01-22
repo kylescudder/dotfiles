@@ -42,6 +42,28 @@ button {
     border-radius: 0;
 }
 
+/* If workspaces is the leftmost module, omit left margin */
+.modules-left > widget:first-child > #workspaces {
+    margin-left: 0;
+}
+
+/* If workspaces is the rightmost module, omit right margin */
+.modules-right > widget:last-child > #workspaces {
+    margin-right: 0;
+}
+
+
+@keyframes blink {
+    to {
+        background-color: #ffffff;
+        color: #000000;
+    }
+}
+
+label:focus {
+    background-color: #000000;
+}
+
 /* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
 
 #workspaces button {
@@ -70,13 +92,9 @@ button {
     font-weight: bold;
 }
 
-#custom-song {
+#custom-song, #custom-quit, #custom-lock, #custom-reboot, #custom-power {
   font-weight: bold;
   padding: 0 10px;
-}
-
-#memory {
-   color: @yellow;
 }
 
 #window,
@@ -89,43 +107,11 @@ button {
     color: @peach;
 }
 
-
-/* If workspaces is the leftmost module, omit left margin */
-.modules-left > widget:first-child > #workspaces {
-    margin-left: 0;
-}
-
-/* If workspaces is the rightmost module, omit right margin */
-.modules-right > widget:last-child > #workspaces {
-    margin-right: 0;
-}
-
-#clock {
-  border-top-right-radius: 5em 5em; 
-  border-bottom-right-radius: 5em 5em;
-  color: @sky;   
-}
-
-
-@keyframes blink {
-    to {
-        background-color: #ffffff;
-        color: #000000;
-    }
-}
-
-label:focus {
-    background-color: #000000;
-}
-
-
 #network.disconnected {
     background-color: #f53c3c;
 }
 
-#pulseaudio {
-    border-top-left-radius: 5em 5em;
-    border-bottom-left-radius: 5em 5em;
+#custom-lock {
     color: @pink;
 }
 
@@ -140,6 +126,19 @@ label:focus {
 
 #temperature {
    color: @green;
+}
+
+/* The first item so add some nice rounding to the border-radius to give it a fully rounded end */
+#pulseaudio {
+    color: @pink;
+    border-top-left-radius: 5em 5em;
+    border-bottom-left-radius: 5em 5em;
+}
+
+/* The last item so the padding on the right needs to be a bit more so it does not end up too close to the edge */
+#custom-power {
+  color: @red;
+  padding: 0 15px 0 10px;
 }
 
 #keyboard-state {
@@ -159,3 +158,12 @@ label:focus {
 #custom-song {
   color: @pink;
 }
+
+#custom-quit {
+  color: @peach;
+}
+
+#memory, #custom-reboot {
+   color: @yellow;
+}
+

@@ -6,6 +6,7 @@ bindkey -v
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
 zstyle :compinstall filename '/home/kyle/.zshrc'
+fpath=(~/.zsh/completions $fpath)
 
 autoload -Uz compinit
 compinit
@@ -38,3 +39,5 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 [ -s "$BUN_INSTALL/bun.sh" ] && source "$BUN_INSTALL/bun.sh"
 
 source ~/.config/shmux/shmux.sh
+
+export PATH=$PATH:/home/kyle/.spicetify

@@ -54,7 +54,7 @@ rename_window() {
 }
 
 rename_pane() {
-  tmux rename-pane -T $1
+  tmux select-pane -T $1
 }
 
 attach_to_session() {

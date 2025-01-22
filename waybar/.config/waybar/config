@@ -7,17 +7,17 @@
     // Choose the order of the modules
     "modules-left": ["hyprland/workspaces", "hyprland/window"],
     "modules-center": ["wlr/workspaces", "custom/song"],
-    "modules-right": ["pulseaudio", "network", "cpu", "memory", "temperature", "keyboard-state", "clock"],
+    "modules-right": ["pulseaudio", "network", "cpu", "memory", "temperature", "keyboard-state", "clock","group/group_power"],
     // Modules configuration
     "wlr/workspaces": {
 	"format": "{icon}",
 	"on-scroll-up": "hyprctl dispatch workspace e+1",
      	"on-scroll-down": "hyprctl dispatch workspace e-1",
-	"format-icons": {
-	   "1":"1",
-	   "2":"2",
-           "3":"3"
-	}	
+      "format-icons": {
+         "1":"1",
+         "2":"2",
+               "3":"3"
+      }	
      },
     "hyprland/workspaces": {
         // "disable-scroll": true,
@@ -165,13 +165,46 @@
         // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
     },
     "custom/song": {
-        "exec": "$HOME/Documents/Repos/scripts/songdetail.sh",  // Adjust the path if necessary
+        "exec": "$HOME/Documents/Repos/scripts/songdetail",  // Adjust the path if necessary
         "interval": 1,  // How often to refresh (in seconds)
         "format": "{}",
         "return-type": "stdout",
         "on-click": "playerctl play-pause",  // Optional: Command to run when clicked
         "on-scroll-up": "playerctl next",    // Optional: Command to run on scroll up
         "on-scroll-down": "playerctl previous"  // Optional: Command to run on scroll down
+    },
+    "group/group_power": {
+        "orientation": "horizontal",
+        "drawer": {
+            "transition-duration": 500,
+            "children-class": "not-power",
+            "transition-left-to-right": false,
+        },
+        "modules": [
+            "custom/power", // First element is the "group leader" and won't ever be hidden
+            "custom/quit",
+            "custom/lock",
+            "custom/reboot",
+        ]
+    },
+    "custom/quit": {
+        "format": "󰗼",
+        "tooltip": "Logout",
+        "on-click": "hyprctl dispatch exit"
+    },
+    "custom/lock": {
+        "format": "󰍁",
+        "tooltip": "Lock",
+        "on-click": "hyprlock"
+    },
+    "custom/reboot": {
+        "format": "󰜉",
+        "tooltip": "Reboot",
+        "on-click": "reboot"
+    },
+    "custom/power": {
+        "format": "",
+        "tooltip": "Shutdown",
+        "on-click": "shutdown now"
     }
-
 }

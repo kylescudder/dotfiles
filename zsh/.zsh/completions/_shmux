@@ -1,0 +1,49 @@
+#compdef shmux
+
+# Zsh completion script for shmux
+# Save this as '_shmux' in a directory that's in your fpath
+# Common locations:
+# - /usr/local/share/zsh/site-functions/_shmux
+# - $HOME/.zsh/completions/_shmux
+
+_shmux() {
+    local -a commands layouts
+    local layout_dir="${HOME}/.config/shmux/layouts"
+
+    # Define main commands
+    commands=(
+        'load:Load an existing project layout'
+        'new:Create a new project layout'
+        'check:Check if a project layout exists'
+        'edit:Edit an existing project layout'
+    )
+
+    # Handle different completion contexts
+    _arguments -C \
+        '1: :->command' \
+        '*: :->args'
+
+    case $state in
+        command)
+            # Complete main commands
+            _describe -t commands 'shmux commands' commands
+            ;;
+        args)
+            case $words[2] in
+                load|check|edit)
+                    # Get available layouts
+                    if [[ -d $layout_dir ]]; then
+                        layouts=( ${layout_dir}/*.sh(:t:r) )
+                        _describe -t layouts 'available layouts' layouts
+                    fi
+                    ;;
+                *)
+                    # No completion for other cases
+                    ;;
+            esac
+            ;;
+    esac
+}
+
+# Register the completion function
+_shmux

@@ -12,8 +12,7 @@ PS1='[\u@\h \W]\$ '
 
 eval "$(starship init bash)"
 
-nerdfetch
-
+fastfetch
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH=$BUN_INSTALL/bin:$PATH
