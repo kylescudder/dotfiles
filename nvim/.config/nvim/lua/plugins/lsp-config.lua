@@ -24,6 +24,7 @@ return {
           "astro",
           "csharp_ls",      -- C# Language Server
           "omnisharp",      -- Another popular C# Language Server
+          "bashls"
         },
       })
     end,
@@ -48,7 +49,9 @@ return {
       lspconfig.astro.setup({
         capabilities = capabilities,
       })
-
+      lspconfig.bashls.setup({
+        capabilities = capabilities,
+      })
       -- C# Language Server configurations
       lspconfig.csharp_ls.setup({
         capabilities = capabilities,
