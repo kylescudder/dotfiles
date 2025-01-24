@@ -22,7 +22,7 @@ run_command "bunx drizzle-kit studio"
 
 split_horizontal 50%
 rename_pane "prettier"
-run_command "git pull"
+run_command "~/Documents/Repos/scripts/stashpullpop ./"
 run_command "bun format"
 # 
 # # at the end, select the window you want first
