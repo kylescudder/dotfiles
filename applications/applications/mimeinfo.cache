@@ -1,1 +1,11 @@
 [MIME Cache]
+application/json=Cura.desktop;
+application/pdf=Cura.desktop;
+application/x-xpinstall=Cura.desktop;
+application/xhtml+xml=Cura.desktop;
+text/html=Cura.desktop;
+text/xml=Cura.desktop;
+x-scheme-handler/adskidmgr=adskidmgr-opener.desktop;
+x-scheme-handler/discord-424004941485572097=discord-424004941485572097.desktop;
+x-scheme-handler/http=Cura.desktop;
+x-scheme-handler/https=Cura.desktop;
