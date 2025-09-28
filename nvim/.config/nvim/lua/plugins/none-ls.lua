@@ -11,7 +11,21 @@ return {
         null_ls.builtins.formatting.stylua.with({
           MiniExtra = { "--config-path", vim.fn.stdpath("config") .. "/stylua.toml" },
         }),
-        null_ls.builtins.formatting.prettier,
+        null_ls.builtins.formatting.prettier.with({
+          extra_args = {
+            "--tab-width", "4",
+            "--use-tabs", "true",
+          },
+          filetypes = {
+            "javascript",
+            "typescript",
+            "javascriptreact",
+            "typescriptreact",
+            "html",
+            "css",
+            "json",
+          },
+        }),
       },
     })
 
