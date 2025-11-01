@@ -1,4 +1,4 @@
-theme = catppuccin-mocha
+theme = catppuccin-mocha.conf
 
 # Comments start with a `#` and are only valid on their own line.
 # Blank lines are ignored!
