@@ -1,4 +1,3 @@
--- nvim v0.8.0
 return {
   "kdheepak/lazygit.nvim",
   cmd = {
@@ -8,13 +7,16 @@ return {
     "LazyGitFilter",
     "LazyGitFilterCurrentFile",
   },
-  -- optional for floating window border decoration
-  dependencies = {
-    "nvim-lua/plenary.nvim",
-  },
-  -- setting the keybinding for LazyGit with 'keys' is recommended in
-  -- order to load the plugin when the command is run for the first time
+  dependencies = { "nvim-lua/plenary.nvim" },
   keys = {
-    { "<leader>lg", "<cmd>LazyGit<cr>", desc = "LazyGit" }
-  }
+    { "<leader>lg", "<cmd>LazyGit<cr>", desc = "LazyGit" },
+  },
+  init = function()
+    -- example: load two config files (they get merged by lazygit)
+    vim.g.lazygit_use_custom_config_file_path = 1
+    vim.g.lazygit_config_file_path = {
+      vim.fn.expand("~/.config/lazygit/config.yml"),
+      vim.fn.expand("~/.config/lazygit/mauve.yml"),
+    }
+  end,
 }
