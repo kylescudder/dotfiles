@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Soundux
+Comment=Soundux with Wayland/NVIDIA workarounds
+Exec=/home/kyle/.local/bin/soundux-wrapper
+Icon=soundux
+Terminal=false
+Categories=Audio;Utility;
