@@ -39,5 +39,6 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 [ -s "$BUN_INSTALL/bun.sh" ] && source "$BUN_INSTALL/bun.sh"
 
 source ~/Documents/Repos/schmerdr/schmerdr.sh
+export EDITOR=nvim
 
 export PATH=$PATH:/home/kyle/.spicetify
