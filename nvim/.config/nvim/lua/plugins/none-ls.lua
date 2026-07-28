@@ -9,7 +9,7 @@ return {
       sources = {
         --require("none-ls.diagnostics.eslint_d"),
         null_ls.builtins.formatting.stylua.with({
-          MiniExtra = { "--config-path", vim.fn.stdpath("config") .. "/stylua.toml" },
+          extra_args = { "--config-path", vim.fn.stdpath("config") .. "/lua/config/stylua.toml" },
         }),
         null_ls.builtins.formatting.prettier.with({
           extra_args = {

@@ -7,12 +7,23 @@ return {
       require("mason").setup({
         ui = {
           icons = {
-            package_installed   = "✓",
-            package_pending     = "➜",
+            package_installed = "✓",
+            package_pending = "➜",
             package_uninstalled = "✗",
           },
         },
       })
+
+      -- Ensure non-LSP tools (formatters) are installed
+      local registry = require("mason-registry")
+      registry.refresh(function()
+        for _, name in ipairs({ "stylua", "prettier" }) do
+          local ok, pkg = pcall(registry.get_package, name)
+          if ok and not pkg:is_installed() then
+            pkg:install()
+          end
+        end
+      end)
     end,
   },
   {
