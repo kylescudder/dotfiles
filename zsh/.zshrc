@@ -42,3 +42,6 @@ source ~/Documents/Repos/schmerdr/schmerdr.sh
 export EDITOR=nvim
 
 export PATH=$PATH:/home/kyle/.spicetify
+
+# opencode
+export PATH=/Users/Kyle.Scudder/.opencode/bin:$PATH
