@@ -38,6 +38,6 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 # Initialize Bun
 [ -s "$BUN_INSTALL/bun.sh" ] && source "$BUN_INSTALL/bun.sh"
 
-source ~/.config/shmux/shmux.sh
+source ~/Documents/Repos/schmerdr/schmerdr.sh
 
 export PATH=$PATH:/home/kyle/.spicetify
