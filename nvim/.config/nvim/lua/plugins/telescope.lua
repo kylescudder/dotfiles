@@ -36,16 +36,16 @@ return {
       require("fzf-lua").setup({
         winopts = {
           height = 0.85, -- Adjust the height of the floating window
-          width = 0.80,  -- Adjust the width of the floating window
-          row = 0.35,    -- Adjust the row position
-          col = 0.50,    -- Adjust the column position
+          width = 0.80, -- Adjust the width of the floating window
+          row = 0.35, -- Adjust the row position
+          col = 0.50, -- Adjust the column position
         },
-         grep = {
+        grep = {
           rg_opts = "--hidden --column --line-number --no-heading --color=always --smart-case",
-        },       -- other fzf-lua setup options here
+        }, -- other fzf-lua setup options here
       })
-      vim.keymap.set("n", "<C-p>", ":FzfLua files<CR>", { noremap = true, silent = true })
-      vim.keymap.set("n", "<leader>fg", ":FzfLua grep<CR>", { noremap = true, silent = true })
+      vim.keymap.set("n", "<D-S-t>", ":FzfLua files<CR>", { noremap = true, silent = true })
+      vim.keymap.set("n", "<D-S-f>", ":FzfLua grep<CR>", { noremap = true, silent = true })
     end,
   },
 }

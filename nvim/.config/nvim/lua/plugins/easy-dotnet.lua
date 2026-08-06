@@ -1,6 +1,16 @@
 -- lazy.nvim
 return {
   "GustavEikaas/easy-dotnet.nvim",
+  build = function()
+    if vim.fn.executable("dotnet") == 0 then
+      return
+    end
+    if vim.fn.executable("dotnet-easydotnet") == 1 then
+      vim.fn.system({ "dotnet", "tool", "update", "-g", "EasyDotnet" })
+    else
+      vim.fn.system({ "dotnet", "tool", "install", "-g", "EasyDotnet" })
+    end
+  end,
   -- 'nvim-telescope/telescope.nvim' or 'ibhagwan/fzf-lua' or 'folke/snacks.nvim'
   -- are highly recommended for a better experience
   dependencies = { "nvim-lua/plenary.nvim", 'mfussenegger/nvim-dap', 'folke/snacks.nvim', },
@@ -9,7 +19,7 @@ return {
     -- Options are not required
     dotnet.setup({
      managed_terminal = {
-       auto_hide = true, -- auto hides terminal if exit code is 0
+       auto_hide = false, -- keep the terminal open (e.g. dotnet watch/run)
        auto_hide_delay = 1000, -- delay before auto hiding, 0 = instant
        mappings = {
          next_tab       = { lhs = "<Tab>",   desc = "Next terminal tab" },
@@ -161,6 +171,23 @@ return {
       },
     })
 
+    -- easy-dotnet builds+restores before the debug session starts, which can
+    -- exceed nvim-dap's default 4s initialize timeout ("Debug adapter didn't
+    -- respond"). Give the adapter much longer.
+    do
+      local dap = require("dap")
+      local ed = dap.adapters["easy-dotnet"]
+      if type(ed) == "function" then
+        dap.adapters["easy-dotnet"] = function(cb, config)
+          ed(function(adapter)
+            adapter.options = adapter.options or {}
+            adapter.options.initialize_timeout_sec = 120
+            cb(adapter)
+          end, config)
+        end
+      end
+    end
+
     -- Example command
     vim.api.nvim_create_user_command('Secrets', function()
       dotnet.secrets()
@@ -170,5 +197,8 @@ return {
     vim.keymap.set("n", "<C-p>", function()
       vim.cmd("Dotnet run profile default")
     end)
+
+    vim.keymap.set("n", "<leader>te", "<cmd>Dotnet testrunner<cr>", { desc = "Test explorer (easy-dotnet)" })
+    vim.keymap.set("n", "<leader>dt", "<cmd>Dotnet terminal toggle<cr>", { desc = "Toggle dotnet terminal (easy-dotnet)" })
   end
 }

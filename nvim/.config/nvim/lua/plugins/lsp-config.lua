@@ -17,9 +17,13 @@ return {
       -- Ensure non-LSP tools (formatters) are installed
       local registry = require("mason-registry")
       registry.refresh(function()
-        for _, name in ipairs({ "stylua", "prettier" }) do
+        for _, name in ipairs({ "stylua", "prettier", "html-lsp" }) do
           local ok, pkg = pcall(registry.get_package, name)
-          if ok and not pkg:is_installed() then
+          if not ok then
+            vim.schedule(function()
+              vim.notify("mason: unknown package '" .. name .. "'", vim.log.levels.WARN)
+            end)
+          elseif not pkg:is_installed() then
             pkg:install()
           end
         end
@@ -38,12 +42,10 @@ return {
           "ts_ls",
           "tailwindcss",
           "astro",
-          "csharp_ls",
-          "omnisharp",
           "bashls",
         },
-        -- Automatically install any LSPs you set up via lspconfig below
-        automatic_enable = true,
+        -- Servers are enabled explicitly via vim.lsp.enable() below
+        automatic_enable = false,
       })
     end,
   },
@@ -71,48 +73,22 @@ return {
       setup("html")
       setup("astro")
       setup("bashls")
-      setup("csharp_ls")
-      setup("omnisharp", {
-        cmd = { "omnisharp", "--languageserver" },
-        enable_roslyn_analyzers = true,
-        organize_imports_on_format = true,
-        enable_import_completion = true,
-      })
       setup("rust_analyzer", {
         settings = {
           ["rust-analyzer"] = {},
         },
       })
 
-      -- Auto-start configured servers when entering buffers with matching filetypes
-      vim.api.nvim_create_autocmd("FileType", {
-        group = vim.api.nvim_create_augroup("lsp_autostart", { clear = true }),
-        pattern = "*",
-        callback = function()
-          local ft = vim.bo.filetype
-
-          -- Manually map filetypes → LSP server names
-          local ft_to_server = {
-            typescript = "ts_ls",
-            typescriptreact = "ts_ls",
-            javascript = "ts_ls",
-            javascriptreact = "ts_ls",
-            lua = "lua_ls",
-            rust = "rust_analyzer",
-            bash = "bashls",
-            sh = "bashls",
-            csharp = "csharp_ls",
-            html = "html",
-            astro = "astro",
-            css = "tailwindcss",
-          }
-
-          local server = ft_to_server[ft] -- will be nil if not mapped
-          if server and vim.lsp.config[server] then
-            -- start client if not already running
-            vim.lsp.start(vim.lsp.config[server])
-          end
-        end,
+      -- Enable servers; nvim auto-starts each on its filetypes and resolves
+      -- function-based root_dir (which vim.lsp.start cannot).
+      vim.lsp.enable({
+        "lua_ls",
+        "ts_ls",
+        "tailwindcss",
+        "html",
+        "astro",
+        "bashls",
+        "rust_analyzer",
       })
 
       -- Keymaps

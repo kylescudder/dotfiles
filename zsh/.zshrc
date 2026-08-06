@@ -43,5 +43,7 @@ export EDITOR=nvim
 
 export PATH=$PATH:/home/kyle/.spicetify
 
+export DOTNET_ROOT="/usr/local/share/dotnet"
+export PATH="$HOME/.local/bin:$PATH"
 # opencode
 export PATH=/Users/Kyle.Scudder/.opencode/bin:$PATH
