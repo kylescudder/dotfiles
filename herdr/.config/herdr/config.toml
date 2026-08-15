@@ -1,0 +1,47 @@
+onboarding = false
+
+[ui.toast]
+delivery = "system"
+
+[ui.sidebar.agents]
+rows = [["state_icon", "workspace", "tab"], ["state_text"]]
+
+[ui]
+show_agent_labels_on_pane_borders = true
+
+agent_panel_sort = "priority"
+[theme]
+name = "catppuccin"
+auto_switch = false
+
+[keys]
+prefix = "ctrl+s"
+
+# tmux: christoomey/vim-tmux-navigator — move between panes with ctrl+h/j/k/l,
+# no prefix needed. (tmux also had prefix h/j/k/l via bind-key select-pane.)
+focus_pane_left = "ctrl+h"
+focus_pane_down = "ctrl+j"
+focus_pane_up = "ctrl+k"
+focus_pane_right = "ctrl+l"
+
+open_worktree = "prefix+shift+o"
+split_vertical = "prefix+|"
+split_horizontal = "prefix+-"
+rename_workspace = "prefix+,"
+# prefix+C renames the focused pane; in the workspace navigator the same key
+# renames the selected workspace (herdr >= 0.8.8).
+rename_pane = "prefix+shift+c"
+
+[worktrees]
+directory = "~/worktrees"
+
+[experimental]
+# tmux-navigator: pass ctrl+hjkl through to these editors (so their own split
+# nav works) instead of switching herdr panes. Needs herdr >= 0.8.2.
+smart_pane_focus_editors = ["nvim", "vim", "vi", "view", "vimdiff"]
+kitty_graphics = true
+
+[[keys.command]]
+key = "prefix+r"
+type = "plugin_action"
+command = "persiyanov.reviewr.toggle" 
