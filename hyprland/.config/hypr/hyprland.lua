@@ -32,7 +32,10 @@ hl.monitor({
 -- Autostart
 
 hl.on("hyprland.start", function()
-    hl.exec_cmd("waybar & swaync & hypridle & hyprpaper")
+    hl.exec_cmd("waybar")
+    hl.exec_cmd("swaync")
+    hl.exec_cmd("hypridle")
+    hl.exec_cmd("hyprpaper")
     hl.exec_cmd("lua " .. repositories .. "/plex-directory-scrapper/plex-directory-scapper.lua")
     hl.exec_cmd("nohup " .. scripts .. "/songchange &")
     hl.exec_cmd("spotify-launcher", { workspace = "9 silent" })
