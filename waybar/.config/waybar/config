@@ -1,210 +1,164 @@
 {
-    "layer": "top", // Waybar at top layer
-    "position": "top", // top|left|bottom|right
-    //"height": 30, // Waybar height (to be removed for auto height)
-    // "width": 1280, // Waybar width
-    //"spacing": 4, // Gaps between modules (4px)
-    // Choose the order of the modules
-    "modules-left": ["hyprland/workspaces", "hyprland/window"],
-    "modules-center": ["wlr/workspaces", "custom/song"],
-    "modules-right": ["pulseaudio", "network", "cpu", "memory", "temperature", "keyboard-state", "clock","group/group_power"],
-    // Modules configuration
-    "wlr/workspaces": {
-	"format": "{icon}",
-	"on-scroll-up": "hyprctl dispatch workspace e+1",
-     	"on-scroll-down": "hyprctl dispatch workspace e-1",
-      "format-icons": {
-         "1":"1",
-         "2":"2",
-               "3":"3"
-      }	
-     },
+    "layer": "top",
+    "position": "top",
+    "height": 34,
+    "margin-top": 10,
+    "spacing": 2,
+    "fixed-center": true,
+
+    "modules-left": ["custom/launcher", "hyprland/workspaces"],
+    "modules-center": ["clock", "custom/song"],
+    "modules-right": ["group/system", "custom/notification", "pulseaudio", "network", "group/group_power"],
+
+    "custom/launcher": {
+        "format": "",
+        "tooltip": false,
+        "on-click": "$HOME/Documents/Repos/scripts/rofi"
+    },
+
     "hyprland/workspaces": {
-        // "disable-scroll": true,
-        // "all-outputs": true,
-        "format": "{icon}",
-        "format-icons": {
-            "9": "",
-            // "urgent": "",
-            // "active": "",
-            // "default": ""
-        }
-    },
-    "keyboard-state": {
-        "numlock": true,
-        "capslock": true,
-        "format": "{icon} {name}",
-        "format-icons": {
-            "locked": "",
-            "unlocked": ""
-        }
-    },
-    
-    "hyprland/window": {
-        "format": "➡ {}",
-        "separate-outputs": true
-    },
-   
-    "mpd": {
-        "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}% ",
-        "format-disconnected": "Disconnected ",
-        "format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ",
-        "unknown-tag": "N/A",
-        "interval": 2,
-        "consume-icons": {
-            "on": " "
-        },
-        "random-icons": {
-            "off": "<span color=\"#f53c3c\"></span> ",
-            "on": " "
-        },
-        "repeat-icons": {
-            "on": " "
-        },
-        "single-icons": {
-            "on": "1 "
-        },
-        "state-icons": {
-            "paused": "",
-            "playing": ""
-        },
-        "tooltip-format": "MPD (connected)",
-        "tooltip-format-disconnected": "MPD (disconnected)"
-    },
-    "idle_inhibitor": {
-        "format": "{icon}",
-        "format-icons": {
-            "activated": "",
-            "deactivated": ""
-        }
-    },
-    "tray": {
-        // "icon-size": 21,
-        "spacing": 10
-    },
-    "clock": {
-        // "timezone": "America/New_York",
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "format-alt": "{:%Y-%m-%d}"
-    },
-    "cpu": {
-        "format": " {usage}%",
+        "format": "{name}",
+        "sort-by": "number",
         "tooltip": false
     },
-    "memory": {
-        "format": "{}% "
+
+    "custom/song": {
+        "exec": "$HOME/Documents/Repos/scripts/songdetail",
+        "exec-if": "playerctl status 2>/dev/null | grep -qx Playing",
+        "interval": 2,
+        "format": "  {}",
+        "max-length": 44,
+        "hide-empty-text": true,
+        "return-type": "stdout",
+        "tooltip": false,
+        "on-click": "playerctl play-pause",
+        "on-scroll-up": "playerctl next",
+        "on-scroll-down": "playerctl previous"
     },
-    "temperature": {
-        // "thermal-zone": 2,
-        // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
-        "critical-threshold": 80,
-        // "format-critical": "{temperatureC}°C {icon}",
-        "format": "{icon} {temperatureC}°C",
-        "format-icons": ["", "", ""]
-    },
-    "backlight": {
-        // "device": "acpi_video1",
-        "format": "{percent}% {icon}",
-        "format-icons": ["", "", "", "", "", "", "", "", ""]
-    },
-    "battery": {
-        "states": {
-            // "good": 95,
-            "warning": 30,
-            "critical": 15
+
+    "group/system": {
+        "orientation": "horizontal",
+        "drawer": {
+            "transition-duration": 300,
+            "children-class": "system-detail",
+            "transition-left-to-right": false
         },
-        "format": "{capacity}% {icon}",
-        "format-charging": "{capacity}% ",
-        "format-plugged": "{capacity}% ",
-        "format-alt": "{time} {icon}",
-        // "format-good": "", // An empty format will hide the module
-        // "format-full": "",
-        "format-icons": ["", "", "", "", ""]
+        "modules": ["custom/system", "cpu", "memory", "temperature"]
     },
-    "battery#bat2": {
-        "bat": "BAT2"
+
+    "custom/system": {
+        "format": "",
+        "tooltip": true,
+        "tooltip-format": "System usage"
     },
-    "network": {
-        // "interface": "wlp2*", // (Optional) To force the use of this interface
-        "format-wifi": " {essid} ({signalStrength}%)",
-        "format-ethernet": " {ipaddr}/{cidr}",
-        "tooltip-format": " {ifname} via {gwaddr}",
-        "format-linked": " {ifname} (No IP)",
-        "format-disconnected": "⚠ Disconnected",
-        "format-alt": "{ifname}: {ipaddr}/{cidr}"
+
+    "cpu": {
+        "format": "󰻠 {usage}%",
+        "tooltip": false
     },
+
+    "memory": {
+        "format": "󰍛 {percentage}%",
+        "tooltip": false
+    },
+
+    "temperature": {
+        "critical-threshold": 80,
+        "format": "{icon} {temperatureC}°",
+        "format-icons": ["", "", ""],
+        "tooltip": false
+    },
+
     "pulseaudio": {
-        // "scroll-step": 1, // %, can be a float
-        "format": "{icon}  {volume}%   {format_source}",
-        "format-bluetooth": "{volume}% {icon} {format_source}",
-        "format-bluetooth-muted": " {icon} {format_source}",
-        "format-muted": " {format_source}",
-        "format-source": " {volume}%",
-        "format-source-muted": "",
+        "format": "{icon}",
+        "format-bluetooth": "{icon} ",
+        "format-muted": "󰖁",
+        "format-bluetooth-muted": "󰖁 ",
         "format-icons": {
             "headphone": "",
-            "hands-free": "",
-            "headset": "",
+            "hands-free": "󰋎",
+            "headset": "󰋎",
             "phone": "",
             "portable": "",
             "car": "",
             "default": ["", "", ""]
         },
+        "tooltip-format": "{desc}\nVolume: {volume}%",
         "on-click": "pavucontrol"
     },
-    "custom/media": {
-        "format": "{icon} {}",
+
+    "network": {
+        "format-wifi": "",
+        "format-ethernet": "󰈀",
+        "format-linked": "󰈀",
+        "format-disconnected": "󰖪",
+        "tooltip-format-wifi": "{essid}\nSignal: {signalStrength}%",
+        "tooltip-format-ethernet": "{ifname}\n{ipaddr}/{cidr}",
+        "tooltip-format-disconnected": "Network disconnected"
+    },
+
+    "custom/notification": {
+        "format": "{icon}",
         "return-type": "json",
-        "max-length": 40,
-        "format-icons": {
-            "spotify": "",
-            "default": "🎜"
-        },
+        "exec-if": "command -v swaync-client",
+        "exec": "swaync-client -swb",
         "escape": true,
-        "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
-        // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
+        "format-icons": {
+            "notification": "󱅫",
+            "none": "󰂚",
+            "dnd-notification": "󰂛",
+            "dnd-none": "󰂛",
+            "inhibited-notification": "󰂛",
+            "inhibited-none": "󰂚",
+            "dnd-inhibited-notification": "󰂛",
+            "dnd-inhibited-none": "󰂛"
+        },
+        "tooltip": false,
+        "on-click": "swaync-client -t -sw",
+        "on-click-right": "swaync-client -d -sw"
     },
-    "custom/song": {
-        "exec": "$HOME/Documents/Repos/scripts/songdetail",  // Adjust the path if necessary
-        "interval": 1,  // How often to refresh (in seconds)
-        "format": "{}",
-        "return-type": "stdout",
-        "on-click": "playerctl play-pause",  // Optional: Command to run when clicked
-        "on-scroll-up": "playerctl next",    // Optional: Command to run on scroll up
-        "on-scroll-down": "playerctl previous"  // Optional: Command to run on scroll down
+
+    "clock": {
+        "format": "  {:%A  %H:%M}",
+        "format-alt": "  {:%a, %d %b}",
+        "tooltip-format": "<big>{:%A, %d %B}</big>\n<tt><small>{calendar}</small></tt>"
     },
+
     "group/group_power": {
         "orientation": "horizontal",
         "drawer": {
-            "transition-duration": 500,
-            "children-class": "not-power",
-            "transition-left-to-right": false,
+            "transition-duration": 300,
+            "children-class": "power-action",
+            "transition-left-to-right": false
         },
-        "modules": [
-            "custom/power", // First element is the "group leader" and won't ever be hidden
-            "custom/quit",
-            "custom/lock",
-            "custom/reboot",
-        ]
+        "modules": ["custom/power", "custom/quit", "custom/lock", "custom/reboot"]
     },
+
     "custom/quit": {
         "format": "󰗼",
-        "tooltip": "Logout",
+        "tooltip": true,
+        "tooltip-format": "Log out",
         "on-click": "hyprctl dispatch exit"
     },
+
     "custom/lock": {
         "format": "󰍁",
-        "tooltip": "Lock",
+        "tooltip": true,
+        "tooltip-format": "Lock",
         "on-click": "hyprlock"
     },
+
     "custom/reboot": {
         "format": "󰜉",
-        "tooltip": "Reboot",
+        "tooltip": true,
+        "tooltip-format": "Reboot",
         "on-click": "reboot"
     },
+
     "custom/power": {
         "format": "",
-        "tooltip": "Shutdown",
+        "tooltip": true,
+        "tooltip-format": "Shut down",
         "on-click": "shutdown now"
     }
 }
