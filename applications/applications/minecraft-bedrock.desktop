@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Minecraft Bedrock
+Comment=Minecraft Bedrock Edition for Linux
+Exec=/home/kyle/.local/share/AppImages/BedrockOnLinux.AppImage
+Icon=minecraft-bedrock
+Terminal=false
+Categories=Game;
+StartupNotify=true
