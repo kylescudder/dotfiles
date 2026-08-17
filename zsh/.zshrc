@@ -40,6 +40,7 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 
 source ~/Documents/Repos/schmerdr/schmerdr.sh
 export EDITOR=nvim
+export SSH_AUTH_SOCK="$HOME/.1password/agent.sock"
 
 export PATH=$PATH:/home/kyle/.spicetify
 
