@@ -1,0 +1,71 @@
+#!/usr/bin/env bash
+
+script_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+# shellcheck source=_common.sh
+source "$script_dir/_common.sh"
+
+render_main() {
+    mode_header "Session" "Lock, suspend, or end this session"
+    mode_option "data" "main"
+    mode_row "Lock screen" "Secure the current session" "system-lock-screen-symbolic" "lock" "active"
+    mode_row "Suspend" "Sleep until the next wake event" "system-suspend-symbolic" "suspend"
+    mode_row "Log out" "Exit Hyprland" "system-log-out-symbolic" "logout"
+    mode_row "Restart" "Reboot after confirmation" "system-reboot-symbolic" "confirm-reboot"
+    mode_row "Shut down" "Power off after confirmation" "system-shutdown-symbolic" "confirm-poweroff" "urgent"
+}
+
+render_confirmation() {
+    local action="$1"
+    local title="$2"
+    mode_header "Confirm" "Are you sure you want to ${title}?"
+    mode_option "data" "confirm-${action}"
+    mode_row "Cancel" "Return to session controls" "go-previous-symbolic" "cancel" "active"
+    mode_row "$title" "This action cannot be undone" "dialog-warning-symbolic" "execute-${action}" "urgent"
+}
+
+if [[ "${ROFI_RETV:-0}" == "1" ]]; then
+    case "${ROFI_INFO:-}" in
+        lock)
+            if command -v hyprlock >/dev/null 2>&1; then
+                launch_background hyprlock
+            else
+                loginctl lock-session >/dev/null 2>&1 || true
+            fi
+            exit 0
+            ;;
+        suspend)
+            systemctl suspend >/dev/null 2>&1 || true
+            exit 0
+            ;;
+        logout)
+            hyprctl dispatch exit >/dev/null 2>&1 || true
+            exit 0
+            ;;
+        confirm-reboot)
+            render_confirmation "reboot" "Restart"
+            exit 0
+            ;;
+        confirm-poweroff)
+            render_confirmation "poweroff" "Shut down"
+            exit 0
+            ;;
+        cancel)
+            render_main
+            exit 0
+            ;;
+        execute-reboot)
+            systemctl reboot >/dev/null 2>&1 || true
+            exit 0
+            ;;
+        execute-poweroff)
+            systemctl poweroff >/dev/null 2>&1 || true
+            exit 0
+            ;;
+    esac
+fi
+
+case "${ROFI_DATA:-main}" in
+    confirm-reboot) render_confirmation "reboot" "Restart" ;;
+    confirm-poweroff) render_confirmation "poweroff" "Shut down" ;;
+    *) render_main ;;
+esac
