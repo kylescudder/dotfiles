@@ -7,7 +7,7 @@ local scripts = repositories .. "/scripts"
 
 local terminal = "ghostty"
 local fileManager = "ghostty -e yazi"
-local menu = scripts .. "/rofi"
+local menu = home .. "/.config/rofi/launcher.sh"
 local mainMod = "SUPER"
 
 local accent = "rgb(cba6f7)"

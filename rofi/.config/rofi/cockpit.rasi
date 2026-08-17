@@ -1,0 +1,236 @@
+* {
+    base:       #1e1e2ef2;
+    mantle:     #181825f5;
+    crust:      #11111b;
+    surface0:   #313244;
+    surface1:   #45475a;
+    surface2:   #585b70;
+    overlay0:   #6c7086;
+    overlay1:   #7f849c;
+    overlay2:   #9399b2;
+    text:       #cdd6f4;
+    subtext0:   #a6adc8;
+    lavender:   #b4befe;
+    mauve:      #cba6f7;
+    teal:       #94e2d5;
+    red:        #f38ba8;
+
+    background-color: transparent;
+    text-color: @text;
+    border-color: @surface1;
+    font: "FiraCode Nerd Font 13";
+}
+
+window {
+    width: 920px;
+    height: 520px;
+    location: center;
+    anchor: center;
+    border: 1px;
+    border-radius: 18px;
+    background-color: @mantle;
+    children: [ cockpit ];
+}
+
+cockpit {
+    orientation: horizontal;
+    background-color: transparent;
+    children: [ launcher-pane, control-rail ];
+}
+
+launcher-pane {
+    orientation: vertical;
+    expand: true;
+    padding: 18px;
+    spacing: 12px;
+    background-color: @crust;
+    children: [ inputbar, message, listview, textbox-shortcuts ];
+}
+
+inputbar {
+    orientation: horizontal;
+    children: [ prompt, entry, case-indicator ];
+    spacing: 12px;
+    padding: 0px 14px;
+    border: 1px;
+    border-color: @surface0;
+    border-radius: 11px;
+    background-color: @base;
+}
+
+prompt {
+    padding: 16px 0px;
+    text-color: @mauve;
+    font: "FiraCode Nerd Font SemiBold 12";
+}
+
+entry {
+    expand: true;
+    padding: 16px 0px;
+    placeholder: "Find something…";
+    placeholder-color: @overlay0;
+    text-color: @text;
+}
+
+case-indicator {
+    padding: 16px 0px;
+    text-color: @overlay1;
+}
+
+message {
+    padding: 0px;
+    border: 0px;
+    background-color: transparent;
+}
+
+textbox {
+    padding: 7px 9px;
+    border-radius: 7px;
+    background-color: @base;
+    text-color: @overlay2;
+    font: "FiraCode Nerd Font 10";
+}
+
+listview {
+    expand: true;
+    columns: 1;
+    lines: 6;
+    spacing: 5px;
+    fixed-height: true;
+    cycle: true;
+    dynamic: true;
+    scrollbar: false;
+    background-color: transparent;
+}
+
+element {
+    orientation: horizontal;
+    children: [ element-icon, element-text ];
+    spacing: 12px;
+    padding: 10px 12px;
+    border: 0px;
+    border-radius: 9px;
+    background-color: transparent;
+    text-color: @subtext0;
+    cursor: pointer;
+}
+
+element normal active,
+element alternate active {
+    background-color: @surface0;
+    text-color: @text;
+}
+
+element selected normal,
+element selected active,
+element selected urgent {
+    background-color: @surface0;
+    text-color: @text;
+}
+
+element selected normal {
+    border: 0px 0px 0px 3px;
+    border-color: @mauve;
+}
+
+element selected urgent {
+    border: 0px 0px 0px 3px;
+    border-color: @red;
+}
+
+element-icon {
+    size: 32px;
+    background-color: transparent;
+}
+
+element-text {
+    vertical-align: 0.5;
+    background-color: transparent;
+    text-color: inherit;
+}
+
+textbox-shortcuts {
+    content: "↑ ↓  navigate     ↵  run     ctrl+tab  next mode     esc  close";
+    padding: 4px 2px 0px;
+    background-color: transparent;
+    text-color: @overlay0;
+    font: "FiraCode Nerd Font 9";
+}
+
+control-rail {
+    orientation: vertical;
+    width: 280px;
+    padding: 20px 18px;
+    spacing: 10px;
+    border: 0px 0px 0px 1px;
+    border-color: @surface0;
+    background-color: @base;
+    children: [ textbox-player-kicker, textbox-player-track, textbox-volume, mode-switcher, textbox-rail-hint ];
+}
+
+textbox-player-kicker {
+    content: "NOW PLAYING";
+    padding: 2px 2px 0px;
+    background-color: transparent;
+    text-color: @teal;
+    font: "FiraCode Nerd Font SemiBold 9";
+}
+
+textbox-player-track {
+    content: "No active player";
+    padding: 12px;
+    border: 1px;
+    border-color: @surface0;
+    border-radius: 11px;
+    background-color: @mantle;
+    text-color: @text;
+    font: "FiraCode Nerd Font SemiBold 11";
+}
+
+textbox-volume {
+    content: "  Volume unavailable";
+    padding: 12px;
+    border: 1px;
+    border-color: @surface0;
+    border-radius: 11px;
+    background-color: @mantle;
+    text-color: @lavender;
+    font: "FiraCode Nerd Font 10";
+}
+
+mode-switcher {
+    orientation: vertical;
+    expand: true;
+    spacing: 5px;
+    background-color: transparent;
+}
+
+button {
+    padding: 11px 12px;
+    border: 0px;
+    border-radius: 8px;
+    background-color: transparent;
+    text-color: @overlay1;
+    horizontal-align: 0.0;
+    cursor: pointer;
+}
+
+button selected {
+    background-color: @surface0;
+    text-color: @lavender;
+}
+
+textbox-rail-hint {
+    content: "Select a section, then use the result pane.";
+    padding: 8px 2px 0px;
+    background-color: transparent;
+    text-color: @overlay0;
+    font: "FiraCode Nerd Font 9";
+}
+
+scrollbar {
+    width: 4px;
+    border-radius: 4px;
+    background-color: @surface0;
+    handle-color: @surface2;
+}

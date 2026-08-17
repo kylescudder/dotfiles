@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+
+script_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+# shellcheck source=_common.sh
+source "$script_dir/_common.sh"
+
+now_playing() {
+    local summary=""
+    if command -v playerctl >/dev/null 2>&1; then
+        summary="$(playerctl metadata --format '{{artist}} — {{title}}' 2>/dev/null || true)"
+    fi
+    [[ -n "$summary" ]] || summary="No active player"
+    printf '%s' "$summary"
+}
+
+render() {
+    local summary
+    summary="$(now_playing)"
+    mode_header "Media" "$(pango_escape "$summary")"
+    mode_option "theme" "textbox-player-track { content: \"$(rasi_escape "$summary")\"; }"
+
+    if ! command -v playerctl >/dev/null 2>&1; then
+        mode_row "Media controls unavailable" "Install playerctl to control MPRIS players" "dialog-warning-symbolic" "missing" "disabled"
+        return
+    fi
+
+    mode_row "Previous track" "Skip back in the active player" "media-skip-backward-symbolic" "previous"
+    mode_row "Play / Pause" "Toggle playback" "media-playback-start-symbolic" "toggle" "active"
+    mode_row "Next track" "Skip forward in the active player" "media-skip-forward-symbolic" "next"
+    mode_row "Stop playback" "Stop the active player" "media-playback-stop-symbolic" "stop"
+}
+
+if [[ "${ROFI_RETV:-0}" == "1" ]]; then
+    case "${ROFI_INFO:-}" in
+        previous) playerctl previous >/dev/null 2>&1 || true ;;
+        toggle) playerctl play-pause >/dev/null 2>&1 || true ;;
+        next) playerctl next >/dev/null 2>&1 || true ;;
+        stop) playerctl stop >/dev/null 2>&1 || true ;;
+    esac
+    mode_option "keep-selection" "true"
+fi
+
+render

@@ -13,7 +13,7 @@
     "custom/launcher": {
         "format": "",
         "tooltip": false,
-        "on-click": "$HOME/Documents/Repos/scripts/rofi"
+        "on-click": "$HOME/.config/rofi/launcher.sh"
     },
 
     "hyprland/workspaces": {
