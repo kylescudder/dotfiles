@@ -7,7 +7,7 @@
     "fixed-center": true,
 
     "modules-left": ["custom/launcher", "hyprland/workspaces"],
-    "modules-center": ["clock", "custom/song"],
+    "modules-center": ["clock"],
     "modules-right": ["group/system", "custom/notification", "pulseaudio", "network", "group/group_power"],
 
     "custom/launcher": {
@@ -20,20 +20,6 @@
         "format": "{name}",
         "sort-by": "number",
         "tooltip": false
-    },
-
-    "custom/song": {
-        "exec": "$HOME/Documents/Repos/scripts/songdetail",
-        "exec-if": "playerctl status 2>/dev/null | grep -qx Playing",
-        "interval": 2,
-        "format": "  {}",
-        "max-length": 44,
-        "hide-empty-text": true,
-        "return-type": "stdout",
-        "tooltip": false,
-        "on-click": "playerctl play-pause",
-        "on-scroll-up": "playerctl next",
-        "on-scroll-down": "playerctl previous"
     },
 
     "group/system": {

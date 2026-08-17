@@ -75,15 +75,10 @@ button {
     color: @base;
 }
 
-#clock,
-#custom-song {
+#clock {
     padding: 0 6px;
     color: @overlay1;
     font-weight: 500;
-}
-
-#custom-song {
-    color: @subtext0;
 }
 
 #custom-system,
