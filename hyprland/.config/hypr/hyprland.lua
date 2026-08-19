@@ -31,6 +31,7 @@ hl.monitor({
 
 hl.workspace_rule({ workspace = "1", monitor = "DP-3", default = true })
 hl.workspace_rule({ workspace = "2", monitor = "DP-2", default = true })
+hl.workspace_rule({ workspace = "9", monitor = "DP-3" })
 
 -- Autostart
 
