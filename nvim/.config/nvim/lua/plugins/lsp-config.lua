@@ -27,8 +27,6 @@ return {
           "ts_ls",
           "tailwindcss",
           "astro",
-          "csharp_ls",
-          "omnisharp",
           "bashls",
         },
         -- Automatically install any LSPs you set up via lspconfig below
@@ -60,13 +58,6 @@ return {
       setup("html")
       setup("astro")
       setup("bashls")
-      setup("csharp_ls")
-      setup("omnisharp", {
-        cmd = { "omnisharp", "--languageserver" },
-        enable_roslyn_analyzers = true,
-        organize_imports_on_format = true,
-        enable_import_completion = true,
-      })
       setup("rust_analyzer", {
         settings = {
           ["rust-analyzer"] = {},
