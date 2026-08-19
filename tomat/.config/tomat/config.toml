@@ -1,0 +1,17 @@
+[timer]
+work = 25.0
+break = 5.0
+long_break = 15.0
+sessions = 4
+auto_advance = "none"
+
+[sound]
+mode = "none"
+
+[notification]
+enabled = true
+icon = "auto"
+timeout = 4000
+
+[display]
+text_format = "{time}"

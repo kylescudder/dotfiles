@@ -6,20 +6,32 @@
     "spacing": 2,
     "fixed-center": true,
 
-    "modules-left": ["custom/launcher", "hyprland/workspaces"],
+    "modules-left": ["hyprland/workspaces"],
     "modules-center": ["clock"],
-    "modules-right": ["group/system", "custom/notification", "pulseaudio", "network", "group/group_power"],
-
-    "custom/launcher": {
-        "format": "",
-        "tooltip": false,
-        "on-click": "$HOME/.config/rofi/launcher.sh"
-    },
+    "modules-right": ["group/system", "custom/tomat", "custom/notification", "pulseaudio", "network", "group/group_power"],
 
     "hyprland/workspaces": {
-        "format": "{name}",
+        "format": "{icon}",
+        "format-icons": {
+            "9": ""
+        },
         "sort-by": "number",
+        "persistent-workspaces": {
+            "*": 10
+        },
         "tooltip": false
+    },
+
+    "custom/tomat": {
+        "exec": "tomat watch",
+        "exec-if": "command -v tomat",
+        "exec-on-event": false,
+        "restart-interval": 2,
+        "return-type": "json",
+        "format": "{}",
+        "on-click": "$HOME/.config/rofi/launcher.sh --show tomat",
+        "on-click-middle": "tomat toggle",
+        "on-click-right": "tomat skip"
     },
 
     "group/system": {
@@ -148,3 +160,4 @@
         "on-click": "shutdown now"
     }
 }
+

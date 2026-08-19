@@ -37,6 +37,7 @@ hl.workspace_rule({ workspace = "9", monitor = "DP-3" })
 
 hl.on("hyprland.start", function()
     hl.exec_cmd("waybar")
+    hl.exec_cmd("tomat daemon start")
     hl.exec_cmd("swaync")
     hl.exec_cmd("hypridle")
     hl.exec_cmd("hyprpaper")

@@ -1,0 +1,71 @@
+#!/usr/bin/env bash
+
+set -uo pipefail
+
+script_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+# shellcheck source=_common.sh
+source "$script_dir/_common.sh"
+
+notify_error() {
+    command -v notify-send >/dev/null 2>&1 && notify-send -u critical "Pomodoro" "$1"
+}
+
+ensure_daemon() {
+    tomat daemon status >/dev/null 2>&1 || tomat daemon start >/dev/null 2>&1
+}
+
+timer_summary() {
+    local summary="Timer idle"
+
+    if command -v tomat >/dev/null 2>&1; then
+        summary="$(tomat status -o plain 2>/dev/null || true)"
+        [[ -n "$summary" ]] || summary="Timer idle"
+    else
+        summary="Tomat is not installed"
+    fi
+
+    printf '%s' "$summary"
+}
+
+run_tomat() {
+    ensure_daemon || {
+        notify_error "Could not start the Tomat daemon."
+        return
+    }
+
+    tomat "$@" >/dev/null 2>&1 || notify_error "Tomat could not run: $*"
+}
+
+render() {
+    local summary
+    summary="$(timer_summary)"
+    mode_header "Focus" "$(pango_escape "$summary")"
+
+    if ! command -v tomat >/dev/null 2>&1; then
+        mode_row "Pomodoro unavailable" "Install with paru -S tomat-bin" "dialog-warning-symbolic" "missing" "disabled"
+        return
+    fi
+
+    mode_row "Start 25 / 5" "Classic focus cycle" "alarm-symbolic" "start-25" "active"
+    mode_row "Start 45 / 10" "Long focus cycle" "alarm-symbolic" "start-45"
+    mode_row "Start 60 / 10" "Deep-work cycle" "alarm-symbolic" "start-60"
+    mode_row "Custom session…" "Choose focus and break durations" "document-edit-symbolic" "custom"
+    mode_row "Pause / Resume" "Toggle the current phase" "media-playback-pause-symbolic" "toggle"
+    mode_row "Skip phase" "Advance to the next phase" "media-skip-forward-symbolic" "skip"
+    mode_row "Stop timer" "Return the timer to idle" "process-stop-symbolic" "stop" "urgent"
+}
+
+if [[ "${ROFI_RETV:-0}" == "1" ]]; then
+    case "${ROFI_INFO:-}" in
+        start-25) run_tomat start --work 25 --break 5 --long-break 15 --sessions 4 ;;
+        start-45) run_tomat start --work 45 --break 10 --long-break 20 --sessions 4 ;;
+        start-60) run_tomat start --work 60 --break 10 --long-break 20 --sessions 4 ;;
+        custom) launch_background "$script_dir/tomat-custom" ;;
+        toggle) run_tomat toggle ;;
+        skip) run_tomat skip ;;
+        stop) run_tomat stop ;;
+    esac
+    mode_option "keep-selection" "true"
+fi
+
+render
