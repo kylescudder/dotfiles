@@ -45,7 +45,7 @@
     },
 
     "custom/system": {
-        "format": "",
+        "format": "󱕍",
         "tooltip": true,
         "tooltip-format": "System usage"
     },
@@ -69,24 +69,24 @@
 
     "pulseaudio": {
         "format": "{icon}",
-        "format-bluetooth": "{icon} ",
+        "format-bluetooth": "{icon} 󰂯",
         "format-muted": "󰖁",
-        "format-bluetooth-muted": "󰖁 ",
+        "format-bluetooth-muted": "󰖁 󰂯",
         "format-icons": {
-            "headphone": "",
+            "headphone": "󰋋",
             "hands-free": "󰋎",
             "headset": "󰋎",
-            "phone": "",
-            "portable": "",
-            "car": "",
-            "default": ["", "", ""]
+            "phone": "󰏲",
+            "portable": "󰏲",
+            "car": "󰄋",
+            "default": ["󰕿", "󰖀", "󰕾"]
         },
         "tooltip-format": "{desc}\nVolume: {volume}%",
         "on-click": "pavucontrol"
     },
 
     "network": {
-        "format-wifi": "",
+        "format-wifi": "󰖩",
         "format-ethernet": "󰈀",
         "format-linked": "󰈀",
         "format-disconnected": "󰖪",
@@ -133,14 +133,14 @@
     },
 
     "custom/quit": {
-        "format": "󰗼",
+        "format": "󰍃",
         "tooltip": true,
         "tooltip-format": "Log out",
         "on-click": "hyprctl dispatch exit"
     },
 
     "custom/lock": {
-        "format": "󰍁",
+        "format": "󰌾",
         "tooltip": true,
         "tooltip-format": "Lock",
         "on-click": "hyprlock"
@@ -154,10 +154,9 @@
     },
 
     "custom/power": {
-        "format": "",
+        "format": "󰐥",
         "tooltip": true,
         "tooltip-format": "Shut down",
         "on-click": "shutdown now"
     }
 }
-
