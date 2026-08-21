@@ -2,10 +2,21 @@ This is a place for all of my linux (Arch btw) dotfiles so if my machine goes ti
 
 ## Timers and alarms
 
-Bide provides timers and alarms through Rofi. It is installed separately; these dotfiles only provide the desktop adapters.
+[Bide](https://github.com/kylescudder/bide) is the standalone timer and alarm
+application used by the Rofi and Waybar adapters. Install or update the pinned
+release idempotently, then Stow the desktop configuration:
 
 ```bash
+./scripts/install
 stow rofi waybar hyprland
 ```
 
-Open the `Timers & Alarms` Rofi mode to create or manage entries. Waybar shows the next active countdown, hides it when no timer is running, and keeps alarms in the Rofi interface. Click the countdown to open Bide or middle-click it to pause or resume the displayed timer.
+Override the release with `BIDE_VERSION=0.2.0 ./scripts/install`. The installer
+downloads a versioned release binary, installs and enables the persistent user
+systemd timer, reloads the user manager, and verifies the executable. Application
+state remains under `$XDG_STATE_HOME/bide`; it is never written into dotfiles.
+
+Open the `Timers & Alarms` Rofi mode to create or manage entries. Waybar shows
+the next active countdown and hides it when no timer is active. Left click opens
+the list, middle click pauses or resumes the displayed timer, and right click
+opens that timer's action menu.
