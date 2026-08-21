@@ -1,6 +1,0 @@
-[Unit]
-Description=Process due Bide timers and alarms
-
-[Service]
-Type=oneshot
-ExecStart=%h/.local/bin/bide tick

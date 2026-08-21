@@ -31,7 +31,7 @@
         "format": "{}",
         "on-click": "$HOME/.config/rofi/launcher.sh --show timers",
         "on-click-middle": "bide waybar toggle",
-        "on-click-right": "BIDE_ROFI_DISPLAYED=1 $HOME/.config/rofi/launcher.sh --show timers"
+        "on-click-right": "$HOME/.config/rofi/launcher.sh --show timers"
     },
 
     "group/system": {
