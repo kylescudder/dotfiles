@@ -8,7 +8,7 @@
 
     "modules-left": ["hyprland/workspaces"],
     "modules-center": ["clock"],
-    "modules-right": ["group/system", "custom/notification", "pulseaudio", "network", "group/group_power"],
+    "modules-right": ["group/system", "custom/bide", "custom/notification", "pulseaudio", "network", "group/group_power"],
 
     "hyprland/workspaces": {
         "format": "{icon}",
@@ -20,6 +20,18 @@
             "*": 10
         },
         "tooltip": false
+    },
+
+    "custom/bide": {
+        "exec": "bide watch --waybar",
+        "exec-if": "command -v bide",
+        "exec-on-event": false,
+        "restart-interval": 2,
+        "return-type": "json",
+        "format": "{}",
+        "on-click": "$HOME/.config/rofi/launcher.sh --show timers",
+        "on-click-middle": "bide waybar toggle",
+        "on-click-right": "BIDE_ROFI_DISPLAYED=1 $HOME/.config/rofi/launcher.sh --show timers"
     },
 
     "group/system": {
