@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+
+set -uo pipefail
+
+script_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+config_dir="${ROFI_CONFIG_DIR:-$(dirname -- "$script_dir")}"
+
+notify_error() {
+    command -v notify-send >/dev/null 2>&1 && notify-send -u critical "Pomodoro" "$1"
+}
+
+if [[ -n "${ROFI_BIN:-}" ]] && command -v "$ROFI_BIN" >/dev/null 2>&1; then
+    rofi_bin="$ROFI_BIN"
+elif command -v rofi >/dev/null 2>&1; then
+    rofi_bin="rofi"
+elif command -v rofi-wayland >/dev/null 2>&1; then
+    rofi_bin="rofi-wayland"
+else
+    notify_error "Neither rofi nor rofi-wayland is installed."
+    exit 127
+fi
+
+prompt_theme='window { width: 460px; height: 180px; } control-rail { enabled: false; } listview { lines: 1; }'
+work_minutes=$(printf '' | "$rofi_bin" -dmenu -p "Focus minutes" -theme "$config_dir/cockpit.rasi" -theme-str "$prompt_theme")
+[[ -n "$work_minutes" ]] || exit 0
+break_minutes=$(printf '' | "$rofi_bin" -dmenu -p "Break minutes" -theme "$config_dir/cockpit.rasi" -theme-str "$prompt_theme")
+[[ -n "$break_minutes" ]] || exit 0
+
+if [[ ! $work_minutes =~ ^[1-9][0-9]*$ || ! $break_minutes =~ ^[1-9][0-9]*$ ]]; then
+    notify_error "Enter positive whole-minute durations."
+    exit 1
+fi
+
+tomat daemon status >/dev/null 2>&1 || tomat daemon start >/dev/null 2>&1
+tomat start --work "$work_minutes" --break "$break_minutes" --long-break 15 --sessions 4 >/dev/null 2>&1 || {
+    notify_error "The custom session could not be started."
+    exit 1
+}
+
