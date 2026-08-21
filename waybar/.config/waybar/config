@@ -13,7 +13,7 @@
     "hyprland/workspaces": {
         "format": "{icon}",
         "format-icons": {
-            "9": ""
+            "10": ""
         },
         "sort-by": "number",
         "persistent-workspaces": {
