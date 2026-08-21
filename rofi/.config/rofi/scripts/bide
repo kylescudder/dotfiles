@@ -7,4 +7,4 @@ if ! command -v bide >/dev/null 2>&1; then
     exit 0
 fi
 
-exec bide rofi
+exec bide rofi "$@"
