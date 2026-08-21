@@ -95,15 +95,6 @@ button {
     padding-left: 10px;
 }
 
-#custom-bide {
-    color: @peach;
-    font-variant-numeric: tabular-nums;
-}
-
-#custom-bide.paused {
-    color: @yellow;
-}
-
 #cpu,
 #memory,
 #temperature {
