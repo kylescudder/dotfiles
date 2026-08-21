@@ -2,7 +2,7 @@
     "layer": "top",
     "position": "top",
     "height": 34,
-    "margin-top": 10,
+    "margin-top": 0,
     "spacing": 2,
     "fixed-center": true,
 
