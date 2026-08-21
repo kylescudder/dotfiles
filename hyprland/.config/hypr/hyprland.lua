@@ -31,7 +31,7 @@ hl.monitor({
 
 hl.workspace_rule({ workspace = "1", monitor = "DP-3", default = true })
 hl.workspace_rule({ workspace = "2", monitor = "DP-2", default = true })
-hl.workspace_rule({ workspace = "9", monitor = "DP-3" })
+hl.workspace_rule({ workspace = "10", monitor = "DP-3" })
 
 -- Autostart
 
@@ -43,7 +43,7 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("1password --silent")
     hl.exec_cmd("lua " .. repositories .. "/plex-directory-scrapper/plex-directory-scapper.lua")
     hl.exec_cmd("nohup " .. scripts .. "/songchange &")
-    hl.exec_cmd("spotify-launcher", { workspace = "9 silent" })
+    hl.exec_cmd("spotify-launcher", { workspace = "10 silent" })
     hl.exec_cmd("/usr/bin/ghostty --class=magic-btop -e /usr/bin/btop", {
         workspace = "special:magic silent",
     })

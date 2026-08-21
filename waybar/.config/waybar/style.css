@@ -79,6 +79,7 @@ button {
 #cpu,
 #memory,
 #temperature,
+#custom-bide,
 #custom-notification,
 #pulseaudio,
 #network,
@@ -94,11 +95,30 @@ button {
     padding-left: 10px;
 }
 
+#custom-bide {
+    color: @peach;
+    font-variant-numeric: tabular-nums;
+}
+
+#custom-bide.paused {
+    color: @yellow;
+}
+
 #cpu,
 #memory,
 #temperature {
     color: @overlay2;
     font-size: 12px;
+}
+
+#custom-bide {
+    color: @mauve;
+    background: transparent;
+    font-weight: normal;
+}
+
+#custom-bide.paused {
+    color: @overlay1;
 }
 
 #temperature.critical,
@@ -119,6 +139,7 @@ button {
 #custom-reboot:hover,
 #custom-power:hover,
 #custom-system:hover,
+#custom-bide:hover,
 #custom-notification:hover,
 #pulseaudio:hover,
 #network:hover {

@@ -3,8 +3,14 @@
 set -uo pipefail
 
 if ! command -v bide >/dev/null 2>&1; then
-    printf '%s\0nonselectable\x1ftrue\n' "Bide is not installed"
+    printf '%s\0nonselectable\x1ftrue\n' "Bide is not installed — run ./scripts/install from dotfiles"
     exit 0
 fi
 
-exec bide rofi "$@"
+error_file="$(mktemp)"
+trap 'rm -f -- "$error_file"' EXIT
+if ! bide rofi "$@" 2>"$error_file"; then
+    message="$(tr '\n' ' ' <"$error_file")"
+    printf 'Error\0display\x1f<span foreground="#f38ba8">%s</span>\x1fnonselectable\x1ftrue\n' "$message"
+    exit 0
+fi
