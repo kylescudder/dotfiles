@@ -1,12 +1,11 @@
 This is a place for all of my linux (Arch btw) dotfiles so if my machine goes tits up it doesn't take me three weeks to get set up and running again.
 
-## Waybar Pomodoro
+## Timers and alarms
 
-The Waybar timer uses [Tomat](https://github.com/jolars/tomat), with controls exposed through Rofi.
+Bide provides timers and alarms through Rofi. It is installed separately; these dotfiles only provide the desktop adapters.
 
 ```bash
-paru -S tomat-bin
-stow tomat rofi waybar hyprland
+stow rofi waybar hyprland
 ```
 
-Tomat starts with Hyprland. Click the timer in Waybar to open the Rofi menu, middle-click to pause or resume, and right-click to skip the current phase.
+Open the `Timers & Alarms` Rofi mode to create or manage entries. Waybar shows the next active countdown, hides it when no timer is running, and keeps alarms in the Rofi interface. Click the countdown to open Bide or middle-click it to pause or resume the displayed timer.

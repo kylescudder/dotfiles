@@ -79,7 +79,7 @@ button {
 #cpu,
 #memory,
 #temperature,
-#custom-tomat,
+#custom-bide,
 #custom-notification,
 #pulseaudio,
 #network,
@@ -102,20 +102,13 @@ button {
     font-size: 12px;
 }
 
-#custom-tomat {
+#custom-bide {
     color: @mauve;
     background: transparent;
     font-weight: normal;
 }
 
-#custom-tomat.break,
-#custom-tomat.long-break {
-    color: @green;
-}
-
-#custom-tomat.work-paused,
-#custom-tomat.break-paused,
-#custom-tomat.long-break-paused {
+#custom-bide.paused {
     color: @overlay1;
 }
 
@@ -137,7 +130,7 @@ button {
 #custom-reboot:hover,
 #custom-power:hover,
 #custom-system:hover,
-#custom-tomat:hover,
+#custom-bide:hover,
 #custom-notification:hover,
 #pulseaudio:hover,
 #network:hover {
