@@ -6,19 +6,19 @@
     "spacing": 2,
     "fixed-center": true,
 
-    "modules-left": ["custom/launcher", "hyprland/workspaces"],
+    "modules-left": ["hyprland/workspaces"],
     "modules-center": ["clock"],
     "modules-right": ["group/system", "custom/notification", "pulseaudio", "network", "group/group_power"],
 
-    "custom/launcher": {
-        "format": "",
-        "tooltip": false,
-        "on-click": "$HOME/.config/rofi/launcher.sh"
-    },
-
     "hyprland/workspaces": {
-        "format": "{name}",
+        "format": "{icon}",
+        "format-icons": {
+            "9": ""
+        },
         "sort-by": "number",
+        "persistent-workspaces": {
+            "*": 10
+        },
         "tooltip": false
     },
 
@@ -33,7 +33,7 @@
     },
 
     "custom/system": {
-        "format": "",
+        "format": "󱕍",
         "tooltip": true,
         "tooltip-format": "System usage"
     },
@@ -57,24 +57,24 @@
 
     "pulseaudio": {
         "format": "{icon}",
-        "format-bluetooth": "{icon} ",
+        "format-bluetooth": "{icon} 󰂯",
         "format-muted": "󰖁",
-        "format-bluetooth-muted": "󰖁 ",
+        "format-bluetooth-muted": "󰖁 󰂯",
         "format-icons": {
-            "headphone": "",
+            "headphone": "󰋋",
             "hands-free": "󰋎",
             "headset": "󰋎",
-            "phone": "",
-            "portable": "",
-            "car": "",
-            "default": ["", "", ""]
+            "phone": "󰏲",
+            "portable": "󰏲",
+            "car": "󰄋",
+            "default": ["󰕿", "󰖀", "󰕾"]
         },
         "tooltip-format": "{desc}\nVolume: {volume}%",
         "on-click": "pavucontrol"
     },
 
     "network": {
-        "format-wifi": "",
+        "format-wifi": "󰖩",
         "format-ethernet": "󰈀",
         "format-linked": "󰈀",
         "format-disconnected": "󰖪",
@@ -121,14 +121,14 @@
     },
 
     "custom/quit": {
-        "format": "󰗼",
+        "format": "󰍃",
         "tooltip": true,
         "tooltip-format": "Log out",
         "on-click": "hyprctl dispatch exit"
     },
 
     "custom/lock": {
-        "format": "󰍁",
+        "format": "󰌾",
         "tooltip": true,
         "tooltip-format": "Lock",
         "on-click": "hyprlock"
@@ -142,7 +142,7 @@
     },
 
     "custom/power": {
-        "format": "",
+        "format": "󰐥",
         "tooltip": true,
         "tooltip-format": "Shut down",
         "on-click": "shutdown now"

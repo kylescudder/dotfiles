@@ -11,6 +11,7 @@ configuration {
     display-window: "󰖲  Windows";
     display-run: "  Run command";
     display-media: "󰎈  Media";
+    display-timers: "󰔟  Timers";
     display-sound: "  Sound";
     display-session: "  Session";
     sidebar-mode: true;

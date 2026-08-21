@@ -4,7 +4,7 @@
     border: none;
     border-radius: 0;
     min-height: 0;
-    font-family: "FiraCode Nerd Font", FiraCode, sans-serif;
+    font-family: "Meslo LGS Nerd Font Mono", monospace;
     font-size: 13px;
 }
 
@@ -43,36 +43,30 @@ button {
     transition: background-color 120ms ease, color 120ms ease;
 }
 
-#custom-launcher {
-    padding: 0 10px 0 4px;
-    color: @overlay2;
-    font-size: 15px;
-}
-
 #workspaces button {
-    min-width: 22px;
-    margin: 5px 1px;
+    min-width: 28px;
+    margin: 0;
     padding: 0;
-    border-radius: 4px;
     background: transparent;
-    color: @overlay0;
-    font-size: 12px;
+    color: @overlay1;
+    font-size: 13px;
+    font-weight: normal;
 }
 
 #workspaces button:hover {
-    background: alpha(@surface1, 0.55);
-    color: @subtext0;
+    background: transparent;
+    color: @text;
 }
 
 #workspaces button.active {
-    background: @overlay1;
-    color: @base;
+    background: transparent;
+    color: @mauve;
     font-weight: 700;
 }
 
 #workspaces button.urgent {
-    background: @red;
-    color: @base;
+    background: transparent;
+    color: @red;
 }
 
 #clock {
@@ -124,7 +118,6 @@ button {
 #custom-quit:hover,
 #custom-reboot:hover,
 #custom-power:hover,
-#custom-launcher:hover,
 #custom-system:hover,
 #custom-notification:hover,
 #pulseaudio:hover,
