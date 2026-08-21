@@ -16,9 +16,6 @@
             "10": ""
         },
         "sort-by": "number",
-        "persistent-workspaces": {
-            "*": 10
-        },
         "tooltip": false
     },
 
