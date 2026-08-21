@@ -18,12 +18,12 @@
     background-color: transparent;
     text-color: @text;
     border-color: @surface1;
-    font: "FiraCode Nerd Font 13";
+    font: "Meslo LGS Nerd Font Mono 12";
 }
 
 window {
-    width: 920px;
-    height: 520px;
+    width: 900px;
+    height: 500px;
     location: center;
     anchor: center;
     border: 1px;
@@ -61,7 +61,7 @@ inputbar {
 prompt {
     padding: 16px 0px;
     text-color: @mauve;
-    font: "FiraCode Nerd Font SemiBold 12";
+    font: "Meslo LGS Nerd Font Mono Bold 12";
 }
 
 entry {
@@ -88,7 +88,7 @@ textbox {
     border-radius: 7px;
     background-color: @base;
     text-color: @overlay2;
-    font: "FiraCode Nerd Font 10";
+    font: "Meslo LGS Nerd Font Mono 10";
 }
 
 listview {
@@ -154,12 +154,12 @@ textbox-shortcuts {
     padding: 4px 2px 0px;
     background-color: transparent;
     text-color: @overlay0;
-    font: "FiraCode Nerd Font 9";
+    font: "Meslo LGS Nerd Font Mono 9";
 }
 
 control-rail {
     orientation: vertical;
-    width: 280px;
+    width: 260px;
     padding: 20px 18px;
     spacing: 10px;
     border: 0px 0px 0px 1px;
@@ -169,14 +169,16 @@ control-rail {
 }
 
 textbox-player-kicker {
+    expand: false;
     content: "NOW PLAYING";
     padding: 2px 2px 0px;
     background-color: transparent;
     text-color: @teal;
-    font: "FiraCode Nerd Font SemiBold 9";
+    font: "Meslo LGS Nerd Font Mono Bold 9";
 }
 
 textbox-player-track {
+    expand: false;
     content: "No active player";
     padding: 12px;
     border: 1px;
@@ -184,10 +186,11 @@ textbox-player-track {
     border-radius: 11px;
     background-color: @mantle;
     text-color: @text;
-    font: "FiraCode Nerd Font SemiBold 11";
+    font: "Meslo LGS Nerd Font Mono Bold 11";
 }
 
 textbox-volume {
+    expand: false;
     content: "  Volume unavailable";
     padding: 12px;
     border: 1px;
@@ -195,23 +198,26 @@ textbox-volume {
     border-radius: 11px;
     background-color: @mantle;
     text-color: @lavender;
-    font: "FiraCode Nerd Font 10";
+    font: "Meslo LGS Nerd Font Mono 10";
 }
 
 mode-switcher {
     orientation: vertical;
-    expand: true;
+    expand: false;
     spacing: 5px;
     background-color: transparent;
 }
 
 button {
-    padding: 11px 12px;
+    width: 224px;
+    height: 38px;
+    padding: 0px 12px;
     border: 0px;
     border-radius: 8px;
     background-color: transparent;
     text-color: @overlay1;
     horizontal-align: 0.0;
+    vertical-align: 0.5;
     cursor: pointer;
 }
 
@@ -221,11 +227,12 @@ button selected {
 }
 
 textbox-rail-hint {
+    expand: false;
     content: "Select a section, then use the result pane.";
     padding: 8px 2px 0px;
     background-color: transparent;
     text-color: @overlay0;
-    font: "FiraCode Nerd Font 9";
+    font: "Meslo LGS Nerd Font Mono 9";
 }
 
 scrollbar {
