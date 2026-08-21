@@ -8,7 +8,7 @@
 
     "modules-left": ["hyprland/workspaces"],
     "modules-center": ["clock"],
-    "modules-right": ["group/system", "custom/tomat", "custom/notification", "pulseaudio", "network", "group/group_power"],
+    "modules-right": ["group/system", "custom/bide", "custom/notification", "pulseaudio", "network", "group/group_power"],
 
     "hyprland/workspaces": {
         "format": "{icon}",
@@ -22,16 +22,16 @@
         "tooltip": false
     },
 
-    "custom/tomat": {
-        "exec": "tomat watch",
-        "exec-if": "command -v tomat",
+    "custom/bide": {
+        "exec": "bide watch --waybar",
+        "exec-if": "command -v bide",
         "exec-on-event": false,
         "restart-interval": 2,
         "return-type": "json",
         "format": "{}",
-        "on-click": "$HOME/.config/rofi/launcher.sh --show tomat",
-        "on-click-middle": "tomat toggle",
-        "on-click-right": "tomat skip"
+        "on-click": "$HOME/.config/rofi/launcher.sh --show timers",
+        "on-click-middle": "bide waybar toggle",
+        "on-click-right": "$HOME/.config/rofi/launcher.sh --show timers"
     },
 
     "group/system": {

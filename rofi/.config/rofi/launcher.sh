@@ -11,7 +11,7 @@ if [[ "$show_mode" == "--show" ]]; then
 fi
 
 case "$show_mode" in
-    drun|window|run|media|tomat|sound|session) ;;
+    drun|window|run|media|timers|sound|session) ;;
     *) show_mode="drun" ;;
 esac
 
@@ -56,7 +56,7 @@ elif command -v pactl >/dev/null 2>&1; then
 fi
 
 theme_override="textbox-player-track { content: \"$(rasi_escape "$player_summary")\"; } textbox-volume { content: \"  $(rasi_escape "$volume_summary")\"; }"
-mode_list="drun,window,run,media:$config_dir/scripts/media,tomat:$config_dir/scripts/tomat,sound:$config_dir/scripts/sound,session:$config_dir/scripts/session"
+mode_list="drun,window,run,media:$config_dir/scripts/media,timers:$config_dir/scripts/bide,sound:$config_dir/scripts/sound,session:$config_dir/scripts/session"
 
 if "$rofi_bin" -help 2>&1 | grep -q -- '-modes'; then
     mode_flag="-modes"
