@@ -13,7 +13,8 @@ Open the `Timers & Alarms` Rofi mode to create or manage entries. Waybar shows t
 ## Notifications
 
 ```bash
-stow swaync
+stow --target="$HOME" swaync
+swaync-client --reload-config
 ```
 
 Spotify song changes are kept in the notification center without showing a popup.
