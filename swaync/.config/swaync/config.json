@@ -1,0 +1,8 @@
+{
+  "notification-visibility": {
+    "spotify-song-change": {
+      "state": "muted",
+      "summary": "^Music Player$"
+    }
+  }
+}
