@@ -1,0 +1,8 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Yap GUI
+Comment=Open the Yap graphical interface
+Exec=yap gui
+Terminal=false
+Categories=Utility;
