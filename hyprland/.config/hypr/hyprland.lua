@@ -45,7 +45,7 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("nordvpn connect United_States")
     hl.exec_cmd("systemctl --user start yap.service")
     hl.exec_cmd("lua " .. repositories .. "/plex-directory-scrapper/plex-directory-scapper.lua")
-    hl.exec_cmd("nohup " .. commands .. "/songchange &")
+    hl.exec_cmd(commands .. "/songchange")
     hl.exec_cmd("spotify-launcher", { workspace = "10 silent" })
     hl.exec_cmd("/usr/bin/ghostty --class=magic-btop -e /usr/bin/btop", {
         workspace = "special:magic silent",
