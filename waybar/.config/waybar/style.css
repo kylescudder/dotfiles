@@ -69,10 +69,24 @@ button {
     color: @red;
 }
 
-#clock {
+#clock,
+#mpris {
     padding: 0 6px;
     color: @overlay1;
     font-weight: 500;
+}
+
+#mpris {
+    color: @subtext0;
+}
+
+#mpris.playing {
+    color: @lavender;
+}
+
+#mpris.paused,
+#mpris.stopped {
+    color: @overlay1;
 }
 
 #custom-system,
@@ -132,6 +146,7 @@ button {
 #custom-system:hover,
 #custom-bide:hover,
 #custom-notification:hover,
+#mpris:hover,
 #pulseaudio:hover,
 #network:hover {
     color: @text;
