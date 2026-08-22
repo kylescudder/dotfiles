@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+CONFIG="$HOME/.config/hypr/wofi/config/config"
+STYLE="$HOME/.config/hypr/wofi/src/style.css"
+
+if [[ ! $(pidof rofi) ]]; then
+    rofi -show drun \
+     -terminal ghostty \
+     -drun-run-command "{terminal} -e {cmd}"
+else
+    pkill rofi
+fi

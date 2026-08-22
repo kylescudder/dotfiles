@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+
+# Exit on any error
+set -e
+
+# Check if repository path is provided
+if [ $# -eq 0 ]; then
+    echo "Usage: $0 <path-to-git-repository>"
+    exit 1
+fi
+
+REPO_PATH="$1"
+
+# Verify the path exists and is a git repository
+if [ ! -d "$REPO_PATH" ]; then
+    echo "Error: Directory $REPO_PATH does not exist"
+    exit 1
+fi
+
+if [ ! -d "$REPO_PATH/.git" ]; then
+    echo "Error: $REPO_PATH is not a git repository"
+    exit 1
+fi
+
+# Change to the repository directory
+cd "$REPO_PATH" || exit 1
+
+# Check if there are any changes to stash
+if [[ -n $(git status --porcelain) ]]; then
+    echo "Stashing changes..."
+    git stash -m "Temporary stash for pull"
+    
+    echo "Pulling latest changes..."
+    git pull
+    
+    echo "Reapplying changes..."
+    git stash pop
+else
+    echo "No local changes to stash, pulling latest..."
+    git pull
+fi
+
+echo "Operation completed successfully"

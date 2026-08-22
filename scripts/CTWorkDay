@@ -1,0 +1,75 @@
+#!/bin/zsh
+
+SESSION_NAME="CTWorkDay"
+SESSION_LOG="$HOME/.local/state/herdr/$SESSION_NAME.log"
+
+session_exists() {
+  local session_data
+  session_data=$(herdr session list --json) || return 1
+  SESSION_TO_FIND="$SESSION_NAME" python -c '
+import json
+import os
+import sys
+
+sessions = json.load(sys.stdin).get("sessions", [])
+sys.exit(0 if any(session.get("name") == os.environ["SESSION_TO_FIND"] for session in sessions) else 1)
+' <<< "$session_data"
+}
+
+herdr_command() {
+  HERDR_SESSION="$SESSION_NAME" herdr "$@"
+}
+
+json_field() {
+  local field="$1"
+  JSON_FIELD="$field" python -c '
+import json
+import os
+import sys
+
+value = json.load(sys.stdin)
+for key in os.environ["JSON_FIELD"].split("."):
+    value = value[key]
+print(value)
+'
+}
+
+if ! session_exists; then
+  mkdir -p "${SESSION_LOG:h}"
+  HERDR_SESSION="$SESSION_NAME" nohup herdr server > "$SESSION_LOG" 2>&1 &
+
+  for _ in {1..50}; do
+    herdr_command status server > /dev/null 2>&1 && break
+    sleep 0.1
+  done
+  herdr_command status server > /dev/null 2>&1 || {
+    echo "Failed to start Herdr session. See $SESSION_LOG" >&2
+    exit 1
+  }
+
+  workspace_data=$(herdr_command workspace create --cwd "$HOME" --label "$SESSION_NAME" --focus) || exit 1
+  workspace_id=$(json_field "result.workspace.workspace_id" <<< "$workspace_data") || exit 1
+  jira_tab_id=$(json_field "result.tab.tab_id" <<< "$workspace_data") || exit 1
+  jira_pane_id=$(json_field "result.root_pane.pane_id" <<< "$workspace_data") || exit 1
+
+  herdr_command tab rename "$jira_tab_id" "Jira" || exit 1
+  herdr_command pane run "$jira_pane_id" "jiratui ui" || exit 1
+
+  git_tab_data=$(
+    herdr_command tab create \
+      --workspace "$workspace_id" \
+      --cwd "$HOME/Documents/Repos/mpro-platform" \
+      --label "Git" \
+      --focus
+  ) || exit 1
+  git_pane_id=$(json_field "result.root_pane.pane_id" <<< "$git_tab_data") || exit 1
+  herdr_command pane run "$git_pane_id" "lazygit" || exit 1
+
+  herdr_command tab create \
+    --workspace "$workspace_id" \
+    --cwd "$HOME" \
+    --label "any other shit i want to run" \
+    --focus > /dev/null || exit 1
+fi
+
+exec herdr --session "$SESSION_NAME"
