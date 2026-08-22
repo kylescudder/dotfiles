@@ -4,5 +4,6 @@
       "state": "muted",
       "summary": "^(Music Player|Now Playing)$"
     }
-  }
+  },
+  "notification-icon-size": 64
 }
