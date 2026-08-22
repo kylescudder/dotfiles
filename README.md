@@ -9,3 +9,11 @@ stow rofi waybar hyprland
 ```
 
 Open the `Timers & Alarms` Rofi mode to create or manage entries. Waybar shows the next active countdown, hides it when no timer is running, and keeps alarms in the Rofi interface. Click the countdown to open Bide or middle-click it to pause or resume the displayed timer.
+
+## Notifications
+
+```bash
+stow swaync
+```
+
+Spotify song changes are kept in the notification center without showing a popup.
