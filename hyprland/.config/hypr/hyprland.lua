@@ -3,7 +3,7 @@
 
 local home = os.getenv("HOME")
 local repositories = home .. "/Documents/Repos"
-local scripts = repositories .. "/scripts"
+local commands = home .. "/.local/bin"
 
 local terminal = "ghostty"
 local fileManager = "ghostty -e yazi"
@@ -45,7 +45,7 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("nordvpn connect United_States")
     hl.exec_cmd("systemctl --user start yap.service")
     hl.exec_cmd("lua " .. repositories .. "/plex-directory-scrapper/plex-directory-scapper.lua")
-    hl.exec_cmd("nohup " .. scripts .. "/songchange &")
+    hl.exec_cmd("nohup " .. commands .. "/songchange &")
     hl.exec_cmd("spotify-launcher", { workspace = "10 silent" })
     hl.exec_cmd("/usr/bin/ghostty --class=magic-btop -e /usr/bin/btop", {
         workspace = "special:magic silent",
@@ -161,8 +161,8 @@ hl.bind(mainMod .. " + SHIFT + L", hl.dsp.exec_cmd("hyprlock"))
 hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen())
 hl.bind(mainMod .. " + N", hl.dsp.exec_cmd("swaync-client -t"))
 hl.bind(mainMod .. " + SHIFT + Delete", hl.dsp.exec_cmd("wlogout"))
-hl.bind(mainMod .. " + SHIFT + S", hl.dsp.exec_cmd(scripts .. "/speakers"))
-hl.bind(mainMod .. " + SHIFT + H", hl.dsp.exec_cmd(scripts .. "/headphones"))
+hl.bind(mainMod .. " + SHIFT + S", hl.dsp.exec_cmd(commands .. "/speakers"))
+hl.bind(mainMod .. " + SHIFT + H", hl.dsp.exec_cmd(commands .. "/headphones"))
 hl.bind(mainMod .. " + SHIFT + Escape", hl.dsp.workspace.toggle_special("magic"))
 hl.bind(mainMod .. " + SHIFT + SPACE", hl.dsp.exec_cmd("1password --quick-access"))
 hl.bind(mainMod .. " + SHIFT + D", hl.dsp.exec_cmd("yapctl press dictation"))

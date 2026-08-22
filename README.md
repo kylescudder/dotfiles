@@ -1,8 +1,41 @@
-This is a place for all of my linux (Arch btw) dotfiles so if my machine goes tits up it doesn't take me three weeks to get set up and running again.
+This is a place for all of my Linux (Arch btw) dotfiles and scripts so if my machine goes tits up it doesn't take me three weeks to get set up and running again.
+
+## Setup
+
+Clone the repository to `$HOME/Documents/Repos/dotfiles`, then run the rerunnable bootstrap script:
+
+```bash
+./bootstrap/install
+```
+
+## Commands
+
+The `scripts` Stow package exposes its executables through `~/.local/bin`:
+
+```bash
+stow --target="$HOME" scripts
+headphones
+```
+
+Both the Bash and Zsh configuration add `~/.local/bin` to `PATH`. The available commands are:
+
+- `CTWorkDay`
+- `change_audio`
+- `create-vm-from-template`
+- `headphones`
+- `launchspt`
+- `plex_update`
+- `rofi-toggle`
+- `songchange`
+- `songnotification`
+- `speakers`
+- `stashpullpop`
+
+Machine bootstrapping remains in `bootstrap/`, the Windows installer is in `windows/`, and non-executable working snippets are in `snippets/`.
 
 ## Timers and alarms
 
-Bide provides timers and alarms through Rofi. It is installed separately; these dotfiles only provide the desktop adapters.
+Bide provides timers and alarms through Rofi. The bootstrap script installs it, while these dotfiles provide the desktop adapters.
 
 ```bash
 stow rofi waybar hyprland

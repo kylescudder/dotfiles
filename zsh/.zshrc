@@ -21,7 +21,7 @@ eval "$(starship init zsh)"
 
 # Nerdfetch setup (assuming installed globally or in a specific path)
 alias fastfetch="fastfetch"
-alias spt="~/Documents/Repos/scripts/launchspt"
+alias spt="launchspt"
 
 # Customize Nerdfetch to show Catppuccin theme styled ASCII art and colors
 fastfetch

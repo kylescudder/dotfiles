@@ -2,7 +2,6 @@
 set -euo pipefail
 
 SINK_NAME="alsa_output.pci-0000_00_1f.3.pro-output-0"
-CHANGE_AUDIO_SCRIPT="$HOME/Documents/Repos/scripts/change_audio"
 
 echo "Routing to headphones (${SINK_NAME})..."
-"${CHANGE_AUDIO_SCRIPT}" "${SINK_NAME}"
+change_audio "${SINK_NAME}"
