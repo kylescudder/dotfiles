@@ -7,7 +7,7 @@
     "fixed-center": true,
 
     "modules-left": ["hyprland/workspaces"],
-    "modules-center": ["clock"],
+    "modules-center": ["clock", "mpris"],
     "modules-right": ["group/system", "custom/bide", "custom/notification", "pulseaudio", "network", "group/group_power"],
 
     "hyprland/workspaces": {
@@ -111,6 +111,24 @@
         "tooltip": false,
         "on-click": "swaync-client -t -sw",
         "on-click-right": "swaync-client -d -sw"
+    },
+
+    "mpris": {
+        "format": "{status_icon} {dynamic}",
+        "dynamic-order": ["artist", "title"],
+        "dynamic-importance-order": ["title", "artist"],
+        "dynamic-separator": " — ",
+        "dynamic-len": 44,
+        "artist-len": 18,
+        "title-len": 30,
+        "status-icons": {
+            "playing": "󰐊",
+            "paused": "󰏤",
+            "stopped": "󰓛"
+        },
+        "tooltip-format": "{player} · {status}\n{artist} — {title}\n{album}",
+        "on-scroll-up": "playerctl next",
+        "on-scroll-down": "playerctl previous"
     },
 
     "clock": {
