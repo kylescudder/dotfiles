@@ -1,0 +1,14 @@
+#!/bin/bash
+playerctl -F metadata --format '{{ artist }} - {{ title }} - {{ mpris:artUrl }}' | while read -r data; do
+    artist_and_title=$(echo "$data" | cut -d '-' -f1-2)
+    art_url=$(echo "$data" | cut -d '-' -f3-)
+
+    # Download the album artwork
+    wget -q $art_url -O /tmp/album_art.jpg
+
+    # Send the notification with a unique ID to replace the previous one
+    notify-send "Now Playing" "$artist_and_title" -a "Music Player" -i /tmp/album_art.jpg -h string:x-canonical-private-synchronous:now_playing
+
+    # Delete the album artwork after showing the notification
+    rm /tmp/album_art.jpg
+done

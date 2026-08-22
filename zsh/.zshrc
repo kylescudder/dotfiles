@@ -1,4 +1,6 @@
 # Lines configured by zsh-newuser-install
+export PATH="$HOME/.local/bin:$PATH"
+
 HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
@@ -21,7 +23,7 @@ eval "$(starship init zsh)"
 
 # Nerdfetch setup (assuming installed globally or in a specific path)
 alias fastfetch="fastfetch"
-alias spt="~/Documents/Repos/scripts/launchspt"
+alias spt="launchspt"
 
 # Customize Nerdfetch to show Catppuccin theme styled ASCII art and colors
 fastfetch
@@ -45,6 +47,5 @@ export SSH_AUTH_SOCK="$HOME/.1password/agent.sock"
 export PATH=$PATH:/home/kyle/.spicetify
 
 export DOTNET_ROOT="/usr/local/share/dotnet"
-export PATH="$HOME/.local/bin:$PATH"
 # opencode
 export PATH=/Users/Kyle.Scudder/.opencode/bin:$PATH

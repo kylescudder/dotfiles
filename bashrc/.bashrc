@@ -6,7 +6,7 @@
 [[ $- != *i* ]] && return
 
 alias ls='ls --color=auto'
-alias spt='./scripts/launchspt'
+alias spt='launchspt'
 alias grep='grep --color=auto'
 PS1='[\u@\h \W]\$ '
 
@@ -16,3 +16,4 @@ fastfetch
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH=$BUN_INSTALL/bin:$PATH
+export PATH="$HOME/.local/bin:$PATH"
