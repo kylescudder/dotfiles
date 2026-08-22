@@ -1,4 +1,6 @@
 # Lines configured by zsh-newuser-install
+export PATH="$HOME/.local/bin:$PATH"
+
 HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
@@ -45,6 +47,5 @@ export SSH_AUTH_SOCK="$HOME/.1password/agent.sock"
 export PATH=$PATH:/home/kyle/.spicetify
 
 export DOTNET_ROOT="/usr/local/share/dotnet"
-export PATH="$HOME/.local/bin:$PATH"
 # opencode
 export PATH=/Users/Kyle.Scudder/.opencode/bin:$PATH
