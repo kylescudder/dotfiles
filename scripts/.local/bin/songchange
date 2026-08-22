@@ -9,7 +9,7 @@ mkdir -p -- "$cache_dir"
 playerctl --follow metadata \
     --format "{{artist}}${metadata_separator}{{title}}${metadata_separator}{{mpris:artUrl}}" |
     while IFS="$metadata_separator" read -r artist title art_url; do
-        next_art=""
+         next_art=""
         icon_args=()
 
         case "$art_url" in
@@ -25,7 +25,17 @@ playerctl --follow metadata \
                 fi
                 ;;
             file://*)
+                # Decode the file URI: remove scheme and authority (//hostname),
+                # then percent-decode any URI-encoded characters.
                 local_art="${art_url#file://}"
+                # Remove leading authority if present (e.g., //localhost)
+                local_art="${local_art#//localhost}"
+                # Remove empty authority (e.g., file:///)
+                local_art="${local_art#//}"
+                # Ensure leading slash is preserved
+                [[ "$local_art" == /* ]] || local_art="/$local_art"
+                # Decode percent-encoded characters (%20 → space, %3A → :, etc.)
+                local_art="$(printf '%b' "${local_art//\%/\\x}")"
 
                 if [[ -r "$local_art" ]] &&
                     [[ "$(file --brief --mime-type -- "$local_art")" == image/* ]]; then
