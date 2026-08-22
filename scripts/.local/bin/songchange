@@ -1,14 +1,48 @@
-#!/bin/bash
-playerctl -F metadata --format '{{ artist }} - {{ title }} - {{ mpris:artUrl }}' | while read -r data; do
-    artist_and_title=$(echo "$data" | cut -d '-' -f1-2)
-    art_url=$(echo "$data" | cut -d '-' -f3-)
+#!/usr/bin/env bash
 
-    # Download the album artwork
-    wget -q $art_url -O /tmp/album_art.jpg
+cache_dir="${XDG_CACHE_HOME:-$HOME/.cache}/songchange"
+metadata_separator=$'\x1f'
+previous_art=""
 
-    # Send the notification with a unique ID to replace the previous one
-    notify-send "Now Playing" "$artist_and_title" -a "Music Player" -i /tmp/album_art.jpg -h string:x-canonical-private-synchronous:now_playing
+mkdir -p -- "$cache_dir"
 
-    # Delete the album artwork after showing the notification
-    rm /tmp/album_art.jpg
-done
+playerctl --follow metadata \
+    --format "{{artist}}${metadata_separator}{{title}}${metadata_separator}{{mpris:artUrl}}" |
+    while IFS="$metadata_separator" read -r artist title art_url; do
+        next_art=""
+        icon_args=()
+
+        case "$art_url" in
+            http://* | https://*)
+                next_art="$(mktemp "$cache_dir/album-art.XXXXXX")"
+
+                if wget -q -O "$next_art" -- "$art_url" &&
+                    [[ "$(file --brief --mime-type -- "$next_art")" == image/* ]]; then
+                    icon_args=(-i "$next_art")
+                else
+                    rm -f -- "$next_art"
+                    next_art=""
+                fi
+                ;;
+            file://*)
+                local_art="${art_url#file://}"
+
+                if [[ -r "$local_art" ]] &&
+                    [[ "$(file --brief --mime-type -- "$local_art")" == image/* ]]; then
+                    icon_args=(-i "$local_art")
+                fi
+                ;;
+        esac
+
+        notify-send \
+            -a "Music Player" \
+            "${icon_args[@]}" \
+            -h string:x-canonical-private-synchronous:now_playing \
+            "Now Playing" \
+            "$artist — $title"
+
+        # Keep the current artwork available while the notification daemon
+        # decodes it. Only remove the artwork from the replaced notification.
+        [[ -z "$previous_art" ]] || rm -f -- "$previous_art"
+        previous_art="$next_art"
+    done
