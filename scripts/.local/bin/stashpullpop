@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-# Exit on any error
-set -e
+# Exit on errors, unset variables, and failed pipelines
+set -euo pipefail
 
 # Check if repository path is provided
 if [ $# -eq 0 ]; then
@@ -28,13 +28,33 @@ cd "$REPO_PATH" || exit 1
 # Check if there are any changes to stash
 if [[ -n $(git status --porcelain) ]]; then
     echo "Stashing changes..."
-    git stash -m "Temporary stash for pull"
-    
+    previous_stash_oid="$(git rev-parse --quiet --verify refs/stash || true)"
+    git stash push --include-untracked -m "Temporary stash for pull"
+    created_stash_oid="$(git rev-parse --quiet --verify refs/stash || true)"
+
+    if [[ -z "$created_stash_oid" || "$created_stash_oid" == "$previous_stash_oid" ]]; then
+        echo "Error: Working tree changes were not stashed; refusing to pull"
+        exit 1
+    fi
+
     echo "Pulling latest changes..."
     git pull
-    
+
     echo "Reapplying changes..."
-    git stash pop
+    git stash apply "$created_stash_oid"
+
+    created_stash_ref="$(
+        git stash list --format='%H %gd' \
+            | awk -v oid="$created_stash_oid" \
+                '$1 == oid && ref == "" { ref = $2 } END { print ref }'
+    )"
+
+    if [[ -z "$created_stash_ref" ]]; then
+        echo "Error: Changes were restored, but their stash entry could not be found; leaving all stashes untouched"
+        exit 1
+    fi
+
+    git stash drop "$created_stash_ref"
 else
     echo "No local changes to stash, pulling latest..."
     git pull
