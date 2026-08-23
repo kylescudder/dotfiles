@@ -5,7 +5,7 @@ set -uo pipefail
 script_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 config_dir="${ROFI_CONFIG_DIR:-$script_dir}"
 show_mode="drun"
-theme_name="${ROFI_THEME:-cockpit}"
+theme_name="${ROFI_THEME:-slate}"
 
 while (($# > 0)); do
     case "$1" in
@@ -26,7 +26,7 @@ while (($# > 0)); do
             shift 2
             ;;
         --list-themes)
-            printf '%s\n' cockpit flight-deck field-notes phosphor bento ultraviolet omarchy
+            printf '%s\n' slate cockpit flight-deck field-notes phosphor bento ultraviolet
             exit 0
             ;;
         -h|--help)
@@ -50,12 +50,12 @@ case "$theme_name" in
     cockpit)
         theme_file="$config_dir/cockpit.rasi"
         ;;
-    flight-deck|field-notes|phosphor|bento|ultraviolet|omarchy)
+    flight-deck|field-notes|phosphor|bento|ultraviolet|slate)
         theme_file="$config_dir/themes/$theme_name.rasi"
         ;;
     *)
         printf 'Unknown Rofi theme: %s\n' "$theme_name" >&2
-        printf 'Available themes: cockpit, flight-deck, field-notes, phosphor, bento, ultraviolet, omarchy\n' >&2
+        printf 'Available themes: slate, cockpit, flight-deck, field-notes, phosphor, bento, ultraviolet\n' >&2
         exit 2
         ;;
 esac

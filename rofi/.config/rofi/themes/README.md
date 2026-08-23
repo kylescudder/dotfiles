@@ -1,6 +1,6 @@
 # Rofi design drafts
 
-All six themes keep the launcher's application, window, command, media, timer,
+All six drafts keep the launcher's application, window, command, media, timer,
 sound, and session modes intact.
 
 Open `preview.html` in any modern browser for a dependency-free visual comparison.
@@ -14,7 +14,7 @@ inspect; they are not shown at literal 2560×1440 scale.
 | `phosphor` | Dense green CRT terminal | `launcher.sh --theme phosphor` |
 | `bento` | Friendly two-column utility grid, best for apps | `launcher.sh --theme bento` |
 | `ultraviolet` | Low-profile midnight command palette | `launcher.sh --theme ultraviolet` |
-| `omarchy` | Restrained, narrow Omarchy-inspired menu | `launcher.sh --theme omarchy` |
+| `slate` | Restrained, narrow keyboard-first menu (default) | `launcher.sh --theme slate` |
 
 Pass a mode after `--show`, for example:
 
@@ -28,5 +28,5 @@ To use a draft for every invocation without editing the script:
 ROFI_THEME=bento launcher.sh
 ```
 
-Once a favorite is clear, change the fallback in `launcher.sh` from
-`ROFI_THEME:-cockpit` to that theme's name.
+`slate` is the selected default. Set `ROFI_THEME` to temporarily use a different
+draft without changing the launcher configuration.

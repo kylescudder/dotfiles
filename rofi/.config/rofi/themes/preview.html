@@ -224,7 +224,7 @@
       height: 382px;
       padding: 7px;
       border: 2px solid #ffb52e;
-      border-radius: 3px;
+      border-radius: 0;
       background: #080b0d;
       color: #e8eceb;
     }
@@ -429,15 +429,15 @@
     .ultraviolet .volume { color: #ff6fae; }
     .ultraviolet .key { display: grid; place-items: center; color: #9692ae; font-size: 7px; }
 
-    /* Omarchy-inspired */
-    .omarchy-screen {
+    /* Slate */
+    .slate-screen {
       background:
         radial-gradient(ellipse at 20% 78%, #4f294e 0, transparent 34%),
         radial-gradient(ellipse at 76% 28%, #203d52 0, transparent 37%),
         linear-gradient(145deg, #17131d, #0c1419 64%, #221421);
     }
 
-    .omarchy-bar {
+    .slate-bar {
       position: absolute;
       z-index: 1;
       top: 0;
@@ -455,10 +455,10 @@
       font-size: 7px;
     }
 
-    .omarchy-bar span:nth-child(2) { text-align: center; }
-    .omarchy-bar span:last-child { text-align: right; }
+    .slate-bar span:nth-child(2) { text-align: center; }
+    .slate-bar span:last-child { text-align: right; }
 
-    .omarchy {
+    .slate {
       display: flex;
       flex-direction: column;
       gap: 7px;
@@ -466,52 +466,52 @@
       height: 420px;
       padding: 11px;
       border: 2px solid #cba6f7;
-      border-radius: 9px;
+      border-radius: 3px;
       background: #11111bf5;
       color: #cdd6f4;
     }
 
-    .omarchy .search {
+    .slate .search {
       min-height: 42px;
       padding: 0 11px;
       border: 1px solid #45475a;
-      border-radius: 6px;
+      border-radius: 0;
       background: #181825;
     }
 
-    .omarchy .search-mark {
+    .slate .search-mark {
       margin-right: 9px;
       color: #cba6f7;
     }
 
-    .omarchy .results {
+    .slate .results {
       min-height: 0;
       flex: 1;
       gap: 2px;
     }
 
-    .omarchy .result {
+    .slate .result {
       padding: 7px 11px;
-      border-left: 2px solid transparent;
-      border-radius: 5px;
+      border: 1px solid transparent;
+      border-radius: 0;
       color: #cdd6f4;
     }
 
-    .omarchy .result.selected {
+    .slate .result.selected {
       border-color: #cba6f7;
       background: #313244b8;
       color: #cba6f7;
     }
 
-    .omarchy .app-icon {
+    .slate .app-icon {
       width: 27px;
-      border-radius: 5px;
+      border-radius: 0;
       background: #181825;
       color: #a6adc8;
       font-size: 8px;
     }
 
-    .omarchy .shortcuts {
+    .slate .shortcuts {
       padding: 6px 3px 2px 9px;
       border-left: 2px solid #45475a;
       color: #7f849c;
@@ -745,14 +745,14 @@
     <article class="theme-card">
       <aside class="theme-meta">
         <span class="number">CONCEPT / 06</span>
-        <h2>Omarchy</h2>
-        <p>A narrow, keyboard-first menu: one task, one column, and almost no visual noise.</p>
+        <h2>Slate</h2>
+        <p>A narrow, keyboard-first menu with hard outlines, square corners, and no visual softness.</p>
       </aside>
       <div class="screen-wrap">
-        <div class="screen omarchy-screen">
-          <div class="omarchy-bar" aria-hidden="true"><span>▣ &nbsp; 1 &nbsp; 2 &nbsp; 3 &nbsp; 4 &nbsp; 5</span><span>Sunday 12:45</span><span>⌁ &nbsp; ◕ 72% &nbsp; ◉</span></div>
-          <section class="rofi omarchy" aria-label="Omarchy-inspired Rofi preview">
-            <label class="search"><span class="search-mark">◫ Applications</span><input aria-label="Omarchy-inspired search" placeholder="Go…"><span class="case">Aa</span></label>
+        <div class="screen slate-screen">
+          <div class="slate-bar" aria-hidden="true"><span>▣ &nbsp; 1 &nbsp; 2 &nbsp; 3 &nbsp; 4 &nbsp; 5</span><span>Sunday 12:45</span><span>⌁ &nbsp; ◕ 72% &nbsp; ◉</span></div>
+          <section class="rofi slate" aria-label="Slate Rofi preview">
+            <label class="search"><span class="search-mark">◫ Applications</span><input aria-label="Slate search" placeholder="Go…"><span class="case">Aa</span></label>
             <div class="results">
               <div class="result selected"><span class="app-icon">ZN</span><span class="app-name">Zen Browser</span></div>
               <div class="result"><span class="app-icon">GT</span><span class="app-name">Ghostty</span></div>
