@@ -17,4 +17,4 @@ configuration {
     sidebar-mode: true;
 }
 
-@theme "slate"
+@theme "cockpit"

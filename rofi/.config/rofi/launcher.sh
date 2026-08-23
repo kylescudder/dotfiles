@@ -4,60 +4,15 @@ set -uo pipefail
 
 script_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 config_dir="${ROFI_CONFIG_DIR:-$script_dir}"
-show_mode="drun"
-theme_name="${ROFI_THEME:-slate}"
+show_mode="${1:-drun}"
 
-while (($# > 0)); do
-    case "$1" in
-        --show)
-            if (($# < 2)); then
-                printf '%s requires a mode\n' "$1" >&2
-                exit 2
-            fi
-            show_mode="$2"
-            shift 2
-            ;;
-        --theme)
-            if (($# < 2)); then
-                printf '%s requires a theme\n' "$1" >&2
-                exit 2
-            fi
-            theme_name="$2"
-            shift 2
-            ;;
-        --list-themes)
-            printf '%s\n' slate cockpit flight-deck field-notes phosphor bento ultraviolet
-            exit 0
-            ;;
-        -h|--help)
-            printf 'usage: %s [--show MODE] [--theme THEME]\n' "${0##*/}"
-            printf '       %s --list-themes\n' "${0##*/}"
-            exit 0
-            ;;
-        *)
-            show_mode="$1"
-            shift
-            ;;
-    esac
-done
+if [[ "$show_mode" == "--show" ]]; then
+    show_mode="${2:-drun}"
+fi
 
 case "$show_mode" in
     drun|window|run|media|timers|sound|session) ;;
     *) show_mode="drun" ;;
-esac
-
-case "$theme_name" in
-    cockpit)
-        theme_file="$config_dir/cockpit.rasi"
-        ;;
-    flight-deck|field-notes|phosphor|bento|ultraviolet|slate)
-        theme_file="$config_dir/themes/$theme_name.rasi"
-        ;;
-    *)
-        printf 'Unknown Rofi theme: %s\n' "$theme_name" >&2
-        printf 'Available themes: slate, cockpit, flight-deck, field-notes, phosphor, bento, ultraviolet\n' >&2
-        exit 2
-        ;;
 esac
 
 if [[ -n "${ROFI_BIN:-}" ]] && command -v "$ROFI_BIN" >/dev/null 2>&1; then
@@ -112,6 +67,6 @@ fi
 exec "$rofi_bin" \
     -show "$show_mode" \
     "$mode_flag" "$mode_list" \
-    -theme "$theme_file" \
+    -theme "$config_dir/cockpit.rasi" \
     -theme-str "$theme_override" \
     -replace
