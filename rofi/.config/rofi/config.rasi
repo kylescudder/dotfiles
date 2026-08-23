@@ -5,6 +5,7 @@ configuration {
     window-format: "{c}  {t}";
     location: 0;
     disable-history: false;
+    click-to-exit: true;
     hide-scrollbar: true;
     matching: "fuzzy";
     display-drun: "󰀻  Applications";

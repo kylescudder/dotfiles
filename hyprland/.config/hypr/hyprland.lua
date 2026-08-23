@@ -8,6 +8,7 @@ local commands = home .. "/.local/bin"
 local terminal = "ghostty"
 local fileManager = "ghostty -e yazi"
 local menu = home .. "/.config/rofi/launcher.sh"
+local closeRofiOnOutsideClick = commands .. "/rofi-click-outside"
 local mainMod = "SUPER"
 
 local accent = "rgb(cba6f7)"
@@ -186,6 +187,10 @@ hl.bind(mainMod .. " + mouse_up", hl.dsp.focus({ workspace = "e-1" }))
 
 hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(), { mouse = true })
 hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
+
+for _, button in ipairs({ 272, 273, 274 }) do
+    hl.bind("mouse:" .. button, hl.dsp.exec_cmd(closeRofiOnOutsideClick), { non_consuming = true })
+end
 
 local lockedRepeating = { locked = true, repeating = true }
 

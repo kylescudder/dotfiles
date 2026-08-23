@@ -1,0 +1,54 @@
+#!/usr/bin/env bash
+
+set -uo pipefail
+
+# Rofi's click-to-exit option is not implemented by its Wayland backend. This
+# script is called by non-consuming Hyprland mouse binds to provide the same
+# behavior without swallowing the click intended for the underlying window.
+if ! pgrep -x rofi >/dev/null 2>&1 && ! pgrep -x rofi-wayland >/dev/null 2>&1; then
+    exit 0
+fi
+
+command -v hyprctl >/dev/null 2>&1 || exit 0
+command -v jq >/dev/null 2>&1 || exit 0
+
+cursor="$(hyprctl cursorpos -j 2>/dev/null)" || exit 0
+layers="$(hyprctl layers -j 2>/dev/null)" || exit 0
+
+read -r cursor_x cursor_y < <(jq -r '[.x, .y] | @tsv' <<<"$cursor")
+[[ "$cursor_x" =~ ^-?[0-9]+$ && "$cursor_y" =~ ^-?[0-9]+$ ]] || exit 0
+
+mapfile -t rofi_layers < <(
+    jq -r '
+        .. | objects
+        | select(.namespace? == "rofi")
+        | select(
+            (.pid? | type) == "number"
+            and (.x? | type) == "number"
+            and (.y? | type) == "number"
+            and ((.w? // .width?) | type) == "number"
+            and ((.h? // .height?) | type) == "number"
+        )
+        | [.pid, .x, .y, (.w // .width), (.h // .height)]
+        | @tsv
+    ' <<<"$layers"
+)
+
+((${#rofi_layers[@]} > 0)) || exit 0
+
+declare -A rofi_pids=()
+for layer in "${rofi_layers[@]}"; do
+    read -r pid x y width height <<<"$layer"
+    rofi_pids["$pid"]=1
+
+    if ((
+        cursor_x >= x && cursor_x < x + width
+        && cursor_y >= y && cursor_y < y + height
+    )); then
+        exit 0
+    fi
+done
+
+for pid in "${!rofi_pids[@]}"; do
+    kill -TERM "$pid" 2>/dev/null || true
+done

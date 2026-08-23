@@ -653,7 +653,9 @@ install_applications() {
         wlogout \
         || error "System utilities installation failed"
 
-    sudo pacman -S --needed --noconfirm wget \
+    sudo pacman -S --needed --noconfirm \
+        wget \
+        jq \
         || error "System utilities pacman installation failed"
 
     sudo pacman -S --needed --noconfirm \
