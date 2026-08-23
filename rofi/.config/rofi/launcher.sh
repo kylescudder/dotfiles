@@ -26,7 +26,7 @@ while (($# > 0)); do
             shift 2
             ;;
         --list-themes)
-            printf '%s\n' cockpit flight-deck field-notes phosphor bento ultraviolet
+            printf '%s\n' cockpit flight-deck field-notes phosphor bento ultraviolet omarchy
             exit 0
             ;;
         -h|--help)
@@ -50,12 +50,12 @@ case "$theme_name" in
     cockpit)
         theme_file="$config_dir/cockpit.rasi"
         ;;
-    flight-deck|field-notes|phosphor|bento|ultraviolet)
+    flight-deck|field-notes|phosphor|bento|ultraviolet|omarchy)
         theme_file="$config_dir/themes/$theme_name.rasi"
         ;;
     *)
         printf 'Unknown Rofi theme: %s\n' "$theme_name" >&2
-        printf 'Available themes: cockpit, flight-deck, field-notes, phosphor, bento, ultraviolet\n' >&2
+        printf 'Available themes: cockpit, flight-deck, field-notes, phosphor, bento, ultraviolet, omarchy\n' >&2
         exit 2
         ;;
 esac

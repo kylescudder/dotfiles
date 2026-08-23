@@ -1,6 +1,6 @@
 # Rofi design drafts
 
-All five themes keep the launcher's application, window, command, media, timer,
+All six themes keep the launcher's application, window, command, media, timer,
 sound, and session modes intact.
 
 Open `preview.html` in any modern browser for a dependency-free visual comparison.
@@ -14,6 +14,7 @@ inspect; they are not shown at literal 2560×1440 scale.
 | `phosphor` | Dense green CRT terminal | `launcher.sh --theme phosphor` |
 | `bento` | Friendly two-column utility grid, best for apps | `launcher.sh --theme bento` |
 | `ultraviolet` | Low-profile midnight command palette | `launcher.sh --theme ultraviolet` |
+| `omarchy` | Restrained, narrow Omarchy-inspired menu | `launcher.sh --theme omarchy` |
 
 Pass a mode after `--show`, for example:
 

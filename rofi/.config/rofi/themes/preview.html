@@ -429,6 +429,94 @@
     .ultraviolet .volume { color: #ff6fae; }
     .ultraviolet .key { display: grid; place-items: center; color: #9692ae; font-size: 7px; }
 
+    /* Omarchy-inspired */
+    .omarchy-screen {
+      background:
+        radial-gradient(ellipse at 20% 78%, #4f294e 0, transparent 34%),
+        radial-gradient(ellipse at 76% 28%, #203d52 0, transparent 37%),
+        linear-gradient(145deg, #17131d, #0c1419 64%, #221421);
+    }
+
+    .omarchy-bar {
+      position: absolute;
+      z-index: 1;
+      top: 0;
+      left: 0;
+      right: 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      align-items: center;
+      height: 24px;
+      padding: 0 10px;
+      border-bottom: 1px solid #cba6f744;
+      background: #11111bda;
+      color: #cdd6f4;
+      font-family: var(--mono);
+      font-size: 7px;
+    }
+
+    .omarchy-bar span:nth-child(2) { text-align: center; }
+    .omarchy-bar span:last-child { text-align: right; }
+
+    .omarchy {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      width: 420px;
+      height: 420px;
+      padding: 11px;
+      border: 2px solid #cba6f7;
+      border-radius: 9px;
+      background: #11111bf5;
+      color: #cdd6f4;
+    }
+
+    .omarchy .search {
+      min-height: 42px;
+      padding: 0 11px;
+      border: 1px solid #45475a;
+      border-radius: 6px;
+      background: #181825;
+    }
+
+    .omarchy .search-mark {
+      margin-right: 9px;
+      color: #cba6f7;
+    }
+
+    .omarchy .results {
+      min-height: 0;
+      flex: 1;
+      gap: 2px;
+    }
+
+    .omarchy .result {
+      padding: 7px 11px;
+      border-left: 2px solid transparent;
+      border-radius: 5px;
+      color: #cdd6f4;
+    }
+
+    .omarchy .result.selected {
+      border-color: #cba6f7;
+      background: #313244b8;
+      color: #cba6f7;
+    }
+
+    .omarchy .app-icon {
+      width: 27px;
+      border-radius: 5px;
+      background: #181825;
+      color: #a6adc8;
+      font-size: 8px;
+    }
+
+    .omarchy .shortcuts {
+      padding: 6px 3px 2px 9px;
+      border-left: 2px solid #45475a;
+      color: #7f849c;
+    }
+
     .result,
     .mode {
       transition: transform 140ms ease, filter 140ms ease;
@@ -470,8 +558,8 @@
 </head>
 <body>
   <header>
-    <h1>Rofi,<br>five ways.</h1>
-    <p class="intro">Visual approximations of the five Rasi drafts. Layout, palette, density, and selected states mirror the real themes; the interfaces are enlarged for comparison.</p>
+    <h1>Rofi,<br>six ways.</h1>
+    <p class="intro">Visual approximations of the six Rasi drafts. Layout, palette, density, and selected states mirror the real themes; the interfaces are enlarged for comparison.</p>
   </header>
 
   <main>
@@ -587,7 +675,7 @@
       <aside class="theme-meta">
         <span class="number">CONCEPT / 04</span>
         <h2>Bento</h2>
-        <p>Friendly utility tiles. The most visual and app-centric of the five.</p>
+        <p>Friendly utility tiles. The most visual and app-centric of the six.</p>
       </aside>
       <div class="screen-wrap">
         <div class="screen bento-screen">
@@ -649,6 +737,32 @@
               <div class="volume">VOL 72%</div>
               <div class="key">⌘K</div>
             </aside>
+          </section>
+        </div>
+      </div>
+    </article>
+
+    <article class="theme-card">
+      <aside class="theme-meta">
+        <span class="number">CONCEPT / 06</span>
+        <h2>Omarchy</h2>
+        <p>A narrow, keyboard-first menu: one task, one column, and almost no visual noise.</p>
+      </aside>
+      <div class="screen-wrap">
+        <div class="screen omarchy-screen">
+          <div class="omarchy-bar" aria-hidden="true"><span>▣ &nbsp; 1 &nbsp; 2 &nbsp; 3 &nbsp; 4 &nbsp; 5</span><span>Sunday 12:45</span><span>⌁ &nbsp; ◕ 72% &nbsp; ◉</span></div>
+          <section class="rofi omarchy" aria-label="Omarchy-inspired Rofi preview">
+            <label class="search"><span class="search-mark">◫ Applications</span><input aria-label="Omarchy-inspired search" placeholder="Go…"><span class="case">Aa</span></label>
+            <div class="results">
+              <div class="result selected"><span class="app-icon">ZN</span><span class="app-name">Zen Browser</span></div>
+              <div class="result"><span class="app-icon">GT</span><span class="app-name">Ghostty</span></div>
+              <div class="result"><span class="app-icon">SP</span><span class="app-name">Spotify</span></div>
+              <div class="result"><span class="app-icon">T3</span><span class="app-name">T3 Code</span></div>
+              <div class="result"><span class="app-icon">ST</span><span class="app-name">Steam</span></div>
+              <div class="result"><span class="app-icon">DC</span><span class="app-name">Discord</span></div>
+              <div class="result"><span class="app-icon">BL</span><span class="app-name">Blender</span></div>
+            </div>
+            <div class="shortcuts">↑↓ select &nbsp;&nbsp; ↵ open &nbsp;&nbsp; ctrl+tab mode &nbsp;&nbsp; esc close</div>
           </section>
         </div>
       </div>
