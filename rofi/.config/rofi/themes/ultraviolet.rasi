@@ -1,0 +1,188 @@
+/* Ultraviolet — low-profile, glossy midnight command palette. */
+* {
+    night:      #0c0c16f5;
+    panel:      #151525;
+    lifted:     #202038;
+    line:       #343457;
+    text:       #f3f0ff;
+    muted:      #9692ae;
+    violet:     #a78bfa;
+    hot:        #ff6fae;
+    ice:        #78e5dc;
+    danger:     #ff6577;
+
+    background-color: transparent;
+    text-color: @text;
+    border-color: @line;
+    font: "FiraCode Nerd Font 12";
+}
+
+window {
+    width: 1160px;
+    height: 590px;
+    location: center;
+    anchor: center;
+    border: 1px;
+    border-color: @line;
+    border-radius: 24px;
+    background-color: @night;
+    children: [ cockpit ];
+}
+
+cockpit {
+    orientation: vertical;
+    padding: 18px;
+    spacing: 12px;
+    background-color: transparent;
+    children: [ launcher-pane, control-rail ];
+}
+
+launcher-pane {
+    orientation: vertical;
+    expand: true;
+    spacing: 11px;
+    background-color: transparent;
+    children: [ inputbar, message, listview, textbox-shortcuts ];
+}
+
+inputbar {
+    orientation: horizontal;
+    children: [ prompt, entry, case-indicator ];
+    spacing: 11px;
+    padding: 0px 16px;
+    border: 1px;
+    border-color: @line;
+    border-radius: 16px;
+    background-color: @panel;
+}
+
+prompt { padding: 16px 0px; text-color: @hot; font: "FiraCode Nerd Font SemiBold 12"; }
+entry {
+    expand: true;
+    padding: 16px 0px;
+    placeholder: "Search or run…";
+    placeholder-color: @muted;
+    text-color: @text;
+}
+case-indicator { padding: 16px 0px; text-color: @ice; }
+message { padding: 0px; background-color: transparent; }
+textbox {
+    padding: 7px 10px;
+    border-radius: 9px;
+    background-color: @panel;
+    text-color: @muted;
+    font: "FiraCode Nerd Font 8";
+}
+
+listview {
+    expand: true;
+    columns: 1;
+    lines: 7;
+    spacing: 5px;
+    fixed-height: true;
+    cycle: true;
+    scrollbar: false;
+    background-color: transparent;
+}
+
+element {
+    orientation: horizontal;
+    children: [ element-icon, element-text ];
+    spacing: 13px;
+    padding: 10px 13px;
+    border: 1px;
+    border-color: transparent;
+    border-radius: 12px;
+    background-color: transparent;
+    text-color: @muted;
+    cursor: pointer;
+}
+
+element normal active,
+element alternate active { background-color: @panel; text-color: @ice; }
+
+element selected normal,
+element selected active,
+element selected urgent {
+    border-color: @violet;
+    background-color: @lifted;
+    text-color: @text;
+}
+
+element selected urgent { border-color: @danger; }
+element-icon { size: 29px; background-color: transparent; }
+element-text { vertical-align: 0.5; background-color: transparent; text-color: inherit; }
+
+textbox-shortcuts {
+    content: "↑↓ navigate    ↵ launch    ctrl+tab mode    esc dismiss";
+    padding: 3px 3px 0px;
+    text-color: @muted;
+    font: "FiraCode Nerd Font 8";
+}
+
+control-rail {
+    orientation: horizontal;
+    height: 96px;
+    padding: 10px;
+    spacing: 6px;
+    border: 1px;
+    border-color: @line;
+    border-radius: 15px;
+    background-color: @panel;
+    children: [ mode-switcher, textbox-player-kicker, textbox-player-track, textbox-volume, textbox-rail-hint ];
+}
+
+mode-switcher {
+    orientation: horizontal;
+    expand: true;
+    spacing: 3px;
+    background-color: transparent;
+}
+
+button {
+    padding: 10px 7px;
+    border-radius: 9px;
+    background-color: transparent;
+    text-color: @muted;
+    cursor: pointer;
+}
+
+button selected { background-color: @violet; text-color: @night; }
+
+textbox-player-kicker {
+    content: "PLAYING";
+    width: 45px;
+    padding: 9px 5px;
+    text-color: @ice;
+    font: "FiraCode Nerd Font SemiBold 7";
+}
+
+textbox-player-track {
+    content: "No active player";
+    width: 112px;
+    padding: 9px;
+    border-radius: 9px;
+    background-color: @lifted;
+    text-color: @text;
+    font: "FiraCode Nerd Font 8";
+}
+
+textbox-volume {
+    content: "  Volume unavailable";
+    width: 102px;
+    padding: 9px;
+    border-radius: 9px;
+    background-color: @lifted;
+    text-color: @hot;
+    font: "FiraCode Nerd Font 8";
+}
+
+textbox-rail-hint {
+    content: "⌘K";
+    width: 25px;
+    padding: 9px 4px;
+    text-color: @muted;
+    font: "FiraCode Nerd Font 8";
+}
+
+scrollbar { width: 3px; border-radius: 3px; background-color: @panel; handle-color: @violet; }

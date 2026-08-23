@@ -1,0 +1,207 @@
+/* Flight Deck — amber avionics, hard edges, information-dense. */
+* {
+    void:       #080b0d;
+    panel:      #101519f7;
+    raised:     #182127;
+    line:       #35434b;
+    ink:        #e8eceb;
+    muted:      #829199;
+    amber:      #ffb52e;
+    amber-dim:  #5d431d;
+    cyan:       #52d6c7;
+    danger:     #ff625f;
+
+    background-color: transparent;
+    text-color: @ink;
+    border-color: @line;
+    font: "FiraCode Nerd Font 12";
+}
+
+window {
+    width: 1040px;
+    height: 560px;
+    location: center;
+    anchor: center;
+    border: 2px;
+    border-color: @amber;
+    border-radius: 3px;
+    background-color: @void;
+    children: [ cockpit ];
+}
+
+cockpit {
+    orientation: horizontal;
+    padding: 8px;
+    spacing: 8px;
+    background-color: @void;
+    children: [ control-rail, launcher-pane ];
+}
+
+control-rail {
+    orientation: vertical;
+    width: 245px;
+    padding: 18px 14px;
+    spacing: 9px;
+    border: 1px;
+    border-color: @line;
+    background-color: @panel;
+    children: [ textbox-player-kicker, textbox-player-track, mode-switcher, textbox-volume, textbox-rail-hint ];
+}
+
+textbox-player-kicker {
+    content: "SYS / LAUNCH CONTROL";
+    padding: 0px 2px 8px;
+    border: 0px 0px 1px;
+    border-color: @amber-dim;
+    text-color: @amber;
+    font: "FiraCode Nerd Font SemiBold 9";
+}
+
+textbox-player-track {
+    content: "No active player";
+    padding: 10px 2px;
+    text-color: @cyan;
+    font: "FiraCode Nerd Font SemiBold 10";
+}
+
+textbox-volume {
+    content: "  Volume unavailable";
+    padding: 10px;
+    border: 1px;
+    border-color: @line;
+    background-color: @raised;
+    text-color: @amber;
+    font: "FiraCode Nerd Font 10";
+}
+
+mode-switcher {
+    orientation: vertical;
+    expand: true;
+    spacing: 3px;
+    background-color: transparent;
+}
+
+button {
+    padding: 10px 9px;
+    border: 0px 0px 0px 2px;
+    border-color: transparent;
+    background-color: transparent;
+    text-color: @muted;
+    horizontal-align: 0.0;
+    cursor: pointer;
+}
+
+button selected {
+    border-color: @amber;
+    background-color: @amber-dim;
+    text-color: @amber;
+}
+
+textbox-rail-hint {
+    content: "CTRL+TAB  MODE  //  ESC  ABORT";
+    padding: 9px 2px 0px;
+    text-color: @muted;
+    font: "FiraCode Nerd Font 8";
+}
+
+launcher-pane {
+    orientation: vertical;
+    expand: true;
+    padding: 18px 20px;
+    spacing: 12px;
+    border: 1px;
+    border-color: @line;
+    background-color: @panel;
+    children: [ inputbar, message, listview, textbox-shortcuts ];
+}
+
+inputbar {
+    orientation: horizontal;
+    children: [ prompt, entry, case-indicator ];
+    spacing: 12px;
+    padding: 0px 14px;
+    border: 1px;
+    border-color: @line;
+    background-color: @raised;
+}
+
+prompt {
+    padding: 15px 0px;
+    text-color: @amber;
+    font: "FiraCode Nerd Font SemiBold 11";
+}
+
+entry {
+    expand: true;
+    padding: 15px 0px;
+    placeholder: "TYPE TARGET IDENT…";
+    placeholder-color: @muted;
+    text-color: @ink;
+}
+
+case-indicator {
+    padding: 15px 0px;
+    text-color: @cyan;
+}
+
+message { padding: 0px; background-color: transparent; }
+textbox {
+    padding: 7px 10px;
+    border: 1px;
+    border-color: @line;
+    background-color: @raised;
+    text-color: @muted;
+    font: "FiraCode Nerd Font 9";
+}
+
+listview {
+    expand: true;
+    columns: 1;
+    lines: 7;
+    spacing: 4px;
+    fixed-height: true;
+    cycle: true;
+    scrollbar: false;
+    background-color: transparent;
+}
+
+element {
+    orientation: horizontal;
+    children: [ element-icon, element-text ];
+    spacing: 13px;
+    padding: 9px 12px;
+    border: 1px;
+    border-color: transparent;
+    background-color: transparent;
+    text-color: @muted;
+    cursor: pointer;
+}
+
+element normal active,
+element alternate active {
+    border-color: @cyan;
+    text-color: @cyan;
+}
+
+element selected normal,
+element selected active,
+element selected urgent {
+    border-color: @amber;
+    background-color: @amber-dim;
+    text-color: @ink;
+}
+
+element selected urgent { border-color: @danger; }
+element-icon { size: 28px; background-color: transparent; }
+element-text { vertical-align: 0.5; background-color: transparent; text-color: inherit; }
+
+textbox-shortcuts {
+    content: "↑↓ VECTOR    ↵ EXECUTE    CTRL+TAB CHANNEL    ESC DISMISS";
+    padding: 8px 0px 0px;
+    border: 0px 0px 0px 36px;
+    border-color: @amber;
+    text-color: @muted;
+    font: "FiraCode Nerd Font 8";
+}
+
+scrollbar { width: 3px; background-color: @raised; handle-color: @amber; }
