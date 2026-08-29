@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=Set Timers
+GenericName=Timers and Alarms
+Comment=Create and manage Bide timers and alarms
+Exec=/home/kyle/.config/rofi/launcher.sh --show timers
+Icon=alarm-symbolic
+Terminal=false
+Categories=Utility;
+Keywords=timer;timers;alarm;alarms;bide;
