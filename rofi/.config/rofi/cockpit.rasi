@@ -63,7 +63,7 @@ prompt {
 entry {
     expand: true;
     padding: 15px 0px;
-    placeholder: "Go…";
+    placeholder: "Search apps, windows, commands, and actions…";
     placeholder-color: @muted;
     text-color: @text;
 }
@@ -145,7 +145,7 @@ element-text {
 }
 
 textbox-shortcuts {
-    content: "↑↓ select     ↵ open     ctrl+tab mode     esc close";
+    content: "↑↓ select     ↵ open     esc close";
     padding: 7px 4px 2px;
     border: 1px 0px 0px 0px;
     border-color: @line;

@@ -4,15 +4,15 @@ set -uo pipefail
 
 script_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 config_dir="${ROFI_CONFIG_DIR:-$script_dir}"
-show_mode="${1:-drun}"
+show_mode="${1:-combi}"
 
 if [[ "$show_mode" == "--show" ]]; then
-    show_mode="${2:-drun}"
+    show_mode="${2:-combi}"
 fi
 
 case "$show_mode" in
-    drun|window|run|media|timers|sound|session) ;;
-    *) show_mode="drun" ;;
+    combi|drun|window|run|media|timers|sound|session) ;;
+    *) show_mode="combi" ;;
 esac
 
 if [[ -n "${ROFI_BIN:-}" ]] && command -v "$ROFI_BIN" >/dev/null 2>&1; then
@@ -56,17 +56,21 @@ elif command -v pactl >/dev/null 2>&1; then
 fi
 
 theme_override="textbox-player-track { content: \"$(rasi_escape "$player_summary")\"; } textbox-volume { content: \"  $(rasi_escape "$volume_summary")\"; }"
-mode_list="drun,window,run,media:$config_dir/scripts/media,timers:$config_dir/scripts/bide,sound:$config_dir/scripts/sound,session:$config_dir/scripts/session"
+search_modes="drun,window,run,media,timers,sound,session"
+mode_list="combi,drun,window,run,media:$config_dir/scripts/media,timers:$config_dir/scripts/bide,sound:$config_dir/scripts/sound,session:$config_dir/scripts/session"
 
 if "$rofi_bin" -help 2>&1 | grep -q -- '-modes'; then
     mode_flag="-modes"
+    combi_flag="-combi-modes"
 else
     mode_flag="-modi"
+    combi_flag="-combi-modi"
 fi
 
 exec "$rofi_bin" \
     -show "$show_mode" \
     "$mode_flag" "$mode_list" \
+    "$combi_flag" "$search_modes" \
     -theme "$config_dir/cockpit.rasi" \
     -theme-str "$theme_override" \
     -replace

@@ -8,6 +8,8 @@ configuration {
     click-to-exit: true;
     hide-scrollbar: true;
     matching: "fuzzy";
+    combi-display-format: "{text}";
+    display-combi: "Search";
     display-drun: "󰀻  Applications";
     display-window: "󰖲  Windows";
     display-run: "  Run command";
@@ -15,7 +17,7 @@ configuration {
     display-timers: "󰔟  Timers";
     display-sound: "  Sound";
     display-session: "  Session";
-    sidebar-mode: true;
+    sidebar-mode: false;
 }
 
 @theme "cockpit"
