@@ -9,6 +9,21 @@
   console.keyMap = "uk";
   services.xserver.xkb.layout = "gb";
 
+  # UEFI bootloader. The existing 1 GiB FAT32 ESP is mounted at /boot.
+  boot.loader = {
+    efi = {
+      canTouchEfiVariables = true;
+      efiSysMountPoint = "/boot";
+    };
+
+    grub = {
+      enable = true;
+      efiSupport = true;
+      device = "nodev";
+      useOSProber = true;
+    };
+  };
+
   # Flakes are the entry point for this configuration.
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
@@ -73,7 +88,8 @@
   };
 
   # The old bootstrap manually clones Catppuccin's GRUB theme. The module owns
-  # it declaratively. The hardware file should choose/enable the actual loader.
+  # it declaratively. 
+  # Catppuccin theme for the GRUB bootloader configured above.
   catppuccin.grub = {
     enable = true;
     flavor = "mocha";
