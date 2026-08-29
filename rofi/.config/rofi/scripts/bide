@@ -2,9 +2,11 @@
 
 set -uo pipefail
 
-if ! command -v bide >/dev/null 2>&1; then
+bide_bin="${BIDE_BIN:-$HOME/.local/bin/bide}"
+
+if [[ ! -x "$bide_bin" ]]; then
     printf '%s\0nonselectable\x1ftrue\n' "Bide is not installed"
     exit 0
 fi
 
-exec bide rofi "$@"
+exec "$bide_bin" rofi "$@"
