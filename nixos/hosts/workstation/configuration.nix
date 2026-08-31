@@ -9,10 +9,11 @@
   console.keyMap = "uk";
   services.xserver.xkb.layout = "gb";
 
-  # UEFI bootloader. The existing 1 GiB FAT32 ESP is mounted at /boot.
+  # UEFI bootloader. This board ignores custom NVRAM boot entries, so GRUB is
+  # installed to the standard removable/fallback path EFI/BOOT/BOOTX64.EFI.
   boot.loader = {
     efi = {
-      canTouchEfiVariables = true;
+      canTouchEfiVariables = false;
       efiSysMountPoint = "/boot";
     };
 
@@ -21,6 +22,7 @@
       efiSupport = true;
       device = "nodev";
       useOSProber = true;
+      efiInstallAsRemovable = true;
     };
   };
 
@@ -53,9 +55,7 @@
     pulse.enable = true;
   };
 
-  # NVIDIA: the Arch script explicitly installs nvidia-open.
-  # This is correct for Turing/GTX 16/RTX 20 and newer. If this machine has an
-  # older NVIDIA GPU, set hardware.nvidia.open = false before the first build.
+  # NVIDIA RTX 3080 (Ampere) using the open NVIDIA kernel modules.
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.graphics = {
     enable = true;
@@ -72,8 +72,7 @@
   # that the Arch script obtains via steam + lib32-nvidia-utils.
   programs.steam.enable = true;
 
-  # Xbox wireless controller driver. Firmware is managed by the NixOS module
-  # rather than a DKMS clone/install script.
+  # Xbox wireless controller driver.
   hardware.xone.enable = true;
 
   # Tailscale is installed and starts at boot. Authenticate once with
@@ -87,8 +86,6 @@
     polkitPolicyOwners = [ username ];
   };
 
-  # The old bootstrap manually clones Catppuccin's GRUB theme. The module owns
-  # it declaratively. 
   # Catppuccin theme for the GRUB bootloader configured above.
   catppuccin.grub = {
     enable = true;
