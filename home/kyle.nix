@@ -1,29 +1,9 @@
 { config, lib, pkgs, inputs, username, ... }:
 let
-  # The checked-out repository is the editable source of truth.
   liveDotfilesRoot =
     "${config.home.homeDirectory}/Documents/Repos/dotfiles";
 
-  # We still use the flake/store copy only to discover which files exist.
-  # The links themselves point back to the live Git checkout.
-  stowPackages = [
-    "hyprland"
-    "waybar"
-    "nvim"
-    "spotifyd"
-    "starship"
-    "bashrc"
-    "zsh"
-    "fastfetch"
-    "rofi"
-    "yazi"
-    "ghostty"
-    "btop"
-    "wlogout"
-    "scripts"
-  ];
-
-  filesForPackage = packageName:
+  linkPackage = packageName: destinationRoot:
     let
       storeRoot = inputs.self + "/${packageName}";
       files = lib.filesystem.listFilesRecursive storeRoot;
@@ -38,7 +18,11 @@ let
             );
           in
           {
-            name = relativePath;
+            name =
+              if destinationRoot == ""
+              then relativePath
+              else "${destinationRoot}/${relativePath}";
+
             value.source =
               config.lib.file.mkOutOfStoreSymlink
                 "${liveDotfilesRoot}/${packageName}/${relativePath}";
@@ -46,49 +30,28 @@ let
         files
     );
 
-  filesForSharePackage = packageName: sourceDirectory: destinationDirectory:
-    let
-      storeRoot = inputs.self + "/${packageName}/${sourceDirectory}";
-      files = lib.filesystem.listFilesRecursive storeRoot;
-      storeRootString = toString storeRoot + "/";
-    in
-    builtins.listToAttrs (
-      map
-        (path:
-          let
-            relativePath = builtins.unsafeDiscardStringContext (
-              lib.removePrefix storeRootString (toString path)
-            );
-          in
-          {
-            name = "${destinationDirectory}/${relativePath}";
-            value.source =
-              config.lib.file.mkOutOfStoreSymlink
-                "${liveDotfilesRoot}/${packageName}/${sourceDirectory}/${relativePath}";
-          })
-        files
-    );
-
-  stowedFiles =
-    lib.foldl' lib.recursiveUpdate { }
-      (map filesForPackage stowPackages);
-
-  shareFiles =
+  dotfiles =
     lib.foldl' lib.recursiveUpdate { } [
-      (filesForSharePackage
-        "applications"
-        "applications"
-        ".local/share/applications")
+      (linkPackage "hyprland" ".config/hypr")
+      (linkPackage "waybar" ".config/waybar")
+      (linkPackage "nvim" ".config/nvim")
+      (linkPackage "spotifyd" ".config/spotifyd")
+      (linkPackage "fastfetch" ".config/fastfetch")
+      (linkPackage "rofi" ".config/rofi")
+      (linkPackage "yazi" ".config/yazi")
+      (linkPackage "ghostty" ".config/ghostty")
+      (linkPackage "btop" ".config/btop")
+      (linkPackage "wlogout" ".config/wlogout")
 
-      (filesForSharePackage
-        "icons"
-        "icons"
-        ".local/share/icons")
+      (linkPackage "starship" ".config")
 
-      (filesForSharePackage
-        "wallpapers"
-        "wallpapers"
-        ".local/share/wallpapers")
+      (linkPackage "bashrc" "")
+      (linkPackage "zsh" "")
+
+      (linkPackage "scripts" ".local/bin")
+      (linkPackage "applications" ".local/share/applications")
+      (linkPackage "icons" ".local/share/icons")
+      (linkPackage "wallpapers" ".local/share/wallpapers")
     ];
 
   herdr = pkgs.callPackage ../packages/herdr.nix { };
@@ -100,7 +63,7 @@ in
   # Keep existing dotfiles as source-of-truth initially. This is deliberately
   # a migration layer: individual configs can later be converted to native
   # Home Manager modules without changing everything at once.
-  home.file = stowedFiles // shareFiles // {
+  home.file = dotfiles // {
   ".config/1Password/ssh/agent.toml".text = ''
     [[ssh-keys]]
     vault = "Private"
