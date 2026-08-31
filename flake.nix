@@ -19,11 +19,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    herdr-src = {
-      url = "github:kylescudder/herdr";
-      flake = false;
-    };
-
     hyprland-guiutils = {
       url = "github:hyprwm/hyprland-guiutils";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -81,22 +76,6 @@
             commonModules
             ++ [
               ./nixos/hosts/workstation/hardware-configuration.nix
-            ];
-        };
-
-        # Disposable QEMU test VM
-        vm = nixpkgs.lib.nixosSystem {
-          inherit system;
-
-          specialArgs = {
-            inherit inputs username;
-            hostname = "nixos-vm";
-          };
-
-          modules =
-            commonModules
-            ++ [
-              ./nixos/hosts/vm/configuration.nix
             ];
         };
       };

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Exit on error, arg errors and detect errors in pipeline
 set -euo pipefail

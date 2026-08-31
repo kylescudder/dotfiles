@@ -75,22 +75,6 @@
         "type": "github"
       }
     },
-    "herdr-src": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1786609356,
-        "narHash": "sha256-cdAhRvZbxxUcMNzzpODUmurJjoFeyPfSUVhZyTGDlUY=",
-        "owner": "kylescudder",
-        "repo": "herdr",
-        "rev": "142ce721a3b123a76149de4d364430ea65b8a74b",
-        "type": "github"
-      },
-      "original": {
-        "owner": "kylescudder",
-        "repo": "herdr",
-        "type": "github"
-      }
-    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -328,7 +312,6 @@
       "inputs": {
         "catppuccin": "catppuccin",
         "helium": "helium",
-        "herdr-src": "herdr-src",
         "home-manager": "home-manager",
         "hyprland-guiutils": "hyprland-guiutils",
         "nixpkgs": "nixpkgs"

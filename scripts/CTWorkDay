@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/usr/bin/env zsh
 
 SESSION_NAME="CTWorkDay"
 SESSION_LOG="$HOME/.local/state/herdr/$SESSION_NAME.log"

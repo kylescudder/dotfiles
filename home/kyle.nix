@@ -78,8 +78,9 @@ in
   programs.ssh = {
     enable = true;
     enableDefaultConfig = false;
-    matchBlocks."*" = {
-      identityAgent = "${config.home.homeDirectory}/.1password/agent.sock";
+
+    settings."*" = {
+      IdentityAgent = "${config.home.homeDirectory}/.1password/agent.sock";
     };
   };
 
@@ -99,9 +100,14 @@ in
   programs.vesktop.enable = true;
 
   # Replaces the curl-to-~/.config/swaync Catppuccin installation.
-  catppuccin.swaync = {
+  catppuccin = {
     enable = true;
-    flavor = "mocha";
+    autoEnable = false;
+
+    swaync = {
+      enable = true;
+      flavor = "mocha";
+    };
   };
 
   # The previous gsettings calls become deterministic user dconf values.
@@ -131,7 +137,7 @@ in
     picom
 
     # Hyprland desktop utilities
-    inputs.hyprland-guiutils.packages.${pkgs.system}.default
+    inputs.hyprland-guiutils.packages.${pkgs.stdenv.hostPlatform.system}.default
     hyprshot
     rofi 
     waybar
@@ -141,6 +147,11 @@ in
     hyprpaper
     wlogout
     pavucontrol
+    playerctl
+    brightnessctl
+    libnotify
+    file
+    lua
 
     # Desktop applications
     vlc
@@ -149,23 +160,20 @@ in
     prismlauncher
     spotifyd
     spotify
-    spicetify-cli
     cura-appimage
 
     # Fonts
     font-awesome
     nerd-fonts.meslo-lg
 
-    # Existing custom tool, now built reproducibly from its Cargo.lock.
+    # Existing custom tool, packaged from the published release binary.
     herdr
 
     # Helium is not in the stable nixpkgs set used here, so consume its flake.
     inputs.helium.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 
-  # `bide` from the Arch bootstrap is intentionally not silently replaced:
-  # the AUR package is an old Java-8-specific BIDE package and there is no
-  # equivalent package in current nixpkgs. See README-NIXOS.md.
+  # Bide is intentionally not packaged yet.
 
   home.stateVersion = "26.05";
 }

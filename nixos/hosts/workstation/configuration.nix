@@ -87,9 +87,14 @@
   };
 
   # Catppuccin theme for the GRUB bootloader configured above.
-  catppuccin.grub = {
+  catppuccin = {
     enable = true;
-    flavor = "mocha";
+    autoEnable = false;
+
+    grub = {
+      enable = true;
+      flavor = "mocha";
+    };
   };
 
   # Packages which are genuinely system-level rather than user dotfile tools.
