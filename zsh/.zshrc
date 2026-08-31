@@ -8,7 +8,7 @@ SAVEHIST=1000
 bindkey -v
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
-zstyle :compinstall filename '/home/kyle/.zshrc'
+zstyle :compinstall filename "$HOME/.zshrc"
 fpath=(~/.zsh/completions $fpath)
 
 autoload -Uz compinit

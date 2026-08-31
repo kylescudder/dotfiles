@@ -53,10 +53,7 @@ end)
 
 hl.env("XCURSOR_THEME", "Adwaita")
 hl.env("XCURSOR_SIZE", "24")
-hl.env(
-    "XCURSOR_PATH",
-    "/usr/share/icons:/usr/local/share/icons:" .. home .. "/.icons:" .. home .. "/.local/share/icons"
-)
+hl.env("XCURSOR_PATH", home .. "/.icons:" .. home .. "/.local/share/icons")
 
 -- Appearance and behavior
 
@@ -113,7 +110,7 @@ hl.config({
         disable_hyprland_logo = false,
     },
     input = {
-        kb_layout = "us",
+        kb_layout = "gb",
         numlock_by_default = true,
         follow_mouse = 1,
         sensitivity = 0,

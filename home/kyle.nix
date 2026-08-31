@@ -55,6 +55,7 @@ let
     ];
 
   herdr = pkgs.callPackage ../packages/herdr.nix { };
+  bedrockOnLinux = pkgs.callPackage ../packages/bedrock-on-linux.nix { };
 in
 {
   home.username = username;
@@ -92,6 +93,13 @@ in
     };
   };
 
+  programs.t3code = {
+    enable = true;
+
+    package =
+      inputs.nixpkgs-t3.legacyPackages.${pkgs.stdenv.hostPlatform.system}.t3code;
+  };
+
   # Keep the existing .zshrc and Starship config rather than generating them.
   # Nix provides the binaries; the repo still owns their current config files.
   programs.zsh.enable = false;
@@ -126,6 +134,7 @@ in
     python3
     python3Packages.pip
     fzf
+    pulseaudio
 
     # Terminal / CLI
     ghostty
@@ -161,6 +170,9 @@ in
     spotifyd
     spotify
     cura-appimage
+
+    # Games
+    bedrockOnLinux
 
     # Fonts
     font-awesome
