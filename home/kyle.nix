@@ -1,9 +1,11 @@
 { config, lib, pkgs, inputs, username, ... }:
 let
-  dotfilesRoot = inputs.self;
-  # Reproduce GNU Stow's useful behaviour without keeping Stow itself.
-  # Each package is treated as a tree relative to $HOME. Home Manager creates
-  # managed links for every file while retaining the existing repo layout.
+  # The checked-out repository is the editable source of truth.
+  liveDotfilesRoot =
+    "${config.home.homeDirectory}/Documents/Repos/dotfiles";
+
+  # We still use the flake/store copy only to discover which files exist.
+  # The links themselves point back to the live Git checkout.
   stowPackages = [
     "hyprland"
     "waybar"
@@ -23,19 +25,71 @@ let
 
   filesForPackage = packageName:
     let
-      root = dotfilesRoot + "/${packageName}";
-      files = lib.filesystem.listFilesRecursive root;
-      rootString = toString root + "/";
+      storeRoot = inputs.self + "/${packageName}";
+      files = lib.filesystem.listFilesRecursive storeRoot;
+      storeRootString = toString storeRoot + "/";
     in
-      builtins.listToAttrs (map (path: {
-      name = builtins.unsafeDiscardStringContext (
-        lib.removePrefix rootString (toString path)
-      );
-        value.source = path;
-      }) files);
+    builtins.listToAttrs (
+      map
+        (path:
+          let
+            relativePath = builtins.unsafeDiscardStringContext (
+              lib.removePrefix storeRootString (toString path)
+            );
+          in
+          {
+            name = relativePath;
+            value.source =
+              config.lib.file.mkOutOfStoreSymlink
+                "${liveDotfilesRoot}/${packageName}/${relativePath}";
+          })
+        files
+    );
 
-  stowedFiles = lib.foldl' lib.recursiveUpdate { }
-    (map filesForPackage stowPackages);
+  filesForSharePackage = packageName: sourceDirectory: destinationDirectory:
+    let
+      storeRoot = inputs.self + "/${packageName}/${sourceDirectory}";
+      files = lib.filesystem.listFilesRecursive storeRoot;
+      storeRootString = toString storeRoot + "/";
+    in
+    builtins.listToAttrs (
+      map
+        (path:
+          let
+            relativePath = builtins.unsafeDiscardStringContext (
+              lib.removePrefix storeRootString (toString path)
+            );
+          in
+          {
+            name = "${destinationDirectory}/${relativePath}";
+            value.source =
+              config.lib.file.mkOutOfStoreSymlink
+                "${liveDotfilesRoot}/${packageName}/${sourceDirectory}/${relativePath}";
+          })
+        files
+    );
+
+  stowedFiles =
+    lib.foldl' lib.recursiveUpdate { }
+      (map filesForPackage stowPackages);
+
+  shareFiles =
+    lib.foldl' lib.recursiveUpdate { } [
+      (filesForSharePackage
+        "applications"
+        "applications"
+        ".local/share/applications")
+
+      (filesForSharePackage
+        "icons"
+        "icons"
+        ".local/share/icons")
+
+      (filesForSharePackage
+        "wallpapers"
+        "wallpapers"
+        ".local/share/wallpapers")
+    ];
 
   herdr = pkgs.callPackage ../packages/herdr.nix { };
 in
@@ -46,29 +100,12 @@ in
   # Keep existing dotfiles as source-of-truth initially. This is deliberately
   # a migration layer: individual configs can later be converted to native
   # Home Manager modules without changing everything at once.
-  home.file = stowedFiles // {
-    # The old bootstrap Stowed these packages both into $HOME and into
-    # ~/.local/share. Only the XDG destinations are intentional.
-    ".local/share/applications" = {
-      source = dotfilesRoot + "/applications/applications";
-      recursive = true;
-    };
-    ".local/share/icons" = {
-      source = dotfilesRoot + "/icons/icons";
-      recursive = true;
-    };
-    ".local/share/wallpapers" = {
-      source = dotfilesRoot + "/wallpapers/wallpapers";
-      recursive = true;
-    };
-
-    # 1Password SSH agent selection. This file contains configuration, not a
-    # secret. Private keys remain in 1Password and never enter the Nix store.
-    ".config/1Password/ssh/agent.toml".text = ''
-      [[ssh-keys]]
-      vault = "Private"
-    '';
-  };
+  home.file = stowedFiles // shareFiles // {
+  ".config/1Password/ssh/agent.toml".text = ''
+    [[ssh-keys]]
+    vault = "Private"
+  '';
+};
 
   # Use the 1Password agent consistently for ssh, git and terminal sessions.
   home.sessionVariables = {
