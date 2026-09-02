@@ -8,6 +8,7 @@ local commands = home .. "/.local/bin"
 local terminal = "ghostty"
 local fileManager = "ghostty -e yazi"
 local menu = home .. "/.config/rofi/launcher.sh"
+local actionsMenu = home .. "/.config/rofi/actions.sh"
 local closeRofiOnOutsideClick = commands .. "/rofi-click-outside"
 local mainMod = "SUPER"
 
@@ -148,6 +149,7 @@ hl.bind(
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
 hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + SPACE", hl.dsp.exec_cmd(menu))
+hl.bind(mainMod .. " + ALT + SPACE", hl.dsp.exec_cmd(actionsMenu))
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + S", hl.dsp.layout("togglesplit"))
 hl.bind("CTRL + ALT + L", hl.dsp.exec_cmd("hyprshot -m region"))
