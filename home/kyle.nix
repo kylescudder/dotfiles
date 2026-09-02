@@ -60,6 +60,7 @@ in
 {
   imports = [
     ./modules/ssh.nix
+    ./modules/git.nix
   ];
 
   home.username = username;
@@ -69,14 +70,6 @@ in
   # a migration layer: individual configs can later be converted to native
   # Home Manager modules without changing everything at once.
   home.file = dotfiles;
-
-  programs.git = {
-    enable = true;
-    settings.user = {
-      name = "Kyle Scudder";
-      email = "kyle@kylescudder.co.uk";
-    };
-  };
 
   programs.t3code = {
     enable = true;
