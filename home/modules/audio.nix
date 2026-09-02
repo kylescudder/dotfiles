@@ -1,6 +1,11 @@
 { pkgs, ... }:
 
 {
+  home.packages = with pkgs; [
+    pulseaudio
+    alsa-utils
+  ];
+
   systemd.user.services.audio-setup = {
     Unit = {
       Description = "Configure workstation audio outputs";
