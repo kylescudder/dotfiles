@@ -62,6 +62,7 @@ in
     ./modules/ssh.nix
     ./modules/git.nix
     ./modules/audio.nix
+    ./modules/t3code.nix
   ];
 
   home.username = username;
@@ -71,13 +72,6 @@ in
   # a migration layer: individual configs can later be converted to native
   # Home Manager modules without changing everything at once.
   home.file = dotfiles;
-
-  programs.t3code = {
-    enable = true;
-
-    package =
-      inputs.nixpkgs-t3.legacyPackages.${pkgs.stdenv.hostPlatform.system}.t3code;
-  };
 
   # Keep the existing .zshrc and Starship config rather than generating them.
   # Nix provides the binaries; the repo still owns their current config files.
