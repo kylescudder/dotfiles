@@ -58,32 +58,17 @@ let
   bedrockOnLinux = pkgs.callPackage ../packages/bedrock-on-linux.nix { };
 in
 {
+  imports = [
+    ./modules/ssh.nix
+  ];
+
   home.username = username;
   home.homeDirectory = "/home/${username}";
 
   # Keep existing dotfiles as source-of-truth initially. This is deliberately
   # a migration layer: individual configs can later be converted to native
   # Home Manager modules without changing everything at once.
-  home.file = dotfiles // {
-  ".config/1Password/ssh/agent.toml".text = ''
-    [[ssh-keys]]
-    vault = "Private"
-  '';
-};
-
-  # Use the 1Password agent consistently for ssh, git and terminal sessions.
-  home.sessionVariables = {
-    SSH_AUTH_SOCK = "${config.home.homeDirectory}/.1password/agent.sock";
-  };
-
-  programs.ssh = {
-    enable = true;
-    enableDefaultConfig = false;
-
-    settings."*" = {
-      IdentityAgent = "${config.home.homeDirectory}/.1password/agent.sock";
-    };
-  };
+  home.file = dotfiles;
 
   programs.git = {
     enable = true;
@@ -149,7 +134,7 @@ in
     # Hyprland desktop utilities
     inputs.hyprland-guiutils.packages.${pkgs.stdenv.hostPlatform.system}.default
     hyprshot
-    rofi 
+    rofi
     waybar
     swaynotificationcenter
     hyprlock
