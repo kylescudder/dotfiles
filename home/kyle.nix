@@ -1,8 +1,4 @@
-{ pkgs, inputs, username, ... }:
-let
-  herdr = pkgs.callPackage ../packages/herdr.nix { };
-  bedrockOnLinux = pkgs.callPackage ../packages/bedrock-on-linux.nix { };
-in
+{ pkgs, username, ... }:
 {
   imports = [
     ./modules/dotfiles.nix
@@ -15,6 +11,9 @@ in
     ./modules/terminal.nix
     ./modules/desktop.nix
     ./modules/media.nix
+    ./modules/gaming.nix
+    ./modules/fonts.nix
+    ./modules/custom-tools.nix
   ];
 
   home.username = username;
@@ -25,24 +24,9 @@ in
     pulseaudio
     alsa-utils
 
-    # Desktop applications
+    # Desktop applications not yet split into their own module.
     obsidian
     thunderbird
-    prismlauncher
-    cura-appimage
-
-    # Games
-    bedrockOnLinux
-
-    # Fonts
-    font-awesome
-    nerd-fonts.meslo-lg
-
-    # Existing custom tool, packaged from the published release binary.
-    herdr
-
-    # Helium is not in the stable nixpkgs set used here, so consume its flake.
-    inputs.helium.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 
   # Bide is intentionally not packaged yet.
