@@ -13,53 +13,16 @@ in
     ./modules/shell.nix
     ./modules/development.nix
     ./modules/terminal.nix
+    ./modules/desktop.nix
   ];
 
   home.username = username;
   home.homeDirectory = "/home/${username}";
 
-  programs.vesktop.enable = true;
-
-  # Replaces the curl-to-~/.config/swaync Catppuccin installation.
-  catppuccin = {
-    enable = true;
-    autoEnable = false;
-
-    swaync = {
-      enable = true;
-      flavor = "mocha";
-    };
-  };
-
-  # The previous gsettings calls become deterministic user dconf values.
-  dconf.settings."org/gnome/desktop/interface" = {
-    color-scheme = "prefer-dark";
-    gtk-theme = "Adwaita-dark";
-  };
-
   home.packages = with pkgs; [
     # Audio utilities used by the workstation audio setup and switch scripts.
     pulseaudio
     alsa-utils
-
-    # Desktop / compositor utilities
-    feh
-    picom
-    inputs.hyprland-guiutils.packages.${pkgs.stdenv.hostPlatform.system}.default
-    hyprshot
-    rofi
-    waybar
-    swaynotificationcenter
-    hyprlock
-    hypridle
-    hyprpaper
-    wlogout
-    pavucontrol
-    playerctl
-    brightnessctl
-    libnotify
-    file
-    lua
 
     # Desktop applications
     vlc
