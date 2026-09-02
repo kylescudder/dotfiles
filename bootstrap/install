@@ -693,7 +693,6 @@ install_applications() {
     paru -S --needed --noconfirm \
         spotifyd \
         spotify-launcher \
-        spicetify-cli \
         pavucontrol \
         || error "Music applications installation failed"
 
