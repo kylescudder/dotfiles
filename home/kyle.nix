@@ -14,6 +14,7 @@ in
     ./modules/development.nix
     ./modules/terminal.nix
     ./modules/desktop.nix
+    ./modules/media.nix
   ];
 
   home.username = username;
@@ -25,12 +26,9 @@ in
     alsa-utils
 
     # Desktop applications
-    vlc
     obsidian
     thunderbird
     prismlauncher
-    spotifyd
-    spotify
     cura-appimage
 
     # Games
