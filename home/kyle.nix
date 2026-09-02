@@ -10,15 +10,13 @@ in
     ./modules/git.nix
     ./modules/audio.nix
     ./modules/t3code.nix
+    ./modules/shell.nix
+    ./modules/development.nix
+    ./modules/terminal.nix
   ];
 
   home.username = username;
   home.homeDirectory = "/home/${username}";
-
-  # Keep the existing .zshrc and Starship config rather than generating them.
-  # Nix provides the binaries; the repo still owns their current config files.
-  programs.zsh.enable = false;
-  programs.starship.enable = false;
 
   programs.vesktop.enable = true;
 
@@ -40,28 +38,13 @@ in
   };
 
   home.packages = with pkgs; [
-    # Development
-    nodejs
-    bun
-    dotnet-sdk
-    neovim
-    lazygit
-    python3
-    python3Packages.pip
-    fzf
+    # Audio utilities used by the workstation audio setup and switch scripts.
     pulseaudio
     alsa-utils
 
-    # Terminal / CLI
-    ghostty
-    starship
-    fastfetch
-    yazi
-    btop
+    # Desktop / compositor utilities
     feh
     picom
-
-    # Hyprland desktop utilities
     inputs.hyprland-guiutils.packages.${pkgs.stdenv.hostPlatform.system}.default
     hyprshot
     rofi
