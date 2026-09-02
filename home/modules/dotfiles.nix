@@ -35,6 +35,7 @@ let
       (linkPackage "hyprland" ".config/hypr")
       (linkPackage "waybar" ".config/waybar")
       (linkPackage "nvim" ".config/nvim")
+      (linkPackage "lazygit" ".config/lazygit")
       (linkPackage "spotifyd" ".config/spotifyd")
       (linkPackage "fastfetch" ".config/fastfetch")
       (linkPackage "rofi" ".config/rofi")
