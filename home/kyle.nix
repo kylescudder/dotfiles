@@ -1,4 +1,4 @@
-{ pkgs, username, ... }:
+{ username, ... }:
 {
   imports = [
     ./modules/dotfiles.nix
@@ -14,20 +14,11 @@
     ./modules/gaming.nix
     ./modules/fonts.nix
     ./modules/custom-tools.nix
+    ./modules/apps.nix
   ];
 
   home.username = username;
   home.homeDirectory = "/home/${username}";
-
-  home.packages = with pkgs; [
-    # Audio utilities used by the workstation audio setup and switch scripts.
-    pulseaudio
-    alsa-utils
-
-    # Desktop applications not yet split into their own module.
-    obsidian
-    thunderbird
-  ];
 
   # Bide is intentionally not packaged yet.
 
