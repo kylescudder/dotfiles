@@ -1,64 +1,11 @@
-{ config, lib, pkgs, inputs, username, ... }:
+{ pkgs, inputs, username, ... }:
 let
-  liveDotfilesRoot =
-    "${config.home.homeDirectory}/Documents/Repos/dotfiles";
-
-  linkPackage = packageName: destinationRoot:
-    let
-      storeRoot = inputs.self + "/${packageName}";
-      files = lib.filesystem.listFilesRecursive storeRoot;
-      storeRootString = toString storeRoot + "/";
-    in
-    builtins.listToAttrs (
-      map
-        (path:
-          let
-            relativePath = builtins.unsafeDiscardStringContext (
-              lib.removePrefix storeRootString (toString path)
-            );
-          in
-          {
-            name =
-              if destinationRoot == ""
-              then relativePath
-              else "${destinationRoot}/${relativePath}";
-
-            value.source =
-              config.lib.file.mkOutOfStoreSymlink
-                "${liveDotfilesRoot}/${packageName}/${relativePath}";
-          })
-        files
-    );
-
-  dotfiles =
-    lib.foldl' lib.recursiveUpdate { } [
-      (linkPackage "hyprland" ".config/hypr")
-      (linkPackage "waybar" ".config/waybar")
-      (linkPackage "nvim" ".config/nvim")
-      (linkPackage "spotifyd" ".config/spotifyd")
-      (linkPackage "fastfetch" ".config/fastfetch")
-      (linkPackage "rofi" ".config/rofi")
-      (linkPackage "yazi" ".config/yazi")
-      (linkPackage "ghostty" ".config/ghostty")
-      (linkPackage "btop" ".config/btop")
-      (linkPackage "wlogout" ".config/wlogout")
-
-      (linkPackage "starship" ".config")
-
-      (linkPackage "bashrc" "")
-      (linkPackage "zsh" "")
-
-      (linkPackage "scripts" ".local/bin")
-      (linkPackage "applications" ".local/share/applications")
-      (linkPackage "icons" ".local/share/icons")
-      (linkPackage "wallpapers" ".local/share/wallpapers")
-    ];
-
   herdr = pkgs.callPackage ../packages/herdr.nix { };
   bedrockOnLinux = pkgs.callPackage ../packages/bedrock-on-linux.nix { };
 in
 {
   imports = [
+    ./modules/dotfiles.nix
     ./modules/ssh.nix
     ./modules/git.nix
     ./modules/audio.nix
@@ -67,11 +14,6 @@ in
 
   home.username = username;
   home.homeDirectory = "/home/${username}";
-
-  # Keep existing dotfiles as source-of-truth initially. This is deliberately
-  # a migration layer: individual configs can later be converted to native
-  # Home Manager modules without changing everything at once.
-  home.file = dotfiles;
 
   # Keep the existing .zshrc and Starship config rather than generating them.
   # Nix provides the binaries; the repo still owns their current config files.
