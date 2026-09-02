@@ -59,6 +59,10 @@
         catppuccin.nixosModules.catppuccin
         home-manager.nixosModules.home-manager
 
+        # NordVPN landed after the stable 26.05 module set. Reuse the already
+        # pinned unstable nixpkgs input for its package and NixOS module.
+        (inputs.nixpkgs-t3 + "/nixos/modules/services/networking/nordvpn.nix")
+
         homeManagerModule
       ];
     in {
