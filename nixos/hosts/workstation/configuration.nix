@@ -29,13 +29,13 @@
   # Flakes are the entry point for this configuration.
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  # The Arch bootstrap installs several unfree applications/drivers.
+  # Several workstation applications/drivers are unfree.
   nixpkgs.config.allowUnfree = true;
 
   users.users.${username} = {
     isNormalUser = true;
     description = "Kyle Scudder";
-    extraGroups = [ "wheel" "networkmanager" ];
+    extraGroups = [ "wheel" "networkmanager" "nordvpn" ];
     shell = pkgs.zsh;
   };
 
@@ -68,8 +68,7 @@
     package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
 
-  # Steam's NixOS module includes the system integration and 32-bit support
-  # that the Arch script obtains via steam + lib32-nvidia-utils.
+  # Steam's NixOS module includes the system integration and 32-bit support.
   programs.steam.enable = true;
 
   # Xbox wireless controller driver.
@@ -78,6 +77,13 @@
   # Tailscale is installed and starts at boot. Authenticate once with
   # `sudo tailscale login` after installation; no auth secret is stored here.
   services.tailscale.enable = true;
+
+  # NordVPN is sourced from the already-pinned unstable nixpkgs input because
+  # it is newer than the stable 26.05 package/module set.
+  services.nordvpn = {
+    enable = true;
+    package = inputs.nixpkgs-t3.legacyPackages.${pkgs.stdenv.hostPlatform.system}.nordvpn;
+  };
 
   # 1Password CLI + GUI with the privileged integration NixOS requires.
   programs._1password.enable = true;
