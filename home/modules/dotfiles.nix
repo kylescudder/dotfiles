@@ -43,6 +43,7 @@ let
       (linkPackage "ghostty" ".config/ghostty")
       (linkPackage "btop" ".config/btop")
       (linkPackage "wlogout" ".config/wlogout")
+      (linkPackage "herdr" ".config/herdr")
 
       (linkPackage "starship" ".config")
 
