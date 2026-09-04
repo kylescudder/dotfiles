@@ -14,6 +14,7 @@
     ./modules/gaming.nix
     ./modules/fonts.nix
     ./modules/custom-tools.nix
+    ./modules/yap.nix
     ./modules/apps.nix
   ];
 
