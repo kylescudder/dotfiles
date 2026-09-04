@@ -24,6 +24,11 @@
       url = "github:hyprwm/hyprland-guiutils";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    yap = {
+      url = "github:kylescudder/yap";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs@{
