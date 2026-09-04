@@ -2,7 +2,7 @@
 let
   cfg = config.services.nordvpn;
   nordvpnPackage =
-    inputs.nixpkgs-t3.legacyPackages.${pkgs.stdenv.hostPlatform.system}.nordvpn;
+    inputs.nixpkgs-unstable.legacyPackages.${pkgs.stdenv.hostPlatform.system}.nordvpn;
 
   nordvpn =
     let

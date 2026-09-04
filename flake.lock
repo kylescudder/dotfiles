@@ -308,13 +308,13 @@
         "type": "github"
       }
     },
-    "nixpkgs-t3": {
+    "nixpkgs-unstable": {
       "locked": {
-        "lastModified": 1787964612,
-        "narHash": "sha256-0N9nghg3nwzX6b6qc77EzjR9cu/Z+UR66FlfsCqiURs=",
+        "lastModified": 1788400875,
+        "narHash": "sha256-JIHQ6xNAN53cdo6zZ72LRcQ9lpvnABCnNE4hldJ5uZU=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "e8be7818e19ada32105a8af937a6a473b38167ca",
+        "rev": "5545adfad2e98de106a5544ca7067e03010410bd",
         "type": "github"
       },
       "original": {
@@ -331,7 +331,8 @@
         "home-manager": "home-manager",
         "hyprland-guiutils": "hyprland-guiutils",
         "nixpkgs": "nixpkgs",
-        "nixpkgs-t3": "nixpkgs-t3"
+        "nixpkgs-unstable": "nixpkgs-unstable",
+        "yap": "yap"
       }
     },
     "systems": {
@@ -379,6 +380,26 @@
       "original": {
         "owner": "numtide",
         "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "yap": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1788554300,
+        "narHash": "sha256-UvQaOHF0SvtVqdX6Zg5r72XBioFtekmu0iF5WwByIv0=",
+        "owner": "kylescudder",
+        "repo": "yap",
+        "rev": "24205d03dc3e99021ecb4872d694b645a7241d46",
+        "type": "github"
+      },
+      "original": {
+        "owner": "kylescudder",
+        "repo": "yap",
         "type": "github"
       }
     }
