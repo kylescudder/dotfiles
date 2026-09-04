@@ -93,6 +93,29 @@ in
       wantedBy = [ "sockets.target" ];
     };
 
+    # Tailscale marks its transport/control-plane traffic with 0x80000. Its
+    # own policy rules normally send that traffic directly through the main
+    # routing table, which NordVPN's firewall then rejects while connected.
+    # Route that marked underlay traffic through NordVPN's table first. If
+    # table 205 has no route (for example while disconnected), policy routing
+    # simply falls through to Tailscale's normal rules.
+    systemd.services.tailscale-via-nordvpn = {
+      description = "Route Tailscale transport through NordVPN";
+      before = [ "tailscaled.service" ];
+      wantedBy = [ "multi-user.target" ];
+      serviceConfig = {
+        Type = "oneshot";
+        RemainAfterExit = true;
+      };
+      script = ''
+        ${pkgs.iproute2}/bin/ip rule del priority 5200 fwmark 0x80000/0xff0000 lookup 205 2>/dev/null || true
+        ${pkgs.iproute2}/bin/ip rule add priority 5200 fwmark 0x80000/0xff0000 lookup 205
+      '';
+      preStop = ''
+        ${pkgs.iproute2}/bin/ip rule del priority 5200 fwmark 0x80000/0xff0000 lookup 205 2>/dev/null || true
+      '';
+    };
+
     systemd.user.services.norduserd = {
       after = [ "network-online.target" ];
       description = "NordUserD service";
