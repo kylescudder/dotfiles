@@ -78,6 +78,10 @@
   # `sudo tailscale login` after installation; no auth secret is stored here.
   services.tailscale.enable = true;
 
+  # NordVPN uses policy routing for the tunnel. NixOS' strict reverse-path
+  # filtering drops that asymmetric VPN traffic, so use loose rpfilter mode.
+  networking.firewall.checkReversePath = "loose";
+
   # NordVPN uses the locally adapted NixOS module, backed by the already-pinned
   # unstable nixpkgs package.
   services.nordvpn.enable = true;
