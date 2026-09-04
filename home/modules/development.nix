@@ -11,6 +11,7 @@
     nodejs
     bun
     dotnet-sdk
+    gh
     neovim
     lazygit
     python3
