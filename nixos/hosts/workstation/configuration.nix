@@ -78,12 +78,9 @@
   # `sudo tailscale login` after installation; no auth secret is stored here.
   services.tailscale.enable = true;
 
-  # NordVPN is sourced from the already-pinned unstable nixpkgs input because
-  # it is newer than the stable 26.05 package/module set.
-  services.nordvpn = {
-    enable = true;
-    package = inputs.nixpkgs-t3.legacyPackages.${pkgs.stdenv.hostPlatform.system}.nordvpn;
-  };
+  # NordVPN uses the locally adapted NixOS module, backed by the already-pinned
+  # unstable nixpkgs package.
+  services.nordvpn.enable = true;
 
   # 1Password CLI + GUI with the privileged integration NixOS requires.
   programs._1password.enable = true;
