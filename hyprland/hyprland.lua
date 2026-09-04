@@ -44,7 +44,7 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("hyprpaper")
     hl.exec_cmd("1password --silent")
     hl.exec_cmd(commands .. "/songchange")
-    hl.exec_cmd("spotify", { workspace = "10 silent" })
+    hl.exec_cmd("ghostty --class=spotify-tui -e spotify_player", { workspace = "10 silent" })
     hl.exec_cmd("ghostty --class=magic-btop -e btop", {
       workspace = "special:magic silent",
     })
