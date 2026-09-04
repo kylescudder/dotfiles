@@ -41,6 +41,7 @@ let
       (linkPackage "rofi" ".config/rofi")
       (linkPackage "yazi" ".config/yazi")
       (linkPackage "ghostty" ".config/ghostty")
+      (linkPackage "kitty/.config/kitty" ".config/kitty")
       (linkPackage "btop" ".config/btop")
       (linkPackage "wlogout" ".config/wlogout")
       (linkPackage "herdr" ".config/herdr")
