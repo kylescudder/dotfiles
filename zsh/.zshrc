@@ -8,7 +8,7 @@ SAVEHIST=1000
 bindkey -v
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
-zstyle :compinstall filename '/home/kyle/.zshrc'
+zstyle :compinstall filename "$HOME/.zshrc"
 fpath=(~/.zsh/completions $fpath)
 
 autoload -Uz compinit
@@ -31,22 +31,5 @@ fastfetch
 
 setopt promptsubst
 
-# bun completions
-[ -s "/home/kyle/.bun/_bun" ] && source "/home/kyle/.bun/_bun"
-
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
-
-# Initialize Bun
-[ -s "$BUN_INSTALL/bun.sh" ] && source "$BUN_INSTALL/bun.sh"
-
-source ~/Documents/Repos/schmerdr/schmerdr.sh
+[[ -f ~/Documents/Repos/schmerdr/schmerdr.sh ]] && source ~/Documents/Repos/schmerdr/schmerdr.sh
 export EDITOR=nvim
-export SSH_AUTH_SOCK="$HOME/.1password/agent.sock"
-
-export PATH=$PATH:/home/kyle/.spicetify
-
-export DOTNET_ROOT="/usr/local/share/dotnet"
-# opencode
-export PATH=/Users/Kyle.Scudder/.opencode/bin:$PATH
