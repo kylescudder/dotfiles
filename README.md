@@ -20,7 +20,6 @@ Home Manager exposes the `scripts` package through `~/.local/bin`. The available
 - `create-vm-from-template`
 - `headphones`
 - `launchspt`
-- `plex_update`
 - `rofi-toggle`
 - `songchange`
 - `songnotification`

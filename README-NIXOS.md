@@ -223,7 +223,6 @@ main configuration:
 
 - NordVPN installation and automatic connection.
 - Yap packaging and its user services.
-- Plex directory scraper user service.
 - Minecraft Bedrock / BedrockOnLinux installation.
 - T3 Code installation and `t3code://` URL handler.
 
