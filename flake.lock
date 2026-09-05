@@ -390,11 +390,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1788554300,
-        "narHash": "sha256-UvQaOHF0SvtVqdX6Zg5r72XBioFtekmu0iF5WwByIv0=",
+        "lastModified": 1788566706,
+        "narHash": "sha256-tWyd9ExZMe5WnZbozkVOaAffPgdl2Lnri/wug1hsbbE=",
         "owner": "kylescudder",
         "repo": "yap",
-        "rev": "24205d03dc3e99021ecb4872d694b645a7241d46",
+        "rev": "9b5cc9ac871ebe4c143d457786b6ec27699aee6c",
         "type": "github"
       },
       "original": {

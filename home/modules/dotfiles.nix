@@ -52,7 +52,6 @@ let
       (linkPackage "zsh" "")
 
       (linkPackage "scripts" ".local/bin")
-      (linkPackage "applications" ".local/share/applications")
       (linkPackage "icons" ".local/share/icons")
       (linkPackage "wallpapers" ".local/share/wallpapers")
     ];
