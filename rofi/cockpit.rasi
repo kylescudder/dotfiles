@@ -18,7 +18,7 @@ window {
     anchor: center;
     border: 2px;
     border-color: @accent;
-    border-radius: 12px;
+    border-radius: 4px;
     background-color: @background;
     padding: 12px;
 }
@@ -37,7 +37,7 @@ inputbar {
     padding: 11px 14px;
     border: 1px;
     border-color: @border;
-    border-radius: 9px;
+    border-radius: 4px;
     background-color: @surface;
 }
 
@@ -71,7 +71,7 @@ element {
     padding: 10px 12px;
     border: 1px;
     border-color: transparent;
-    border-radius: 8px;
+    border-radius: 4px;
     background-color: transparent;
     text-color: @text;
     cursor: pointer;

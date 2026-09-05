@@ -28,7 +28,7 @@ window#waybar.hidden {
 
 tooltip {
     border: 1px solid @surface1;
-    border-radius: 7px;
+    border-radius: 4px;
     background: @mantle;
 }
 
