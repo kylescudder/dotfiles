@@ -53,6 +53,7 @@ The current mappings include:
     hyprland     -> ~/.config/hypr
     waybar       -> ~/.config/waybar
     nvim         -> ~/.config/nvim
+    spotify-player -> ~/.config/spotify-player
     spotifyd     -> ~/.config/spotifyd
     fastfetch    -> ~/.config/fastfetch
     rofi         -> ~/.config/rofi
