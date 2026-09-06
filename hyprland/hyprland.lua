@@ -12,6 +12,21 @@ local actionsMenu = home .. "/.config/rofi/actions.sh"
 local closeRofiOnOutsideClick = commands .. "/rofi-click-outside"
 local mainMod = "SUPER"
 
+local cursorTheme = "catppuccin-mocha-mauve-cursors"
+local cursorSize = "24"
+local cursorPaths = table.concat({
+    home .. "/.icons",
+    home .. "/.local/share/icons",
+    "/run/current-system/sw/share/icons",
+    "/usr/share/icons",
+}, ":")
+local inheritedCursorPath = os.getenv("XCURSOR_PATH")
+local xcursorPath = cursorPaths
+
+if inheritedCursorPath and inheritedCursorPath ~= "" then
+    xcursorPath = inheritedCursorPath .. ":" .. cursorPaths
+end
+
 local accent = "rgb(cba6f7)"
 local accentSecondary = "rgb(b4befe)"
 
@@ -44,6 +59,7 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("hyprpaper")
     hl.exec_cmd("1password --silent")
     hl.exec_cmd(commands .. "/songchange")
+    hl.exec_cmd("hyprctl setcursor " .. cursorTheme .. " " .. cursorSize)
     hl.exec_cmd("ghostty --class=spotify-tui -e spotify_player", { workspace = "10 silent" })
     hl.exec_cmd("ghostty --class=magic-btop -e btop", {
       workspace = "special:magic silent",
@@ -52,9 +68,11 @@ end)
 
 -- Environment
 
-hl.env("XCURSOR_THEME", "Adwaita")
-hl.env("XCURSOR_SIZE", "24")
-hl.env("XCURSOR_PATH", home .. "/.icons:" .. home .. "/.local/share/icons")
+hl.env("HYPRCURSOR_THEME", cursorTheme)
+hl.env("HYPRCURSOR_SIZE", cursorSize)
+hl.env("XCURSOR_THEME", cursorTheme)
+hl.env("XCURSOR_SIZE", cursorSize)
+hl.env("XCURSOR_PATH", xcursorPath)
 
 -- Appearance and behavior
 
@@ -63,7 +81,7 @@ hl.config({
         no_update_news = true,
     },
     cursor = {
-        enable_hyprcursor = false,
+        enable_hyprcursor = true,
     },
     general = {
         gaps_in = 1,
