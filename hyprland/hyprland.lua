@@ -82,6 +82,8 @@ hl.config({
     },
     cursor = {
         enable_hyprcursor = true,
+        -- Avoid corrupted hardware cursor planes on the NVIDIA GPU.
+        no_hardware_cursors = 1,
     },
     general = {
         gaps_in = 1,
