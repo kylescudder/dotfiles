@@ -31,5 +31,5 @@ fastfetch
 
 setopt promptsubst
 
-[[ -f ~/Documents/Repos/schmerdr/schmerdr.sh ]] && source ~/Documents/Repos/schmerdr/schmerdr.sh
+[[ -f ~/Development/Repos/schmerdr/schmerdr.sh ]] && source ~/Development/Repos/schmerdr/schmerdr.sh
 export EDITOR=nvim

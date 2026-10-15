@@ -2,7 +2,7 @@
 -- https://wiki.hypr.land/Configuring/Start/
 
 local home = os.getenv("HOME")
-local repositories = home .. "/Documents/Repos"
+local repositories = home .. "/Development/Repos"
 local commands = home .. "/.local/bin"
 
 local terminal = "ghostty"

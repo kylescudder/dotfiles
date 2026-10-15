@@ -23,11 +23,11 @@ GNU Stow is no longer used.
 Home Manager manages the links into `$HOME`, but the actual configuration files
 remain in the live Git checkout at:
 
-    ~/Documents/Repos/dotfiles
+    ~/Development/Repos/dotfiles
 
 For example:
 
-    ~/Documents/Repos/dotfiles/nvim/init.lua
+    ~/Development/Repos/dotfiles/nvim/init.lua
 
 is exposed as:
 
@@ -35,7 +35,7 @@ is exposed as:
 
 and:
 
-    ~/Documents/Repos/dotfiles/hyprland/hyprland.lua
+    ~/Development/Repos/dotfiles/hyprland/hyprland.lua
 
 is exposed as:
 
@@ -71,7 +71,7 @@ The current mappings include:
 
 Because these are live links, the repository must exist at:
 
-    ~/Documents/Repos/dotfiles
+    ~/Development/Repos/dotfiles
 
 before Home Manager activates the user configuration.
 
@@ -118,7 +118,7 @@ machine.
 7. Boot NixOS.
 8. Clone or place the dotfiles repository at:
 
-       ~/Documents/Repos/dotfiles
+       ~/Development/Repos/dotfiles
 
 9. Open 1Password and enable **Developer → Use the SSH agent**.
 10. Authenticate Tailscale once if required:
@@ -127,11 +127,11 @@ machine.
 
 Future changes are applied with:
 
-    sudo nixos-rebuild switch --flake ~/Documents/Repos/dotfiles#stevie
+    sudo nixos-rebuild switch --flake ~/Development/Repos/dotfiles#stevie
 
 For risky changes, use:
 
-    sudo nixos-rebuild test --flake ~/Documents/Repos/dotfiles#stevie
+    sudo nixos-rebuild test --flake ~/Development/Repos/dotfiles#stevie
 
 A reboot returns to the previously booted generation if a test configuration is
 bad.

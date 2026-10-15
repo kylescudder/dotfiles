@@ -58,7 +58,7 @@ if ! session_exists; then
   git_tab_data=$(
     herdr_command tab create \
       --workspace "$workspace_id" \
-      --cwd "$HOME/Documents/Repos/mpro-platform" \
+      --cwd "$HOME/Development/Repos/mpro-platform" \
       --label "Git" \
       --focus
   ) || exit 1

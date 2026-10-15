@@ -1,7 +1,7 @@
 { config, lib, inputs, ... }:
 let
   liveDotfilesRoot =
-    "${config.home.homeDirectory}/Documents/Repos/dotfiles";
+    "${config.home.homeDirectory}/Development/Repos/dotfiles";
 
   linkPackage = packageName: destinationRoot:
     let

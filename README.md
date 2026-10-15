@@ -2,7 +2,7 @@ This is a place for my Linux dotfiles, scripts, and declarative NixOS workstatio
 
 ## Setup
 
-Clone the repository to `$HOME/Documents/Repos/dotfiles`, then build and switch the `stevie` configuration:
+Clone the repository to `$HOME/Development/Repos/dotfiles`, then build and switch the `stevie` configuration:
 
 ```bash
 nix build .#nixosConfigurations.stevie.config.system.build.toplevel
