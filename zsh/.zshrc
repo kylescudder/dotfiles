@@ -33,3 +33,10 @@ setopt promptsubst
 
 [[ -f ~/Development/Repos/schmerdr/schmerdr.sh ]] && source ~/Development/Repos/schmerdr/schmerdr.sh
 export EDITOR=nvim
+
+# macOS only: this file is shared with NixOS, which provides these itself.
+if [[ "$OSTYPE" == darwin* ]]; then
+  export BUN_INSTALL="$HOME/.bun"
+  export PATH="$BUN_INSTALL/bin:$HOME/.opencode/bin:$PATH"
+  export DOTNET_ROOT="/usr/local/share/dotnet"
+fi
