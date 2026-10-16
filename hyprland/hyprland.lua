@@ -52,6 +52,9 @@ hl.workspace_rule({ workspace = "10", monitor = "DP-3" })
 
 -- Autostart
 
+-- Home Manager supplies the packaged clipboard binding and session startup.
+dofile(home .. "/.config/hypr/nix-clipboard-history.lua")
+
 hl.on("hyprland.start", function()
     hl.exec_cmd("waybar")
     hl.exec_cmd("swaync")

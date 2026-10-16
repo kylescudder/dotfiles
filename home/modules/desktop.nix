@@ -10,6 +10,8 @@ assert builtins.pathExists (cursorThemeDirectory + "/cursors/left_ptr");
 assert builtins.pathExists (cursorThemeDirectory + "/manifest.hl");
 
 {
+  imports = [ ./clipboard-history.nix ];
+
   programs.vesktop.enable = true;
 
   # Keep the compositor, GTK applications, and XWayland clients on the same

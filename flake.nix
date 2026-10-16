@@ -26,6 +26,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nix-clipboard-history = {
+      url = "github:kylescudder/nix-clipboard-history";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+    };
+
     yap = {
       url = "github:kylescudder/yap";
       inputs.nixpkgs.follows = "nixpkgs";
