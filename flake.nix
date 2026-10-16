@@ -30,6 +30,8 @@
       url = "github:kylescudder/yap";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    spotify-tui.url = "github:kylescudder/spotify-tui";
   };
 
   outputs = inputs@{
