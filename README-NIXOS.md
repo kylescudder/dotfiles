@@ -248,6 +248,40 @@ Follow the TUI's first-run setup for its Spotify Web API client ID. The previous
 `spotify-player` package and Home Manager config links are retired; its files
 remain in `spotify-player/` for reference.
 
+## Clipboard history
+
+The pinned `nix-clipboard-history` flake supplies the package, settings and one
+systemd user capture service through its Home Manager module. In Hyprland,
+**Super+Shift+V** opens the native popup; **Enter** pastes the selection into the
+previously focused app. Clicking outside dismisses the popup.
+
+Hyprland remains live-linked Lua. It loads the Home Manager-generated
+`~/.config/hypr/nix-clipboard-history.lua`, which binds the absolute packaged
+executable and imports `WAYLAND_DISPLAY`, `HYPRLAND_INSTANCE_SIGNATURE` and
+`XDG_CURRENT_DESKTOP` into the user service environment before restarting capture
+on session startup. Capture is restricted to Hyprland sessions; do not also run
+`nix-clipboard-history daemon`, `wl-paste --watch`, or another capture service.
+
+Stop any manually started capture daemon from upstream testing first. On
+`stevie`, rebuild after updating the live checkout:
+
+```bash
+sudo nixos-rebuild switch --flake ~/Development/Repos/dotfiles#stevie
+```
+
+Log out and back into Hyprland, or apply it to the current Hyprland session:
+
+```bash
+hyprctl reload
+dbus-update-activation-environment --systemd WAYLAND_DISPLAY HYPRLAND_INSTANCE_SIGNATURE XDG_CURRENT_DESKTOP
+systemctl --user restart nix-clipboard-history.service
+systemctl --user status nix-clipboard-history.service
+```
+
+Copy two snippets, focus an app's text field, press Super+Shift+V, select the older
+entry and press Enter to verify automatic paste. Service logs are available with
+`journalctl --user -u nix-clipboard-history -e`.
+
 ## Deferred migrations
 
 The following functionality existed in the previous environment but is being

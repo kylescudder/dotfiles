@@ -276,6 +276,29 @@
         "type": "github"
       }
     },
+    "nix-clipboard-history": {
+      "inputs": {
+        "home-manager": [
+          "home-manager"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1792172292,
+        "narHash": "sha256-DhdOAhPYfZk0chjJZT7F60c4u5fLFyODouDWl0tKX6k=",
+        "owner": "kylescudder",
+        "repo": "nix-clipboard-history",
+        "rev": "be89b187ecdc428f92efc438321ef77f5a095620",
+        "type": "github"
+      },
+      "original": {
+        "owner": "kylescudder",
+        "repo": "nix-clipboard-history",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1787848966,
@@ -346,6 +369,7 @@
         "helium": "helium",
         "home-manager": "home-manager",
         "hyprland-guiutils": "hyprland-guiutils",
+        "nix-clipboard-history": "nix-clipboard-history",
         "nixpkgs": "nixpkgs",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "spotify-tui": "spotify-tui",
