@@ -53,7 +53,6 @@ The current mappings include:
     hyprland     -> ~/.config/hypr
     waybar       -> ~/.config/waybar
     nvim         -> ~/.config/nvim
-    spotify-player -> ~/.config/spotify-player
     spotifyd     -> ~/.config/spotifyd
     fastfetch    -> ~/.config/fastfetch
     rofi         -> ~/.config/rofi
@@ -215,6 +214,32 @@ mutating `/lib/modules` outside Nix.
   installation.
 - SwayNC Catppuccin: uses the Catppuccin Home Manager module.
 - GRUB Catppuccin: uses the Catppuccin NixOS module.
+
+## Spotify TUI
+
+The pinned `github:kylescudder/spotify-tui` flake supplies `spotify-tui` through
+its Home Manager module. Hyprland opens it in Ghostty on workspace 10; the
+`spt` alias and `launchspt` command also launch it and forward any arguments.
+Spotify desktop, VLC and FFmpeg remain installed.
+
+The module enables the `spotifyd` user service, using the same daemon package
+as the TUI. The service and `spotify-tui auth` use the existing live-linked
+`~/.config/spotifyd/spotifyd.conf`, preserving playback settings, the song-change
+hook and authentication configuration. Keep `use_mpris = true` and
+`dbus_type = "session"` in that file. Credentials and the TUI's writable
+configuration/token cache remain outside the Nix configuration.
+
+After rebuilding `stevie`, log in again to load the new session environment,
+then authenticate if needed:
+
+```bash
+spotify-tui auth
+spotify-tui
+```
+
+Follow the TUI's first-run setup for its Spotify Web API client ID. The previous
+`spotify-player` package and Home Manager config links are retired; its files
+remain in `spotify-player/` for reference.
 
 ## Deferred migrations
 

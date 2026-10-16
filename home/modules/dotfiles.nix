@@ -36,7 +36,6 @@ let
       (linkPackage "waybar" ".config/waybar")
       (linkPackage "nvim" ".config/nvim")
       (linkPackage "lazygit" ".config/lazygit")
-      (linkPackage "spotify-player" ".config/spotify-player")
       (linkPackage "spotifyd" ".config/spotifyd")
       (linkPackage "fastfetch" ".config/fastfetch")
       (linkPackage "rofi" ".config/rofi")
