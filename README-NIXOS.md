@@ -215,6 +215,13 @@ mutating `/lib/modules` outside Nix.
 - SwayNC Catppuccin: uses the Catppuccin Home Manager module.
 - GRUB Catppuccin: uses the Catppuccin NixOS module.
 
+## WhatsApp
+
+Home Manager installs [Whatsie](https://github.com/keshavbhatt/whatsie), an
+unofficial desktop client for WhatsApp Web, from the pinned nixpkgs input.
+After rebuilding `stevie`, open Whatsie from the application launcher or run
+`whatsie`, then link it to WhatsApp on your phone.
+
 ## Spotify TUI
 
 The pinned `github:kylescudder/spotify-tui` flake supplies `spotify-tui` through
