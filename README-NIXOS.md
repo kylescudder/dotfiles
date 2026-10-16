@@ -255,6 +255,11 @@ systemd user capture service through its Home Manager module. In Hyprland,
 **Super+Shift+V** opens the native popup; **Enter** pastes the selection into the
 previously focused app. Clicking outside dismisses the popup.
 
+The popup uses Catppuccin Mocha with a mauve accent. Its appearance settings and
+GTK colour overrides are managed in `home/modules/clipboard-history.nix`, which
+writes `~/.config/nix-clipboard-history/config.json` and `style.css`. Reopen the
+popup after rebuilding to load colour changes.
+
 Hyprland remains live-linked Lua. It loads the Home Manager-generated
 `~/.config/hypr/nix-clipboard-history.lua`, which binds the absolute packaged
 executable and imports `WAYLAND_DISPLAY`, `HYPRLAND_INSTANCE_SIGNATURE` and

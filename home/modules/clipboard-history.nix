@@ -19,7 +19,30 @@ in
 
   programs.nix-clipboard-history = {
     enable = true;
-    settings.auto_paste = true;
+    settings = {
+      auto_paste = true;
+      appearance = {
+        theme = "dark";
+        accent_color = "#cba6f7"; # Catppuccin Mocha mauve.
+      };
+    };
+    # Catppuccin Mocha surfaces and text; selections use the mauve accent above.
+    extraCss = ''
+      @define-color clipboard_bg #1e1e2e;
+      @define-color clipboard_preview_bg #181825;
+      @define-color clipboard_fg #cdd6f4;
+      @define-color clipboard_muted #a6adc8;
+      @define-color clipboard_subtle #9399b2;
+      @define-color clipboard_border #45475a;
+      @define-color clipboard_divider #313244;
+      @define-color clipboard_input_bg #181825;
+      @define-color clipboard_hover_bg #313244;
+      @define-color clipboard_icon_bg #313244;
+      @define-color clipboard_scrollbar #585b70;
+      @define-color clipboard_accent_fg #1e1e2e;
+      @define-color clipboard_danger #f38ba8;
+      @define-color clipboard_danger_bg mix(@clipboard_bg, @clipboard_danger, 0.15);
+    '';
     # Hyprland's Lua configuration is live-linked by dotfiles.nix.
     hyprland.enable = false;
   };
