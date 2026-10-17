@@ -1,4 +1,14 @@
 #!/usr/bin/env bash
 
-song=$(playerctl metadata --player=mpd --format "Title: {{ xesam:title }}\nArtist: {{ xesam:artist }}\nAlbum: {{ xesam:album }}")
+# spotifyd spawns this hook without waiting for its own MPRIS task, so the
+# metadata can briefly lag behind the event. When the hook provides TRACK_ID,
+# wait (up to ~2s) for MPRIS to expose that track before reading it.
+if [[ -n "${TRACK_ID:-}" ]]; then
+    for _ in {1..10}; do
+        [[ "$(playerctl metadata --player=spotifyd mpris:trackid 2>/dev/null)" == */"$TRACK_ID" ]] && break
+        sleep 0.2
+    done
+fi
+
+song=$(playerctl metadata --player=spotifyd --format "Title: {{ xesam:title }}\nArtist: {{ xesam:artist }}\nAlbum: {{ xesam:album }}")
 notify-send "Music Player" "$song" --icon=~/.config/spotifyd/spotify.png
