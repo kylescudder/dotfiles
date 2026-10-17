@@ -9,7 +9,7 @@
 
     background-color: transparent;
     text-color: @text;
-    font: "FiraCode Nerd Font 12";
+    font: "Meslo LGS Nerd Font Mono 12";
 }
 
 window {
@@ -43,7 +43,7 @@ inputbar {
 
 prompt {
     text-color: @accent;
-    font: "FiraCode Nerd Font SemiBold 11";
+    font: "Meslo LGS Nerd Font Mono Bold 11";
 }
 
 entry {
