@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
-song=$(playerctl metadata --player=mpd --format "Title: {{ xesam:title }}\nArtist: {{ xesam:artist }}\nAlbum: {{ xesam:album }}")
+song=$(playerctl metadata --player=spotifyd --format "Title: {{ xesam:title }}\nArtist: {{ xesam:artist }}\nAlbum: {{ xesam:album }}")
 notify-send "Music Player" "$song" --icon=~/.config/spotifyd/spotify.png
