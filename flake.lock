@@ -286,11 +286,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1792177139,
-        "narHash": "sha256-AdgKyI91NUT6EjWFIzxDM9xgwN4xfMOFSqjcKchFT/4=",
+        "lastModified": 1792182989,
+        "narHash": "sha256-0wwqP8Q0s4+fYH51ixmmMYuD2nU5WoK/DAnSpJJ3m9A=",
         "owner": "kylescudder",
         "repo": "nix-clipboard-history",
-        "rev": "ed21b663849fc048fac1bbe90ee461750a3ef6ce",
+        "rev": "eb3851e9dcbf5c28d90de6d98b034e017f603d93",
         "type": "github"
       },
       "original": {
