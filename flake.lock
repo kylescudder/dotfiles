@@ -349,6 +349,22 @@
     },
     "nixpkgs_2": {
       "locked": {
+        "lastModified": 1792502884,
+        "narHash": "sha256-IoNisKcGbUjdd45qCqywGMCYmZ5EnkxezvLII0FWwNA=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "02c087f3fe673c9e317f206a627cb6b910336dbe",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_3": {
+      "locked": {
         "lastModified": 1788297115,
         "narHash": "sha256-Z+vUNbfd2FIKkWOTkcT7RYlh3oFCnig/d2eXD1SWf2E=",
         "owner": "NixOS",
@@ -363,6 +379,27 @@
         "type": "github"
       }
     },
+    "pigeon": {
+      "inputs": {
+        "home-manager": [
+          "home-manager"
+        ],
+        "nixpkgs": "nixpkgs_2"
+      },
+      "locked": {
+        "lastModified": 1793447983,
+        "narHash": "sha256-h9vNxcnrdJSfqp45JH/1qzO5e+q/yWRrXkL3yw/DG5o=",
+        "owner": "kylescudder",
+        "repo": "pigeon",
+        "rev": "ab1d2593a1b3ad834a8f3270eec43f90a9070824",
+        "type": "github"
+      },
+      "original": {
+        "owner": "kylescudder",
+        "repo": "pigeon",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "catppuccin": "catppuccin",
@@ -372,13 +409,14 @@
         "nix-clipboard-history": "nix-clipboard-history",
         "nixpkgs": "nixpkgs",
         "nixpkgs-unstable": "nixpkgs-unstable",
+        "pigeon": "pigeon",
         "spotify-tui": "spotify-tui",
         "yap": "yap"
       }
     },
     "spotify-tui": {
       "inputs": {
-        "nixpkgs": "nixpkgs_2"
+        "nixpkgs": "nixpkgs_3"
       },
       "locked": {
         "lastModified": 1789594209,

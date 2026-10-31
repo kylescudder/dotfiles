@@ -37,6 +37,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    pigeon = {
+      url = "github:kylescudder/pigeon";
+      inputs.home-manager.follows = "home-manager";
+    };
+
     spotify-tui.url = "github:kylescudder/spotify-tui";
   };
 

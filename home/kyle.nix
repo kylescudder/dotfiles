@@ -15,6 +15,7 @@
     ./modules/fonts.nix
     ./modules/custom-tools.nix
     ./modules/yap.nix
+    ./modules/pigeon.nix
     ./modules/apps.nix
   ];
 
