@@ -387,11 +387,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1793447983,
-        "narHash": "sha256-h9vNxcnrdJSfqp45JH/1qzO5e+q/yWRrXkL3yw/DG5o=",
+        "lastModified": 1793572638,
+        "narHash": "sha256-DoQqsiHHRJUcJeegb4ulmFaR7oUWhQ6dEeNz9fh9uTM=",
         "owner": "kylescudder",
         "repo": "pigeon",
-        "rev": "ab1d2593a1b3ad834a8f3270eec43f90a9070824",
+        "rev": "8989df5b2589713b7bd773b8edcdae5bff0c8959",
         "type": "github"
       },
       "original": {
