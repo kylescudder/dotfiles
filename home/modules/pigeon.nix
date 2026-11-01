@@ -21,7 +21,11 @@ in
 
   # Pigeon starts from Hyprland's hyprland.start handler, like waybar and
   # swaync, because Hyprland without UWSM never reaches graphical-session.target.
-  programs.pigeon.enable = true;
+  programs.pigeon = {
+    enable = true;
+    # Looks up website icons, which tells DuckDuckGo the domains that email me.
+    settings.senderImages = true;
+  };
 
   accounts.email.accounts = {
     kylescudder = zoho "kyle@kylescudder.co.uk" "Kyle Scudder" // {
