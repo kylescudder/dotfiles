@@ -16,5 +16,9 @@
     lazygit
     python3
     python3Packages.pip
+
+    # AI coding agents (claude-code is unfree; allowed in the NixOS config).
+    claude-code
+    codex
   ];
 }
