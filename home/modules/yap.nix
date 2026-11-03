@@ -1,6 +1,6 @@
 { pkgs, inputs, ... }:
 let
-  yap = inputs.yap.packages.${pkgs.stdenv.hostPlatform.system}.default;
+  yap = inputs.yap.packages.${pkgs.stdenv.hostPlatform.system}.cuda;
 in
 {
   systemd.user.services = {

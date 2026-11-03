@@ -27,7 +27,15 @@
   };
 
   # Flakes are the entry point for this configuration.
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings = {
+    experimental-features = [ "nix-command" "flakes" ];
+
+    # Prebuilt CUDA packages (Yap's whisper.cpp) so they aren't compiled locally.
+    substituters = [ "https://cache.nixos-cuda.org" ];
+    trusted-public-keys = [
+      "cache.nixos-cuda.org:74DUi4Ye579gUqzH4ziL9IyiJBlDpMRn9MBN8oNan9M="
+    ];
+  };
 
   # Several workstation applications/drivers are unfree.
   nixpkgs.config.allowUnfree = true;

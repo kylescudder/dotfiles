@@ -32,10 +32,9 @@
       inputs.home-manager.follows = "home-manager";
     };
 
-    yap = {
-      url = "github:kylescudder/yap";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # Not following nixpkgs: yap's own lock pins the nixpkgs its CUDA build
+    # uses, so system updates don't force a CUDA rebuild.
+    yap.url = "github:kylescudder/yap";
 
     pigeon = {
       url = "github:kylescudder/pigeon";
