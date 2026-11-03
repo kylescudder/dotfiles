@@ -3,6 +3,9 @@ let
   yap = inputs.yap.packages.${pkgs.stdenv.hostPlatform.system}.cuda;
 in
 {
+  # Hyprland's dictation binds call yapctl from PATH.
+  home.packages = [ yap ];
+
   systemd.user.services = {
     yap = {
       Unit = {
