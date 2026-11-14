@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 
 {
   programs.fzf = {
@@ -19,6 +19,6 @@
 
     # AI coding agents (claude-code is unfree; allowed in the NixOS config).
     claude-code
-    codex
+    (inputs.nixpkgs-unstable.legacyPackages.${pkgs.stdenv.hostPlatform.system}.codex)
   ];
 }
