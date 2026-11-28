@@ -1,11 +1,11 @@
 { pkgs, ... }:
 
 let
-  version = "0.1.12-nightly.20261122.5111";
+  version = "0.1.14-nightly.20261128.5399";
 
   src = pkgs.fetchurl {
     url = "https://github.com/pingdotgg/t3code/releases/download/v${version}/T3-Code-Nightly-x86_64.AppImage";
-    hash = "sha256-4O/IeK3PrpDLkdQGG/pz6qTxxm1IwEF7gWx+LEpC6s8=";
+    hash = "sha256-eZODJc6SQhV+TLkdOzbnCElASZimOTHXIQ5u+y7W22Q=";
   };
 
   contents = pkgs.appimageTools.extractType2 {
